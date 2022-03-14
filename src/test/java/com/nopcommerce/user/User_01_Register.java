@@ -101,12 +101,12 @@ public class User_01_Register extends BaseTest {
         registerPage = homePage.clickToResgisterLink();
 
         log.info("Register TC:06 Valid");
-        log.info("Register with email" + email + "   Pass: 123456");
+        log.info("Register with email: " + email + "   Pass: 123456");
         registerPage.RegiserAccountForm(firstName, lastName, email, password);
 
         Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
 
-        log.info("Logout with email" + email + "   Pass: 123456");
+        log.info("Logout with email: " + email + "   Pass: 123456");
         homePage = registerPage.ClickToLogoutLinkAtUserPage(driver);
     }
 
@@ -118,16 +118,16 @@ public class User_01_Register extends BaseTest {
     }
 
     private String fakeEmail() {
-        return "AutoTest" + String.valueOf((new Random().nextInt(9999))) + "@gmail.com";
+        return "AutoTest" + String.valueOf((new Random().nextInt(999999))) + "@gmail.com";
     }
 
     public void RegisterNewAccount(String tEmail) {
         registerPage = homePage.clickToResgisterLink();
 
-        log.info("Register with email" + tEmail + "   Pass: 123456");
+        log.info("Register with email: " + tEmail + "   Pass: 123456");
         registerPage.RegiserAccountForm(firstName, lastName, tEmail, password);
         homePage = registerPage.ClickToLogoutLinkAtUserPage(driver);
-        log.info("Logout with email" + tEmail + "   Pass: 123456");
+        log.info("Logout with email: " + tEmail + "   Pass: 123456");
     }
 
 }
