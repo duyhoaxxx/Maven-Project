@@ -23,17 +23,12 @@ public class User_01_Register extends BaseTest {
 
     @Parameters("browser")
     @BeforeClass
-    public void beforeClass(String browserName) {
+    private void beforeClass(String browserName) {
         driver = getBrowserDriver(browserName);
         homePage = PageGeneratorManager.getUserHomePage(driver);
         // https://docs.google.com/document/d/16N5CVHwX4tVhtgvsKAggNCN6COeZSz2Onlfv8wDFo8E/edit
 
-        firstName = "Kane";
-        lastName = "Pham";
-        email = fakeEmail();
-        existEmail = fakeEmail();
-        password = "123456";
-        RegisterNewAccount(existEmail);
+        SetData();
     }
 
     @Test
@@ -117,11 +112,22 @@ public class User_01_Register extends BaseTest {
         cleanBrowserAndDriver();
     }
 
+    private void SetData() {
+        homePage.zoomMax(driver);
+
+        firstName = "Kane";
+        lastName = "Pham";
+        email = fakeEmail();
+        existEmail = fakeEmail();
+        password = "123456";
+        RegisterNewAccount(existEmail);
+    }
+
     private String fakeEmail() {
         return "AutoTest" + String.valueOf((new Random().nextInt(999999))) + "@gmail.com";
     }
 
-    public void RegisterNewAccount(String tEmail) {
+    private void RegisterNewAccount(String tEmail) {
         registerPage = homePage.clickToResgisterLink();
 
         log.info("Register with email: " + tEmail + "   Pass: 123456");

@@ -1,4 +1,4 @@
-package pageUIs.nopCommerce.user;
+package pageUIs.nopCommerce.user.MyAccountPageUI;
 
 public class CustomerInfoPageUI {
     public static final String RADIO_GENDER_FEMALE = "//div[@class='gender']//span[@class='female']//input";

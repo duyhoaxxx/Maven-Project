@@ -1,9 +1,9 @@
-package pageObjects.nopCommerce.user;
+package pageObjects.nopCommerce.user.MyAccountPageObject;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.nopCommerce.user.AddressesPageUI;
+import pageUIs.nopCommerce.user.MyAccountPageUI.AddressesPageUI;
 
 public class UserAddressPageObject extends BasePage {
     private WebDriver driver;

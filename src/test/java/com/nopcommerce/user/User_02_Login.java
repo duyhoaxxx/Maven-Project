@@ -1,7 +1,9 @@
 package com.nopcommerce.user;
 
 import java.util.Random;
+import java.util.Set;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -20,22 +22,18 @@ public class User_02_Login extends BaseTest {
     private UserHomePageObject homePage;
     private UserRegisterPageObject registerPage;
     private UserLoginPageObject loginPage;
+
     WebDriver driver;
+    public static Set<Cookie> LoginPageCookie;
     private String firstName, lastName, email, password, invalidEmail, notFoundEmail;
 
     @Parameters("browser")
     @BeforeClass
-    public void beforeClass(String browserName) {
+    private void beforeClass(String browserName) {
         driver = getBrowserDriver(browserName);
         homePage = PageGeneratorManager.getUserHomePage(driver);
 
-        firstName = "Kane";
-        lastName = "Pham";
-        email = fakeEmail();
-        password = "123456";
-        invalidEmail = "123@#$";
-        notFoundEmail = "abc123@gmail.com";
-        RegisterNewAccount(email);
+        SetData();
     }
 
     @Test
@@ -100,6 +98,7 @@ public class User_02_Login extends BaseTest {
         log.info("Login TC:06 Success");
         log.info("Register with email: " + email + "   Pass: " + password);
         loginPage.LoginAsUser(email, password);
+        LoginPageCookie = homePage.getAllCookies(driver);
 
         Assert.assertEquals(homePage.getTopicBlockTitle(), "Welcome to our store");
 
@@ -114,11 +113,23 @@ public class User_02_Login extends BaseTest {
         cleanBrowserAndDriver();
     }
 
+    private void SetData() {
+        homePage.zoomMax(driver);
+
+        firstName = "Kane";
+        lastName = "Pham";
+        email = fakeEmail();
+        password = "123456";
+        invalidEmail = "123@#$";
+        notFoundEmail = "abc123@gmail.com";
+        RegisterNewAccount(email);
+    }
+
     private String fakeEmail() {
         return "AutoTest" + String.valueOf((new Random().nextInt(999999))) + "@gmail.com";
     }
 
-    public void RegisterNewAccount(String tEmail) {
+    private void RegisterNewAccount(String tEmail) {
         registerPage = homePage.clickToResgisterLink();
 
         log.info("Register with email: " + tEmail + "   Pass: 123456");

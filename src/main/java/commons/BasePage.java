@@ -19,15 +19,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.nopCommerce.admin.AdminLoginPageObject;
-import pageObjects.nopCommerce.user.UserAddressPageObject;
-import pageObjects.nopCommerce.user.UserBackInStockSubscriptionsPageObject;
-import pageObjects.nopCommerce.user.UserChangePasswordPageObject;
-import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
-import pageObjects.nopCommerce.user.UserDownloadableProductsPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
-import pageObjects.nopCommerce.user.UserMyProductReviewsPageObject;
-import pageObjects.nopCommerce.user.UserOrdersPageObject;
-import pageObjects.nopCommerce.user.UserRewardPointsPageObject;
 import pageUIs.nopCommerce.user.BasePageUI;
 
 public class BasePage {
@@ -652,58 +644,36 @@ public class BasePage {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
-    public UserCustomerInfoPageObject openCustomerInfoPage(WebDriver driver) {
-        clickToElement(driver, BasePageUI.CUSTOMER_INFO_LINK);
-        return PageGeneratorManager.getUserCustomerInfoPage(driver);
-    }
-
-    public UserAddressPageObject openAddressPage(WebDriver driver) {
-        clickToElement(driver, BasePageUI.ADDRESS_LINK);
-        return PageGeneratorManager.getUserAddressPage(driver);
-    }
-
-    public UserOrdersPageObject openOrdersPage(WebDriver driver) {
-        clickToElement(driver, BasePageUI.ORDERS_LINK);
-        return PageGeneratorManager.getUserOrdersPage(driver);
-    }
-
-    public UserDownloadableProductsPageObject openDownloadableProductsPage(WebDriver driver) {
-        clickToElement(driver, BasePageUI.DOWNLOADABLE_PRODUCTS_LINK);
-        return PageGeneratorManager.getUserDownloadableProductsPage(driver);
-    }
-
-    public UserBackInStockSubscriptionsPageObject openBackInStockSubsciptionsPage(WebDriver driver) {
-        clickToElement(driver, BasePageUI.BACK_IN_STOCK_SUBCRIPTIONS_LINK);
-        return PageGeneratorManager.getUserBackInStockSubsciptionsPage(driver);
-    }
-
-    public UserRewardPointsPageObject openRewardPointsPage(WebDriver driver) {
-        clickToElement(driver, BasePageUI.REWARD_POINTS_LINK);
-        return PageGeneratorManager.getUserRewardPointsPage(driver);
-    }
-
-    public UserChangePasswordPageObject openChangePasswordPage(WebDriver driver) {
-        clickToElement(driver, BasePageUI.CHANGE_PASSWORD_LINK);
-        return PageGeneratorManager.getUserChangePasswordPage(driver);
-    }
-
-    public UserMyProductReviewsPageObject openMyProductReviewsPage(WebDriver driver) {
-        clickToElement(driver, BasePageUI.MY_PRODUCT_REVIEWS_LINK);
-        return PageGeneratorManager.getUserMyProductReviewsPage(driver);
-    }
 
     public UserHomePageObject ClickToLogoutLinkAtUserPage(WebDriver driver) {
+        waitForElementVisible(driver, BasePageUI.LOGOUT_LINK_AT_USER);
         clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_USER);
         return PageGeneratorManager.getUserHomePage(driver);
     }
 
     public AdminLoginPageObject ClickToLogoutLinkAtAdminPage(WebDriver driver) {
+        waitForElementVisible(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
         clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
         return PageGeneratorManager.getAdminLoginPage(driver);
+    }
+
+    public boolean isMyAccountPageTitleDisplayedByName(WebDriver driver, String pageName) {
+        String locator = getDynamicXpath(BasePageUI.DYNAMIC_MY_ACCOUNT_PAGE_TITLE, pageName);
+        return isElementDisplay(driver, locator);
     }
 
     public boolean isPageTitleDisplayedByName(WebDriver driver, String pageName) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_PAGE_TITLE, pageName);
         return isElementDisplay(driver, locator);
+    }
+
+    public void openMyAccountPageByName(WebDriver driver, String pageName) {
+        String locator = getDynamicXpath(BasePageUI.DYNAMIC_MY_ACCOUNT_PAGE_LINK, pageName);
+        clickToElement(driver, locator);
+    }
+
+    public void openTopMenuByName(WebDriver driver, String menuName) {
+        String locator = getDynamicXpath(BasePageUI.DYNAMIC_TOP_MENU, menuName);
+        clickToElement(driver, locator);
     }
 }

@@ -1,4 +1,4 @@
-package pageUIs.nopCommerce.user;
+package pageUIs.nopCommerce.user.MyAccountPageUI;
 
 public class AddressesPageUI {
     public static final String ADD_NEW_BUTTON = "//button[@class='button-1 add-address-button']";

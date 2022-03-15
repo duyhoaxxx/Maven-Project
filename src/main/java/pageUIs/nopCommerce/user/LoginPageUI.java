@@ -6,4 +6,7 @@ public class LoginPageUI {
 	public static final String EMAIL_TEXTBOX = "//input[@class='email']";
 	public static final String PASSWORD_TEXTBOX = "//input[@class='password']";
 	public static final String LOGIN_ERR_MESSAGE = "//div[@class='message-error validation-summary-errors']";
+
+	public static final String CLOSE_RESULT_MESSAGE_LOGGIN_COOKIES_BUTTON = "//span[@class='close']";
+	public static final String HEADER_LOGO = "//div[@class='header-logo']//a";
 }
