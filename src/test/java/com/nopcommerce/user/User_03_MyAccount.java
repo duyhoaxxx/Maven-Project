@@ -188,7 +188,7 @@ public class User_03_MyAccount extends BaseTest {
         computerMenuPage.clickToSubCategoryByName("Desktops");
         Assert.assertTrue(computerMenuPage.isPageTitleDisplayedByName(driver, "Desktops"));
 
-        log.info("Step3: Click to product");
+        log.info("Step3: Click to product: Digital Storm VANQUISH 3 Custom Performance PC");
         computerMenuPage.clickToProductByName("Digital Storm VANQUISH 3 Custom Performance PC");
 
         log.info("Step4: Click Add your Review");

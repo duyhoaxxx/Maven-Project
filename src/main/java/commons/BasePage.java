@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.user.TopMenuPageObject.UserWishlistPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageUIs.nopCommerce.user.BasePageUI;
 
@@ -655,6 +656,12 @@ public class BasePage {
         waitForElementVisible(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
         clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
         return PageGeneratorManager.getAdminLoginPage(driver);
+    }
+
+    public UserWishlistPageObject ClickToWishlistLinkAtUserPage(WebDriver driver) {
+        waitForElementVisible(driver, BasePageUI.WISHLIST_LINK_AT_USER);
+        clickToElement(driver, BasePageUI.WISHLIST_LINK_AT_USER);
+        return PageGeneratorManager.getWishlistPage(driver);
     }
 
     public boolean isMyAccountPageTitleDisplayedByName(WebDriver driver, String pageName) {
