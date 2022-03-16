@@ -1,4 +1,4 @@
-package pageObjects.nopCommerce.user.TopMenuPageObject;
+package pageObjects.nopCommerce.user.MenuPageObject;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -46,14 +46,9 @@ public class UserSearchPageObject extends BasePage {
     }
 
     public boolean isProductSearchDisplay(String nameProduct) {
-        if (isElementUndisplayed(driver, SearchPageUI.ALL_RESULTS_SEARCH))
+        if (isElementUndisplayed(driver, SearchPageUI.RESULTS_SEARCH_PRODUCT_BY_NAME, nameProduct))
             return false;
-        List<WebElement> results = getListWebElement(driver, SearchPageUI.ALL_RESULTS_SEARCH);
-        for (WebElement element : results) {
-            if (element.getText().equals(nameProduct))
-                return true;
-        }
-        return false;
+        return true;
     }
 
     public void selectCategory(String category) {

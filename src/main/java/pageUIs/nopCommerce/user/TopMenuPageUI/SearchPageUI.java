@@ -12,4 +12,5 @@ public class SearchPageUI {
     public static final String MANUFACTURER_DROPDOWN = "//select[@id='mid']";
     public static final String SEARCH_IN_PRODUCT_DESCRIPTIONS_CHECKBOX = "//input[@id='sid']";
     public static final String ALL_RESULTS_SEARCH = "//div[@class='item-grid']//h2[@class='product-title']//a";
+    public static final String RESULTS_SEARCH_PRODUCT_BY_NAME = "//div[@class='item-grid']//h2[@class='product-title']//a[text()='%s']";
 }

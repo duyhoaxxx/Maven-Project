@@ -1,11 +1,8 @@
-package pageObjects.nopCommerce.user.TopMenuPageObject;
+package pageObjects.nopCommerce.user.MenuPageObject;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import pageUIs.nopCommerce.user.MyAccountPageUI.CompareProductsPageUI;
-
-import java.util.List;
+import pageUIs.nopCommerce.user.TopMenuPageUI.CompareProductsPageUI;
 
 public class UserCompareProductsPageObject extends BasePage {
     private WebDriver driver;
@@ -15,14 +12,9 @@ public class UserCompareProductsPageObject extends BasePage {
     }
 
     public boolean isProductNameDisplay(String productName) {
-        if (isElementUndisplayed(driver, CompareProductsPageUI.ALL_PRODUCT_NAME))
+        if (isElementUndisplayed(driver, CompareProductsPageUI.PRODUCT_BY_NAME,productName))
             return false;
-        List<WebElement> result = getListWebElement(driver, CompareProductsPageUI.ALL_PRODUCT_NAME);
-        for (WebElement element : result) {
-            if (element.getText().equals(productName))
-                return true;
-        }
-        return false;
+        return true;
     }
 
     public void clickToClearListButton() {

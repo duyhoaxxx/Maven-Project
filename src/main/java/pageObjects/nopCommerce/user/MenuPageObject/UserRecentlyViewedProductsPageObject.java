@@ -1,4 +1,4 @@
-package pageObjects.nopCommerce.user.TopMenuPageObject;
+package pageObjects.nopCommerce.user.MenuPageObject;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;

@@ -8,7 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.nopCommerce.user.TopMenuPageObject.*;
+import pageObjects.nopCommerce.user.MenuPageObject.*;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
 
@@ -123,6 +123,7 @@ public class User_06_Wishlist_Compare extends BaseTest {
         compareProductPage = PageGeneratorManager.getCompareProductsPage(driver);
 
         Assert.assertTrue(compareProductPage.isPageTitleDisplayedByName(driver, "Compare products"));
+        log.info(productName+" ~~~ "+productNameCompare);
         Assert.assertTrue(compareProductPage.isProductNameDisplay(productName));
         Assert.assertTrue(compareProductPage.isProductNameDisplay(productNameCompare));
 

@@ -2,7 +2,6 @@ package com.nopcommerce.user;
 
 import commons.BaseTest;
 import commons.PageGeneratorManager;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -11,10 +10,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.nopCommerce.user.*;
 import pageObjects.nopCommerce.user.MyAccountPageObject.*;
-import pageObjects.nopCommerce.user.TopMenuPageObject.*;
+import pageObjects.nopCommerce.user.MenuPageObject.*;
 
 import java.util.Random;
-import java.util.Set;
 
 public class User_03_MyAccount extends BaseTest {
     private UserHomePageObject homePage;

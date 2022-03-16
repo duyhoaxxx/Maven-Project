@@ -6,7 +6,7 @@ import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
 import pageObjects.nopCommerce.admin.AdminLoginPageObject;
 import pageObjects.nopCommerce.user.*;
 import pageObjects.nopCommerce.user.MyAccountPageObject.*;
-import pageObjects.nopCommerce.user.TopMenuPageObject.*;
+import pageObjects.nopCommerce.user.MenuPageObject.*;
 
 public class PageGeneratorManager {
     public static UserHomePageObject getUserHomePage(WebDriver driver) {

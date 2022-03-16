@@ -21,11 +21,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.nopCommerce.admin.AdminLoginPageObject;
-import pageObjects.nopCommerce.user.TopMenuPageObject.UserWishlistPageObject;
+import pageObjects.nopCommerce.user.MenuPageObject.UserShoppingCartPageObject;
+import pageObjects.nopCommerce.user.MenuPageObject.UserWishlistPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageUIs.nopCommerce.user.BasePageUI;
-import pageUIs.nopCommerce.user.TopMenuPageUI.MenuComputersPageUI;
-import pageUIs.nopCommerce.user.TopMenuPageUI.WishlistPageUI;
 
 public class BasePage {
 
@@ -285,6 +284,12 @@ public class BasePage {
     }
 
     public String getElementAttribute(WebDriver driver, String xpathLocator, String attributeName) {
+        waitForElementVisible(driver, xpathLocator);
+        return getWebElement(driver, xpathLocator).getAttribute(attributeName);
+    }
+
+    public String getElementAttribute(WebDriver driver, String xpathLocator, String attributeName, String... dynamicValues) {
+        xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
         waitForElementVisible(driver, xpathLocator);
         return getWebElement(driver, xpathLocator).getAttribute(attributeName);
     }
@@ -668,6 +673,12 @@ public class BasePage {
         return PageGeneratorManager.getWishlistPage(driver);
     }
 
+    public UserShoppingCartPageObject ClickToShoppingCartLinkAtUserPage(WebDriver driver) {
+        waitForElementVisible(driver, BasePageUI.SHOPPING_CART_LINK_AT_USER);
+        clickToElement(driver, BasePageUI.SHOPPING_CART_LINK_AT_USER);
+        return PageGeneratorManager.getShoppingCartPage(driver);
+    }
+
     public boolean isMyAccountPageTitleDisplayedByName(WebDriver driver, String pageName) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_MY_ACCOUNT_PAGE_TITLE, pageName);
         return isElementDisplay(driver, locator);
@@ -686,7 +697,6 @@ public class BasePage {
     public void openTopMenuByName(WebDriver driver, String menuName) {
         clickToElement(driver, BasePageUI.DYNAMIC_TOP_MENU, menuName);
     }
-
 
     public void clickToSortByDropdown(WebDriver driver, String key) {
         selectItemInDefaultDropdown(driver, BasePageUI.SORT_BY_DROPDOWN, key);
@@ -786,13 +796,13 @@ public class BasePage {
     }
 
     public boolean isProductNameDisplay(WebDriver driver, String pName) {
-        if (isElementUndisplayed(driver, BasePageUI.ALL_NAME_PRODUCT))
+        if (isElementUndisplayed(driver, BasePageUI.PRODUCT_DISPLAY_BY_NAME, pName))
             return false;
-        List<WebElement> listElement = getListWebElement(driver, BasePageUI.ALL_NAME_PRODUCT);
-        for (WebElement element : listElement) {
-            if (element.getText().equals(pName))
-                return true;
-        }
-        return false;
+        return true;
+    }
+
+    public boolean isProductNameInMiniShoppingCart(WebDriver driver, String pName) {
+        hoverMouseToElement(driver, BasePageUI.SHOPPING_CART_LINK_AT_USER);
+        return isElementEnable(driver, BasePageUI.ALL_NAME_IN_MINI_SHOPPING_CART, pName);
     }
 }

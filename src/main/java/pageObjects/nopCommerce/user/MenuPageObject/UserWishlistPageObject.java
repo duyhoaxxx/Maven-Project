@@ -1,4 +1,4 @@
-package pageObjects.nopCommerce.user.TopMenuPageObject;
+package pageObjects.nopCommerce.user.MenuPageObject;
 
 import commons.BasePage;
 import commons.PageGeneratorManager;
@@ -16,14 +16,9 @@ public class UserWishlistPageObject extends BasePage {
     }
 
     public boolean isProductNameDisplay(String productName) {
-        if (isElementUndisplayed(driver, WishlistPageUI.ALL_PRODUCT_IN_WISHLIST))
+        if (isElementUndisplayed(driver, WishlistPageUI.PRODUCT_IN_WISHLIST_BY_NAME,productName))
             return false;
-        List<WebElement> listElement = getListWebElement(driver, WishlistPageUI.ALL_PRODUCT_IN_WISHLIST);
-        for (WebElement element : listElement) {
-            if (element.getText().equals(productName))
-                return true;
-        }
-        return false;
+        return true;
     }
 
     public void clickToURLForSharing() {

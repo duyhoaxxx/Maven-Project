@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.nopCommerce.user.*;
-import pageObjects.nopCommerce.user.TopMenuPageObject.UserSearchPageObject;
+import pageObjects.nopCommerce.user.MenuPageObject.UserSearchPageObject;
 
 public class User_04_Search extends BaseTest {
     private UserHomePageObject homePage;

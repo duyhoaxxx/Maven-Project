@@ -3,6 +3,7 @@ package pageUIs.nopCommerce.user;
 public class BasePageUI {
 
     public static final String WISHLIST_LINK_AT_USER = "//div[@class='header']//a[@class='ico-wishlist']";
+    public static final String SHOPPING_CART_LINK_AT_USER = "//div[@class='header']//a[@class='ico-cart']";
     public static final String LOGOUT_LINK_AT_USER = "//a[@class='ico-logout']";
     public static final String LOGOUT_LINK_AT_ADMIN = "//a[text()='Logout']";
 
@@ -20,7 +21,9 @@ public class BasePageUI {
 
     public static final String SORT_BY_DROPDOWN = "//select[@id='products-orderby']";
     public static final String ALL_NAME_PRODUCT = "//div[@class='item-box']//h2[@class='product-title']/a";
+    public static final String PRODUCT_DISPLAY_BY_NAME = "//div[@class='item-box']//h2[@class='product-title']/a[text()='%s']";
     public static final String ALL_PRICE_PRODUCT = "//div[@class='item-box']//div[@class='prices']/span";
+    public static final String ALL_NAME_IN_MINI_SHOPPING_CART = "//div[@class='name']//a[text()='%s']";
     public static final String PAGE_SIZE_BUTTON = "//select[@id='products-pagesize']";
     public static final String PAGING_BUTTON = "//div[@class='pager']";
     public static final String NEXT_PAGE_BUTTON = "//div[@class='pager']//li[@class='next-page']";
