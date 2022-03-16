@@ -16,5 +16,15 @@ public class BasePageUI {
     public static final String DYNAMIC_MY_ACCOUNT_PAGE_TITLE = "//div[@class='page-title']//h1[text()='My account - %s']";
     public static final String DYNAMIC_MY_ACCOUNT_PAGE_LINK = "//div[@class='listbox']//a[text()='%s']";
     public static final String DYNAMIC_PAGE_TITLE = "//div[@class='page-title']//h1[text()='%s']";
-    public static final String DYNAMIC_TOP_MENU = "//ul[@class='top-menu notmobile']//a[text()='%s']";
+    public static final String DYNAMIC_TOP_MENU = "//ul[@class='top-menu notmobile']//a[@href='/%s']";
+
+    public static final String SORT_BY_DROPDOWN = "//select[@id='products-orderby']";
+    public static final String ALL_NAME_PRODUCT = "//div[@class='item-box']//h2[@class='product-title']/a";
+    public static final String ALL_PRICE_PRODUCT = "//div[@class='item-box']//div[@class='prices']/span";
+    public static final String PAGE_SIZE_BUTTON = "//select[@id='products-pagesize']";
+    public static final String PAGING_BUTTON = "//div[@class='pager']";
+    public static final String NEXT_PAGE_BUTTON = "//div[@class='pager']//li[@class='next-page']";
+    public static final String PREVIOUS_PAGE_BUTTON = "//div[@class='pager']//li[@class='previous-page']";
+
+
 }

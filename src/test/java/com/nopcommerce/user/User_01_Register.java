@@ -86,6 +86,7 @@ public class User_01_Register extends BaseTest {
         registerPage.inputToEmailTextbox(email);
         registerPage.inputToPasswordTextbox(password);
         registerPage.inputToConfirmPasswordTextbox("123578");
+        registerPage.clickToRegisterButton();
 
         Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(),
                 "The password and confirmation password do not match.");

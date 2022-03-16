@@ -15,6 +15,8 @@ public class UserShoppingCartPageObject extends BasePage {
     }
 
     public boolean isProductNameDisplay(String productName) {
+        if (isElementUndisplayed(driver, ShoppingCartPageUI.ALL_PRODUCT_IN_WISHLIST))
+            return false;
         List<WebElement> listElement = getListWebElement(driver, ShoppingCartPageUI.ALL_PRODUCT_IN_WISHLIST);
         for (WebElement element : listElement) {
             if (element.getText().equals(productName))

@@ -180,7 +180,7 @@ public class User_03_MyAccount extends BaseTest {
 
         log.info("Account_TC:04 Add Review");
         log.info("Step1: Open Menu Computers page");
-        homePage.openTopMenuByName(driver, "Computers ");
+        homePage.openTopMenuByName(driver, "computers");
         computerMenuPage = PageGeneratorManager.getUserMenuComputersPage(driver);
         Assert.assertTrue(changePasswordPage.isPageTitleDisplayedByName(driver, "Computers"));
 

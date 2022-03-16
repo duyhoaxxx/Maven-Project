@@ -1,5 +1,7 @@
 package commons;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +24,8 @@ import pageObjects.nopCommerce.admin.AdminLoginPageObject;
 import pageObjects.nopCommerce.user.TopMenuPageObject.UserWishlistPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageUIs.nopCommerce.user.BasePageUI;
+import pageUIs.nopCommerce.user.TopMenuPageUI.MenuComputersPageUI;
+import pageUIs.nopCommerce.user.TopMenuPageUI.WishlistPageUI;
 
 public class BasePage {
 
@@ -680,7 +684,115 @@ public class BasePage {
     }
 
     public void openTopMenuByName(WebDriver driver, String menuName) {
-        String locator = getDynamicXpath(BasePageUI.DYNAMIC_TOP_MENU, menuName);
-        clickToElement(driver, locator);
+        clickToElement(driver, BasePageUI.DYNAMIC_TOP_MENU, menuName);
+    }
+
+
+    public void clickToSortByDropdown(WebDriver driver, String key) {
+        selectItemInDefaultDropdown(driver, BasePageUI.SORT_BY_DROPDOWN, key);
+        sleepInSecond(2);
+    }
+
+    public boolean isSortedNameAscending(WebDriver driver) {
+        List<String> listResults = new ArrayList<>();
+        List<WebElement> listElementName = getListWebElement(driver, BasePageUI.ALL_NAME_PRODUCT);
+        for (WebElement element : listElementName) {
+            listResults.add(element.getText());
+        }
+        List<String> listSort = new ArrayList<>();
+        for (String item : listResults) {
+            listSort.add(item);
+        }
+        Collections.sort(listSort);
+        return listSort.equals(listResults);
+    }
+
+    public boolean isSortedNameDescending(WebDriver driver) {
+        List<String> listResults = new ArrayList<>();
+        List<WebElement> listElementName = getListWebElement(driver, BasePageUI.ALL_NAME_PRODUCT);
+        for (WebElement element : listElementName) {
+            listResults.add(element.getText());
+        }
+        List<String> listSort = new ArrayList<>();
+        for (String item : listResults) {
+            listSort.add(item);
+        }
+        Collections.sort(listSort);
+        Collections.reverse(listSort);
+        return listSort.equals(listResults);
+    }
+
+    public boolean isSortedPriceAscending(WebDriver driver) {
+        List<String> listResults = new ArrayList<>();
+        List<WebElement> listElementPrice = getListWebElement(driver, BasePageUI.ALL_PRICE_PRODUCT);
+        for (WebElement element : listElementPrice) {
+            listResults.add(element.getText());
+        }
+        List<String> listSort = new ArrayList<>();
+        for (String item : listResults) {
+            listSort.add(item);
+        }
+        Collections.sort(listSort);
+        return listSort.equals(listResults);
+
+    }
+
+    public boolean isSortedPriceDescending(WebDriver driver) {
+        List<String> listResults = new ArrayList<>();
+        List<WebElement> listElementPrice = getListWebElement(driver, BasePageUI.ALL_PRICE_PRODUCT);
+        for (WebElement element : listElementPrice) {
+            listResults.add(element.getText());
+        }
+        List<String> listSort = new ArrayList<>();
+        for (String item : listResults) {
+            listSort.add(item);
+        }
+        Collections.sort(listSort);
+        Collections.reverse(listSort);
+        return listSort.equals(listResults);
+    }
+
+    public void clickToPageSizeButton(WebDriver driver, String key) {
+        selectItemInDefaultDropdown(driver, BasePageUI.PAGE_SIZE_BUTTON, key);
+        sleepInSecond(2);
+    }
+
+    public boolean isNumberProductDisplay(WebDriver driver, int value) {
+        return (getElementSize(driver, BasePageUI.ALL_NAME_PRODUCT) > value) ? false : true;
+    }
+
+    public boolean isPagingButtonDisplay(WebDriver driver) {
+        return !isElementUndisplayed(driver, BasePageUI.PAGING_BUTTON);
+    }
+
+    public boolean isNextPageButtonDisplay(WebDriver driver) {
+        return !isElementUndisplayed(driver, BasePageUI.NEXT_PAGE_BUTTON);
+    }
+
+    public boolean isPreviousPageButtonDisplay(WebDriver driver) {
+        return !isElementUndisplayed(driver, BasePageUI.PREVIOUS_PAGE_BUTTON);
+    }
+
+    public void clickToNextPageButton(WebDriver driver) {
+        if (isNextPageButtonDisplay(driver))
+            clickToElement(driver, BasePageUI.NEXT_PAGE_BUTTON);
+        sleepInSecond(2);
+    }
+
+    public void clickToPreviousPageButton(WebDriver driver) {
+        if (isPreviousPageButtonDisplay(driver))
+            clickToElement(driver, BasePageUI.PREVIOUS_PAGE_BUTTON);
+        sleepInSecond(2);
+    }
+
+    public boolean isProductNameDisplay(WebDriver driver, String pName) {
+        if (isElementUndisplayed(driver, BasePageUI.ALL_NAME_PRODUCT))
+            return false;
+        List<WebElement> listElement = getListWebElement(driver, BasePageUI.ALL_NAME_PRODUCT);
+        for (WebElement element : listElement) {
+            if (element.getText().equals(pName))
+                return true;
+        }
+        return false;
     }
 }

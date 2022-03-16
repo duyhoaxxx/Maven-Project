@@ -46,6 +46,8 @@ public class UserSearchPageObject extends BasePage {
     }
 
     public boolean isProductSearchDisplay(String nameProduct) {
+        if (isElementUndisplayed(driver, SearchPageUI.ALL_RESULTS_SEARCH))
+            return false;
         List<WebElement> results = getListWebElement(driver, SearchPageUI.ALL_RESULTS_SEARCH);
         for (WebElement element : results) {
             if (element.getText().equals(nameProduct))
@@ -54,12 +56,12 @@ public class UserSearchPageObject extends BasePage {
         return false;
     }
 
-    public void selectCategory(String category){
-        selectItemInDefaultDropdown(driver,SearchPageUI.CATEGORY_DROPDOWN,category);
+    public void selectCategory(String category) {
+        selectItemInDefaultDropdown(driver, SearchPageUI.CATEGORY_DROPDOWN, category);
     }
 
-    public void selectManufacturer(String manufacturer){
-        selectItemInDefaultDropdown(driver,SearchPageUI.MANUFACTURER_DROPDOWN,manufacturer);
+    public void selectManufacturer(String manufacturer) {
+        selectItemInDefaultDropdown(driver, SearchPageUI.MANUFACTURER_DROPDOWN, manufacturer);
     }
 
     public void automaticallySearchSubCategories(boolean status) {
