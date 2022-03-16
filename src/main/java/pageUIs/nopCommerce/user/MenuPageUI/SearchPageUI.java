@@ -1,4 +1,4 @@
-package pageUIs.nopCommerce.user.TopMenuPageUI;
+package pageUIs.nopCommerce.user.MenuPageUI;
 
 public class SearchPageUI {
 

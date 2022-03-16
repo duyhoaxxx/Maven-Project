@@ -2,7 +2,7 @@ package pageObjects.nopCommerce.user.MenuPageObject;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.nopCommerce.user.TopMenuPageUI.ProductReviewsPageUI;
+import pageUIs.nopCommerce.user.MenuPageUI.ProductReviewsPageUI;
 
 public class UserProductReviewsPageObiect extends BasePage {
     private WebDriver driver;

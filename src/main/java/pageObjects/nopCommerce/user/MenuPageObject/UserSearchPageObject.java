@@ -2,10 +2,7 @@ package pageObjects.nopCommerce.user.MenuPageObject;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import pageUIs.nopCommerce.user.TopMenuPageUI.SearchPageUI;
-
-import java.util.List;
+import pageUIs.nopCommerce.user.MenuPageUI.SearchPageUI;
 
 public class UserSearchPageObject extends BasePage {
     private WebDriver driver;
@@ -38,6 +35,7 @@ public class UserSearchPageObject extends BasePage {
     }
 
     public String getResultMessage() {
+        waitForElementVisible(driver, SearchPageUI.NO_RESULT_MESSAGE);
         return getElementText(driver, SearchPageUI.NO_RESULT_MESSAGE);
     }
 

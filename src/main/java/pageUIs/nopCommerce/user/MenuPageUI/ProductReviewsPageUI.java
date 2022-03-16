@@ -1,4 +1,4 @@
-package pageUIs.nopCommerce.user.TopMenuPageUI;
+package pageUIs.nopCommerce.user.MenuPageUI;
 
 public class ProductReviewsPageUI {
     public static final String ADD_REVIEW_TITLE_TEXTBOX = "//input[@id='AddProductReview_Title']";

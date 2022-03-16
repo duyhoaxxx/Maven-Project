@@ -3,10 +3,7 @@ package pageObjects.nopCommerce.user.MenuPageObject;
 import commons.BasePage;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import pageUIs.nopCommerce.user.TopMenuPageUI.WishlistPageUI;
-
-import java.util.List;
+import pageUIs.nopCommerce.user.MenuPageUI.WishlistPageUI;
 
 public class UserWishlistPageObject extends BasePage {
     private WebDriver driver;
@@ -16,7 +13,7 @@ public class UserWishlistPageObject extends BasePage {
     }
 
     public boolean isProductNameDisplay(String productName) {
-        if (isElementUndisplayed(driver, WishlistPageUI.PRODUCT_IN_WISHLIST_BY_NAME,productName))
+        if (isElementUndisplayed(driver, WishlistPageUI.PRODUCT_IN_WISHLIST_BY_NAME, productName))
             return false;
         return true;
     }
@@ -46,6 +43,7 @@ public class UserWishlistPageObject extends BasePage {
     }
 
     public String getMessageWishlistEmpty() {
+        waitForElementVisible(driver, WishlistPageUI.NO_DATA_MESSAGE);
         return getElementText(driver, WishlistPageUI.NO_DATA_MESSAGE);
     }
 

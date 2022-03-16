@@ -3,7 +3,7 @@ package pageObjects.nopCommerce.user.MenuPageObject;
 import commons.BasePage;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
-import pageUIs.nopCommerce.user.TopMenuPageUI.MenuComputersPageUI;
+import pageUIs.nopCommerce.user.MenuPageUI.MenuComputersPageUI;
 
 public class UserMenuComputersPageObiect extends BasePage {
     private WebDriver driver;

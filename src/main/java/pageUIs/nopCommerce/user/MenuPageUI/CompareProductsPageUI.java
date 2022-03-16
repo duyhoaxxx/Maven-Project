@@ -1,4 +1,4 @@
-package pageUIs.nopCommerce.user.TopMenuPageUI;
+package pageUIs.nopCommerce.user.MenuPageUI;
 
 public class CompareProductsPageUI {
     public static final String PRODUCT_BY_NAME = "//tr[@class='product-name']//td/a[text()='%s']";

@@ -2,7 +2,7 @@ package pageObjects.nopCommerce.user.MenuPageObject;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.nopCommerce.user.TopMenuPageUI.CompareProductsPageUI;
+import pageUIs.nopCommerce.user.MenuPageUI.CompareProductsPageUI;
 
 public class UserCompareProductsPageObject extends BasePage {
     private WebDriver driver;
@@ -12,7 +12,7 @@ public class UserCompareProductsPageObject extends BasePage {
     }
 
     public boolean isProductNameDisplay(String productName) {
-        if (isElementUndisplayed(driver, CompareProductsPageUI.PRODUCT_BY_NAME,productName))
+        if (isElementUndisplayed(driver, CompareProductsPageUI.PRODUCT_BY_NAME, productName))
             return false;
         return true;
     }
@@ -22,6 +22,7 @@ public class UserCompareProductsPageObject extends BasePage {
     }
 
     public String getResultMessage() {
+        waitForElementVisible(driver, CompareProductsPageUI.NO_DATA_MESSAGE);
         return getElementText(driver, CompareProductsPageUI.NO_DATA_MESSAGE);
     }
 }

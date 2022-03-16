@@ -1,6 +1,7 @@
 package com.nopcommerce.user;
 
 import commons.BaseTest;
+import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -27,7 +28,7 @@ public class User_03_MyAccount extends BaseTest {
 
     private String fNameEdit, lNameEdit, emailEdit, password, newPassword;
     CustomerInfo customer = new CustomerInfo();
-    AddressInfo addressInfo = new AddressInfo();
+    public GlobalConstants.AddressInformation addressInfo = new GlobalConstants.AddressInformation();
     WebDriver driver;
 
     @Parameters("browser")
@@ -168,7 +169,7 @@ public class User_03_MyAccount extends BaseTest {
 
         log.info("Login Success with email: " + customer.email + "   Pass: " + newPassword);
         homePage = loginPage.LoginAsUser(customer.email, newPassword);
-
+        User_02_Login.LoginPageCookie = homePage.getAllCookies(driver);
         Assert.assertEquals(homePage.getTopicBlockTitle(), "Welcome to our store");
     }
 
@@ -277,24 +278,4 @@ public class User_03_MyAccount extends BaseTest {
     }
 
     ;
-
-    private class AddressInfo {
-        String fName;
-        String lName;
-        String email;
-        String companyName;
-        String country;
-        String state;
-        String city;
-        String address1;
-        String address2;
-        String postalCode;
-        String phoneNumber;
-        String faxNumber;
-
-    }
-
-    ;
-
-
 }

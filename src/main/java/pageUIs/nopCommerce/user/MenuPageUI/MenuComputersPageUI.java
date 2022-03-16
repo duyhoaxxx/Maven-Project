@@ -1,4 +1,4 @@
-package pageUIs.nopCommerce.user.TopMenuPageUI;
+package pageUIs.nopCommerce.user.MenuPageUI;
 
 public class MenuComputersPageUI {
     public static final String DYNAMIC_TITLE_CATEGORY = "//h2[@class='title']//a[text()=' %s ']";
@@ -6,7 +6,7 @@ public class MenuComputersPageUI {
     public static final String ADD_YOUR_REVIEW_LINK = "//a[text()='Add your review']";
 
     public static final String ADD_TO_WISHLIST_BUTTON = "//div[@class='add-to-wishlist']/button";
-    public static final String ADD_TO_CART_BUTTON = "//button[@id='add-to-cart-button-1']";
+    public static final String ADD_TO_CART_BUTTON = "//div[@class='add-to-cart']//button";
     public static final String RESULT_MESSAGE = "//p[@class='content']";
     public static final String CLOSE_RESULT_MESSAGE_BUTON = "//div[@id='bar-notification']//span";
 
