@@ -41,6 +41,10 @@ public class UserCheckoutPageObject extends BasePage {
         clickToElement(driver, CheckoutPageUI.CONTINUE_BUTTON_AT_PAYMENT_INFO);
     }
 
+    public void clickToContinueButtonShippingAddress() {
+        clickToElement(driver, CheckoutPageUI.CONTINUE_BUTTON_AT_SHIPPING_ADDRESS);
+    }
+
     public void clickToConfirmButton() {
         clickToElement(driver, CheckoutPageUI.CONFIRM_BUTTON);
     }
@@ -176,4 +180,69 @@ public class UserCheckoutPageObject extends BasePage {
     public String getOrderTotal() {
         return getElementText(driver, CheckoutPageUI.ORDER_TOTAL_IN_ORDER_INFO);
     }
+
+    public void inputVisaCardFormInPaymentInfo(String typeCard, String cardName, String cardNumber, String expMonth, String expYear, String cardCode) {
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.CARD_TYPE_PAYMENT_INFO_DROPDOWN, typeCard);
+        senkeyToElement(driver, CheckoutPageUI.CARD_NAME_PAYMENT_INFO_TEXTBOX, cardName);
+        senkeyToElement(driver, CheckoutPageUI.CARD_NUMBER_PAYMENT_INFO_TEXTBOX, cardNumber);
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.CARD_EXP_DATE_MONTH_PAYMENT_INFO_DROPDOWN, expMonth);
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.CARD_EXP_DATE_YEAR_PAYMENT_INFO_DROPDOWN, expYear);
+        senkeyToElement(driver, CheckoutPageUI.CARD_CODE_PAYMENT_INFO_TEXTBOX, cardCode);
+    }
+
+    public void clickToShipMethodByGround() {
+        clickToElement(driver, CheckoutPageUI.SHIPPING_BY_GROUND);
+    }
+
+    public void clickToShipMethodByNextDayAir() {
+        clickToElement(driver, CheckoutPageUI.SHIPPING_BY_NEXT_DAY_AIR);
+    }
+
+    public void clickToShipMethodBy2ndDayAir() {
+        clickToElement(driver, CheckoutPageUI.SHIPPING_BY_2ND_DAY_AIR);
+    }
+
+    public boolean isCheckShippingMethod(String shipMethod) {
+        return getElementText(driver, CheckoutPageUI.SHIPPING_METHOD_AT_CONFIRM_ORDER).contains(shipMethod);
+    }
+
+    public void selectAddressInBillingAddress(String value) {
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_DROPDOWN, value);
+    }
+
+    public void inputNewAddressFormInBillingAddress(GlobalConstants.AddressInformation addressBilling) {
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.fName, "FirstName");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.lName, "LastName");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.email, "Email");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.companyName, "Company");
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_DROPDOWN_BY_ID, addressBilling.country, "CountryId");
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_DROPDOWN_BY_ID, addressBilling.state, "StateProvinceId");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.city, "City");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.address1, "Address1");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.address2, "Address2");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.postalCode, "ZipPostalCode");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.phoneNumber, "PhoneNumber");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.faxNumber, "FaxNumber");
+    }
+
+    public void selectAddressInShippingAddress(String value) {
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_DROPDOWN, value);
+    }
+
+
+    public void inputNewAddressFormInShippingAddress(GlobalConstants.AddressInformation addressBilling) {
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.fName, "FirstName");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.lName, "LastName");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.email, "Email");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.companyName, "Company");
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_DROPDOWN_BY_ID, addressBilling.country, "CountryId");
+        selectItemInDefaultDropdown(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_DROPDOWN_BY_ID, addressBilling.state, "StateProvinceId");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.city, "City");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.address1, "Address1");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.address2, "Address2");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.postalCode, "ZipPostalCode");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.phoneNumber, "PhoneNumber");
+        senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.faxNumber, "FaxNumber");
+    }
+
 }

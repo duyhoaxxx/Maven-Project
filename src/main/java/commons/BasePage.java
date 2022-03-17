@@ -24,7 +24,7 @@ import pageObjects.nopCommerce.admin.AdminLoginPageObject;
 import pageObjects.nopCommerce.user.MenuPageObject.UserShoppingCartPageObject;
 import pageObjects.nopCommerce.user.MenuPageObject.UserWishlistPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
-import pageUIs.nopCommerce.user.BasePageUI;
+import pageUIs.nopCommerce.BasePageUI;
 
 public class BasePage {
 

@@ -1,9 +1,11 @@
 package pageObjects.nopCommerce.user.MyAccountPageObject;
 
 import commons.GlobalConstants;
+import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import pageObjects.nopCommerce.user.MenuPageObject.UserShoppingCartPageObject;
 import pageUIs.nopCommerce.user.MyAccountPageUI.OrdersPageUI;
 
 public class UserOrdersPageObject extends BasePage {
@@ -160,4 +162,12 @@ public class UserOrdersPageObject extends BasePage {
     }
 
 
+    public boolean isCheckShippingMethod(String shipMethod) {
+        return getElementText(driver, OrdersPageUI.SHIPPING_METHOD_AT_CONFIRM_ORDER).contains(shipMethod);
+    }
+
+    public UserShoppingCartPageObject clickToReOrderButton() {
+        clickToElement(driver, OrdersPageUI.REORDER_BUTTON);
+        return PageGeneratorManager.getShoppingCartPage(driver);
+    }
 }

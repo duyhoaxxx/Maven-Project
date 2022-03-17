@@ -93,6 +93,7 @@ public class UserShoppingCartPageObject extends BasePage {
     }
 
     public String getResultMessage() {
+        waitForElementVisible(driver, ShoppingCartPageUI.NO_DATA_MESSAGE);
         return getElementText(driver, ShoppingCartPageUI.NO_DATA_MESSAGE);
     }
 
