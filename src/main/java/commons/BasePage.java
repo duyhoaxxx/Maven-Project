@@ -805,4 +805,12 @@ public class BasePage {
         hoverMouseToElement(driver, BasePageUI.SHOPPING_CART_LINK_AT_USER);
         return isElementEnable(driver, BasePageUI.ALL_NAME_IN_MINI_SHOPPING_CART, pName);
     }
+
+    public String getBarNotificationSuccess(WebDriver driver) {
+        return getElementText(driver, BasePageUI.MESSAGE_BAR_NOTIFICARTION);
+    }
+
+    public void clickCLoseButtonBarNotification(WebDriver driver) {
+        clickToElement(driver, BasePageUI.CLOSE_BAR_NOTIFICARTION_BUTTON);
+    }
 }

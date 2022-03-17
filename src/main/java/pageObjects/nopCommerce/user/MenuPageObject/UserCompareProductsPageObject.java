@@ -22,7 +22,6 @@ public class UserCompareProductsPageObject extends BasePage {
     }
 
     public String getResultMessage() {
-        waitForElementVisible(driver, CompareProductsPageUI.NO_DATA_MESSAGE);
         return getElementText(driver, CompareProductsPageUI.NO_DATA_MESSAGE);
     }
 }

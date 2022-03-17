@@ -29,12 +29,6 @@ public class UserMenuComputersPageObiect extends BasePage {
         clickToElement(driver, MenuComputersPageUI.ADD_TO_WISHLIST_BUTTON);
     }
 
-    public String getMessageResult() {
-        String result = getElementText(driver, MenuComputersPageUI.RESULT_MESSAGE);
-        clickToElement(driver, MenuComputersPageUI.CLOSE_RESULT_MESSAGE_BUTON);
-        return result;
-    }
-
     public void clickToAddToCompareListButtonByName(String pName) {
         clickToElement(driver, MenuComputersPageUI.ADD_TO_COMPARE_LIST_BUTTON_BY_NAME, pName);
     }

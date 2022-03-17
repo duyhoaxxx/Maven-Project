@@ -13,7 +13,7 @@ public class UserCheckoutPageObject extends BasePage {
     }
 
     public void clickToShipSameAddressCheckbox(boolean status) {
-        if (!isElementSelected(driver, CheckoutPageUI.SHIP_SAME_ADDRESS_CHECKBOX))
+        if (isElementSelected(driver, CheckoutPageUI.SHIP_SAME_ADDRESS_CHECKBOX) != status)
             clickToElement(driver, CheckoutPageUI.SHIP_SAME_ADDRESS_CHECKBOX);
     }
 
@@ -50,7 +50,7 @@ public class UserCheckoutPageObject extends BasePage {
     }
 
     public String getOrderNumber() {
-        return getElementText(driver, CheckoutPageUI.ORDER_NUMBER).replace("Order number: ", "").trim();
+        return getElementText(driver, CheckoutPageUI.ORDER_NUMBER).replace("ORDER NUMBER: ", "").trim();
     }
 
     private boolean isBillingAddressInfo(String key, String value) {
@@ -123,5 +123,57 @@ public class UserCheckoutPageObject extends BasePage {
 
     public boolean isCheckProductNameDisplay(String productName) {
         return isElementDisplay(driver, CheckoutPageUI.PRODUCT_NAME_AT_CONFIRM_ORDER, productName);
+    }
+
+
+    public String getNumberQuantityByProductName(String productName) {
+        int rowIndex;
+        if (isElementUndisplayed(driver, CheckoutPageUI.ROW_INDEX_BY_NAME_PRODUCT, productName))
+            rowIndex = 1;
+        else rowIndex = getElementSize(driver, CheckoutPageUI.ROW_INDEX_BY_NAME_PRODUCT, productName) + 1;
+        String result = getElementText(driver, CheckoutPageUI.QUANTITY_VALUE, String.valueOf(rowIndex));
+        return result;
+    }
+
+    public String getUnitPriceByProductName(String productName) {
+        int rowIndex;
+        if (isElementUndisplayed(driver, CheckoutPageUI.ROW_INDEX_BY_NAME_PRODUCT, productName))
+            rowIndex = 1;
+        else rowIndex = getElementSize(driver, CheckoutPageUI.ROW_INDEX_BY_NAME_PRODUCT, productName) + 1;
+        String result = getElementText(driver, CheckoutPageUI.UNIT_PRICE, String.valueOf(rowIndex));
+        return result;
+    }
+
+    public String getTotalPriceByProductName(String productName) {
+        int rowIndex;
+        if (isElementUndisplayed(driver, CheckoutPageUI.ROW_INDEX_BY_NAME_PRODUCT, productName))
+            rowIndex = 1;
+        else rowIndex = getElementSize(driver, CheckoutPageUI.ROW_INDEX_BY_NAME_PRODUCT, productName) + 1;
+        String result = getElementText(driver, CheckoutPageUI.TOTAL_PRICE, String.valueOf(rowIndex));
+        return result;
+    }
+
+    public boolean isConfirmUnitPriceByName(String productName, String unitPrice) {
+        return unitPrice.equals(getUnitPriceByProductName(productName));
+    }
+
+    public boolean isConfirmQtyByName(String productName, String numberQty) {
+        return numberQty.equals(getNumberQuantityByProductName(productName));
+    }
+
+    public boolean isConfirmTotalPriceByName(String productName, String totalPrice) {
+        return totalPrice.equals(getTotalPriceByProductName(productName));
+    }
+
+    public void clickToDetailsLink() {
+        clickToElement(driver, CheckoutPageUI.DETAILS_LINK);
+    }
+
+    public String getOrderDate() {
+        return getElementText(driver, CheckoutPageUI.ORDER_DATE_IN_ORDER_INFO);
+    }
+
+    public String getOrderTotal() {
+        return getElementText(driver, CheckoutPageUI.ORDER_TOTAL_IN_ORDER_INFO);
     }
 }

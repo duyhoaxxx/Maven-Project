@@ -42,7 +42,8 @@ public class User_06_Wishlist_Compare extends BaseTest {
         log.info("Step2: Click to Add to wishlist button");
         computerMenuPage.clickToAddToWishlistButton();
 
-        Assert.assertEquals(computerMenuPage.getMessageResult(), "The product has been added to your wishlist");
+        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your wishlist");
+        computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step3: Open Wishlist");
         wishlistPage = computerMenuPage.ClickToWishlistLinkAtUserPage(driver);
@@ -111,19 +112,21 @@ public class User_06_Wishlist_Compare extends BaseTest {
 
         log.info("Step3: Click to Add to Compare list button: " + productName);
         computerMenuPage.clickToAddToCompareListButtonByName(productName);
-        Assert.assertEquals(computerMenuPage.getMessageResult(), "The product has been added to your product comparison");
+        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your product comparison");
+        computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step4: Click to Add to Compare list button: " + productNameCompare);
         computerMenuPage.sleepInSecond(1);
         computerMenuPage.clickToAddToCompareListButtonByName(productNameCompare);
-        Assert.assertEquals(computerMenuPage.getMessageResult(), "The product has been added to your product comparison");
+        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your product comparison");
+        computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step5: Click to compare page");
         computerMenuPage.openFooterPageByName(driver, "Compare products list");
         compareProductPage = PageGeneratorManager.getCompareProductsPage(driver);
 
         Assert.assertTrue(compareProductPage.isPageTitleDisplayedByName(driver, "Compare products"));
-        log.info(productName+" ~~~ "+productNameCompare);
+        log.info(productName + " ~~~ " + productNameCompare);
         Assert.assertTrue(compareProductPage.isProductNameDisplay(productName));
         Assert.assertTrue(compareProductPage.isProductNameDisplay(productNameCompare));
 

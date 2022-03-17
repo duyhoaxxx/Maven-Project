@@ -4,7 +4,7 @@ public class BasePageUI {
 
     public static final String WISHLIST_LINK_AT_USER = "//div[@class='header']//a[@class='ico-wishlist']";
     public static final String SHOPPING_CART_LINK_AT_USER = "//div[@class='header']//a[@class='ico-cart']";
-    public static final String LOGOUT_LINK_AT_USER = "//a[@class='ico-logout']";
+    public static final String LOGOUT_LINK_AT_USER = "//div[@class='header']//a[@class='ico-logout']";
     public static final String LOGOUT_LINK_AT_ADMIN = "//a[text()='Logout']";
 
     public static final String DYNAMIC_PAGE_HEADER = "//div[@class='header']//a[text()='%s']";
@@ -29,5 +29,7 @@ public class BasePageUI {
     public static final String NEXT_PAGE_BUTTON = "//div[@class='pager']//li[@class='next-page']";
     public static final String PREVIOUS_PAGE_BUTTON = "//div[@class='pager']//li[@class='previous-page']";
 
+    public static final String MESSAGE_BAR_NOTIFICARTION = "//div[@id='bar-notification']//p[@class='content']";
+    public static final String CLOSE_BAR_NOTIFICARTION_BUTTON = "//div[@id='bar-notification']//span";
 
 }

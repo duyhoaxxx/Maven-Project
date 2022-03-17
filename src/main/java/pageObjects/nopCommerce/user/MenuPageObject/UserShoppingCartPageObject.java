@@ -93,7 +93,6 @@ public class UserShoppingCartPageObject extends BasePage {
     }
 
     public String getResultMessage() {
-        waitForElementVisible(driver, ShoppingCartPageUI.NO_DATA_MESSAGE);
         return getElementText(driver, ShoppingCartPageUI.NO_DATA_MESSAGE);
     }
 
@@ -113,8 +112,9 @@ public class UserShoppingCartPageObject extends BasePage {
         senkeyToElement(driver, ShoppingCartPageUI.QUANTITY_VALUE, number, String.valueOf(rowIndex));
     }
 
-    public void clickToAgreeWithTermsOfServices() {
-        clickToElement(driver, ShoppingCartPageUI.AGREE_TERMS_OF_SERVICES_CHECKBOX);
+    public void clickToAgreeWithTermsOfServices(boolean status) {
+        if (isElementSelected(driver, ShoppingCartPageUI.AGREE_TERMS_OF_SERVICES_CHECKBOX) != status)
+            clickToElement(driver, ShoppingCartPageUI.AGREE_TERMS_OF_SERVICES_CHECKBOX);
     }
 
     public UserCheckoutPageObject clickToCheckoutButton() {

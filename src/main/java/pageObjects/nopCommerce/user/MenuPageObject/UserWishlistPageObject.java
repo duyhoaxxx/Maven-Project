@@ -43,7 +43,6 @@ public class UserWishlistPageObject extends BasePage {
     }
 
     public String getMessageWishlistEmpty() {
-        waitForElementVisible(driver, WishlistPageUI.NO_DATA_MESSAGE);
         return getElementText(driver, WishlistPageUI.NO_DATA_MESSAGE);
     }
 

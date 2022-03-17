@@ -19,10 +19,4 @@ public class UserChangePasswordPageObject extends BasePage {
 
         clickToElement(driver, ChangePasswordPageUI.CHANGE_PASSWORD_BUTTON);
     }
-
-    public String resultChangePassword() {
-        String result = getElementText(driver, ChangePasswordPageUI.RESULT_CHANGE_PASSWORD);
-        clickToElement(driver, ChangePasswordPageUI.CLOSE_RESULT_CHANGE_PASSWORD_BUTTON);
-        return result;
-    }
 }

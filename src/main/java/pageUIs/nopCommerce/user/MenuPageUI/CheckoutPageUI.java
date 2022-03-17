@@ -21,5 +21,14 @@ public class CheckoutPageUI {
     public static final String PAYMENT_METHOD_AT_CONFIRM_ORDER = "//div[@class='payment-method-info']//li[@class='payment-method']";
 
     public static final String PRODUCT_NAME_AT_CONFIRM_ORDER = "//td[@class='product']//a[text()='%s']";
+    public static final String ROW_INDEX_BY_NAME_PRODUCT = "//td[@class='product']//a[text()='%s']/preceding::td[@class='product']";
+    public static final String QUANTITY_VALUE = "(//td[@class='quantity'])[%s]/span";
+    public static final String UNIT_PRICE = "(//td[@class='unit-price'])[%s]/span";
+    public static final String TOTAL_PRICE = "(//td[@class='subtotal'])[%s]/span";
+
+    public static final String DETAILS_LINK = "//div[@class='details-link']/a";
+    public static final String ORDER_DATE_IN_ORDER_INFO = "//div[@class='order-overview']//li[@class='order-date']";
+    public static final String ORDER_TOTAL_IN_ORDER_INFO = "//div[@class='order-overview']//li[@class='order-total']/strong";
+
 
 }

@@ -152,7 +152,8 @@ public class User_03_MyAccount extends BaseTest {
         log.info("Step2: Change old password: " + password + " to new password: " + newPassword);
         changePasswordPage.changePasswordForm(password, newPassword);
 
-        Assert.assertEquals(changePasswordPage.resultChangePassword(), "Password was changed");
+        Assert.assertEquals(changePasswordPage.getBarNotificationSuccess(driver), "Password was changed");
+        changePasswordPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step3: Logout ");
         homePage = changePasswordPage.ClickToLogoutLinkAtUserPage(driver);
