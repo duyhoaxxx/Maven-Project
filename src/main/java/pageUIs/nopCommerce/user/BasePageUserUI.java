@@ -1,8 +1,8 @@
 package pageUIs.nopCommerce.user;
 
 public class BasePageUserUI {
-    public static final String WISHLIST_LINK_AT_USER = "//div[@class='header']//a[@class='ico-wishlist']";
-    public static final String SHOPPING_CART_LINK_AT_USER = "//div[@class='header']//a[@class='ico-cart']";
+    public static final String WISHLIST_LINK_AT_USER = "//div[@class='header']//span[@class='wishlist-label']";
+    public static final String SHOPPING_CART_LINK_AT_USER = "//div[@class='header']//span[@class='cart-label']";
     public static final String LOGOUT_LINK_AT_USER = "//div[@class='header']//a[@class='ico-logout']";
     public static final String LOGOUT_LINK_AT_ADMIN = "//a[text()='Logout']";
 
@@ -26,5 +26,6 @@ public class BasePageUserUI {
 
     public static final String MESSAGE_BAR_NOTIFICARTION = "//div[@id='bar-notification']//p[@class='content']";
     public static final String CLOSE_BAR_NOTIFICARTION_BUTTON = "//div[@id='bar-notification']//span";
+    public static final String HEADER_LOGO = "//div[@class='header-logo']//a";
 
 }

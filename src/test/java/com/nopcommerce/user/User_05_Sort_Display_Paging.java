@@ -124,6 +124,7 @@ public class User_05_Sort_Display_Paging extends BaseTest {
         loginPage.setAllCookies(driver, User_02_Login.LoginPageCookie);
         loginPage.sleepInSecond(5);
         loginPage.refreshCurrentPage(driver);
-        homePage = loginPage.closeResultNotificalLoginByCookies();
+        loginPage.clickCLoseButtonBarNotification(driver);
+        homePage = loginPage.clickLOGOIMAGE(driver);
     }
 }

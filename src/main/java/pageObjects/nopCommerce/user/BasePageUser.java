@@ -185,4 +185,10 @@ public class BasePageUser extends BasePage {
     public void clickCLoseButtonBarNotification(WebDriver driver) {
         clickToElement(driver, BasePageUserUI.CLOSE_BAR_NOTIFICARTION_BUTTON);
     }
+
+    public UserHomePageObject clickLOGOIMAGE(WebDriver driver) {
+        clickToElement(driver, BasePageUserUI.HEADER_LOGO);
+        return PageGeneratorManager.getUserHomePage(driver);
+    }
+
 }

@@ -63,7 +63,7 @@ public class UserCheckoutPageObject extends BasePageUser {
         return false;
     }
 
-    public boolean isCheckInformationBillingAdr(GlobalConstants.AddressInformation addressInfo) {
+    public boolean isCheckInformationBillingAdr(GlobalConstants.AddressInfo addressInfo) {
         if (!isBillingAddressInfo("name", addressInfo.fName))
             return false;
         if (!isBillingAddressInfo("name", addressInfo.lName))
@@ -95,7 +95,7 @@ public class UserCheckoutPageObject extends BasePageUser {
         return false;
     }
 
-    public boolean isCheckInformationShippingAdr(GlobalConstants.AddressInformation addressInfo) {
+    public boolean isCheckInformationShippingAdr(GlobalConstants.AddressInfo addressInfo) {
         if (!isShippingAddressInfo("name", addressInfo.fName))
             return false;
         if (!isShippingAddressInfo("name", addressInfo.lName))
@@ -210,7 +210,7 @@ public class UserCheckoutPageObject extends BasePageUser {
         selectItemInDefaultDropdown(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_DROPDOWN, value);
     }
 
-    public void inputNewAddressFormInBillingAddress(GlobalConstants.AddressInformation addressBilling) {
+    public void inputNewAddressFormInBillingAddress(GlobalConstants.AddressInfo addressBilling) {
         senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.fName, "FirstName");
         senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.lName, "LastName");
         senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_BILLING_TEXTBOX_BY_ID, addressBilling.email, "Email");
@@ -230,7 +230,7 @@ public class UserCheckoutPageObject extends BasePageUser {
     }
 
 
-    public void inputNewAddressFormInShippingAddress(GlobalConstants.AddressInformation addressBilling) {
+    public void inputNewAddressFormInShippingAddress(GlobalConstants.AddressInfo addressBilling) {
         senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.fName, "FirstName");
         senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.lName, "LastName");
         senkeyToElement(driver, CheckoutPageUI.NEW_ADDRESS_IN_SHIPPING_TEXTBOX_BY_ID, addressBilling.email, "Email");

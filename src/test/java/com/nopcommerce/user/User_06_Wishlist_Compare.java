@@ -65,7 +65,17 @@ public class User_06_Wishlist_Compare extends BaseTest {
 
         log.info("Step2: Click Add to cart button");
         shoppingCartPage = wishlistPage.clickAddToCartButton();
+
+        log.info("       Verify Product display in Shopping Cart");
         Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
+
+        log.info("       Remove Product in Shopping Cart");
+        shoppingCartPage.clickToRemoveButtonByNameProduct(productName);
+        shoppingCartPage.clickToUpdateShoppingCartButton();
+
+        log.info("       Verify Shopping Cart is empty");
+        Assert.assertEquals(shoppingCartPage.getResultMessage(), "Your Shopping Cart is empty!");
+        Assert.assertEquals(shoppingCartPage.getNumberProductInShoppingCart(), 0);
 
         log.info("Step3: Click wishlist page");
         wishlistPage = shoppingCartPage.ClickToWishlistLinkAtUserPage(driver);
@@ -217,6 +227,7 @@ public class User_06_Wishlist_Compare extends BaseTest {
         loginPage.setAllCookies(driver, User_02_Login.LoginPageCookie);
         loginPage.sleepInSecond(5);
         loginPage.refreshCurrentPage(driver);
-        homePage = loginPage.closeResultNotificalLoginByCookies();
+        loginPage.clickCLoseButtonBarNotification(driver);
+        homePage = loginPage.clickLOGOIMAGE(driver);
     }
 }

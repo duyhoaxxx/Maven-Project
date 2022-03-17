@@ -11,7 +11,4 @@ public class ADDashboardPageObject extends BasePageAdmin {
         this.driver = driver;
     }
 
-    public boolean isDashboardPageDisplayed() {
-        return isElementDisplay(driver, ADDashboardPageUI.DASHBOARD_HEADER);
-    }
 }

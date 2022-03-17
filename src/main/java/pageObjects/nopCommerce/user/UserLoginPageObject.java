@@ -39,10 +39,4 @@ public class UserLoginPageObject extends BasePageUser {
 
         return clickToLoginButton();
     }
-
-    public UserHomePageObject closeResultNotificalLoginByCookies() {
-        clickToElement(driver,LoginPageUI.CLOSE_RESULT_MESSAGE_LOGGIN_COOKIES_BUTTON);
-        clickToElement(driver,LoginPageUI.HEADER_LOGO);
-        return PageGeneratorManager.getUserHomePage(driver);
-    }
 }

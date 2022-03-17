@@ -29,9 +29,9 @@ public class User_07_Oder extends BaseTest {
     String productName, opProcessor, opRAM, opHDD, opOS, opSoftware, numberBuy;
     String orderNumber;
     WebDriver driver;
-    GlobalConstants.AddressInformation addressInfo = new GlobalConstants.AddressInformation();
-    GlobalConstants.AddressInformation addressBilling = new GlobalConstants.AddressInformation();
-    GlobalConstants.AddressInformation addressShipping = new GlobalConstants.AddressInformation();
+    GlobalConstants.AddressInfo addressInfo = new GlobalConstants.AddressInfo();
+    GlobalConstants.AddressInfo addressBilling = new GlobalConstants.AddressInfo();
+    GlobalConstants.AddressInfo addressShipping = new GlobalConstants.AddressInfo();
 
     @Parameters("browser")
     @BeforeClass
@@ -67,7 +67,7 @@ public class User_07_Oder extends BaseTest {
         Assert.assertTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
         Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
 
-        log.info("Step2: Edit");
+        log.info("Step2: Edit >> computer page");
         computerMenuPage = shoppingCartPage.clickEditButtonInProductBuildComputer();
 
         opProcessor = "2.2 GHz Intel Pentium Dual-Core E2200";
@@ -576,6 +576,7 @@ public class User_07_Oder extends BaseTest {
         loginPage.setAllCookies(driver, User_02_Login.LoginPageCookie);
         loginPage.sleepInSecond(5);
         loginPage.refreshCurrentPage(driver);
-        homePage = loginPage.closeResultNotificalLoginByCookies();
+        loginPage.clickCLoseButtonBarNotification(driver);
+        homePage = loginPage.clickLOGOIMAGE(driver);
     }
 }

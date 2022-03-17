@@ -210,42 +210,41 @@ public class BasePage {
         }
     }
 
-    public void SelectItemInCustomDropDown(WebDriver driver, String buttonXpath, String loadXpath, String expected) {
+    public void SelectItemInCustomDropDown(WebDriver driver, String buttonXpath, String xpathLoadItem, String expected) {
         clickToElement(driver, buttonXpath);
-        sleepInSecond(2);
+        sleepInSecond(1);
 
         WebDriverWait explicitWait = new WebDriverWait(driver, longTimeoutInSecound);
-        explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(loadXpath)));
+        explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(xpathLoadItem)));
 
-        List<WebElement> listWebElements = getListWebElement(driver, loadXpath);
-        for (WebElement webElement : listWebElements) {
-            if (webElement.getText().trim().equals(expected)) {
-                if (webElement.isDisplayed()) {
-                    webElement.click();
-                } else {
-                    JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-                    jsExecutor.executeScript("arguments[0].scrollIntoView(true);", webElement);
-                    sleepInSecond(1);
-                    jsExecutor.executeScript("arguments[0].click();", webElement);
-                }
-                sleepInSecond(1);
+        List<WebElement> listWebElements = getListWebElement(driver, xpathLoadItem);
+        for (WebElement element : listWebElements) {
+            if (element.getText().trim().equals(expected)) {
+                JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+                jsExecutor.executeScript("arguments[0].click();", element);
                 break;
             }
         }
     }
 
-    public void SelectItemInEditDropDown(WebDriver driver, String buttonXpath, String loadXpath, String expected) {
-        senkeyToElement(driver, loadXpath, expected);
+    public void SelectItemInEditDropDown(WebDriver driver, String xpathLocator, String xpathLoadItem, String expected) {
+        senkeyToElement(driver, xpathLocator, expected);
         sleepInSecond(2);
-
         WebDriverWait explicitWait = new WebDriverWait(driver, longTimeoutInSecound);
-        explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(loadXpath)));
+        explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(xpathLoadItem)));
 
-        List<WebElement> ListWebElements = getListWebElement(driver, loadXpath);
-        for (WebElement webElement : ListWebElements) {
-            if (webElement.getText().trim().equals(expected)) {
-                webElement.click();
-                sleepInSecond(2);
+        List<WebElement> listWebElements = getListWebElement(driver, xpathLoadItem);
+
+        for (WebElement element : listWebElements) {
+            if (element.getText().trim().equals(expected)) {
+                if (element.isDisplayed()) {
+                    element.click();
+                } else {
+                    JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+                    jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
+                    sleepInSecond(1);
+                    jsExecutor.executeScript("arguments[0].click();", element);
+                }
                 break;
             }
         }
@@ -607,28 +606,44 @@ public class BasePage {
     }
 
 
-    public void enterToTextboxByID(WebDriver driver, String textboxID, String value) {
+    public void EnterToTextboxByID(WebDriver driver, String textboxID, String value) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
-        waitForAllElementInvisible(driver, locator);
+        waitForElementVisible(driver, locator);
         senkeyToElement(driver, locator, value);
     }
 
-    public void clickToRadioButtonByID(WebDriver driver, String radioButtonID, String value) {
+    public void EnterToTextareaByID(WebDriver driver, String textboxID, String value) {
+        String locator = getDynamicXpath(BasePageUI.DYNAMIC_TEXTAREA_BY_ID, textboxID);
+        waitForElementVisible(driver, locator);
+        senkeyToElement(driver, locator, value);
+    }
+
+    public void ClickToCheckboxButtonByID(WebDriver driver, String radioButtonID, boolean status) {
+        String locator = getDynamicXpath(BasePageUI.DYNAMIC_CHECKBOX_BUTTON_BY_ID, radioButtonID);
+        waitForElementClickable(driver, locator);
+        if (isElementSelected(driver, locator) != status)
+            clickToElement(driver, locator);
+    }
+
+    public void ClickToRadioButtonByID(WebDriver driver, String radioButtonID) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_RADIO_BUTTON_BY_ID, radioButtonID);
         waitForElementClickable(driver, locator);
         clickToElement(driver, locator);
     }
 
-    public void selectDropdownByName(WebDriver driver, String dropdownName, String value) {
+    public void SelectDropdownByName(WebDriver driver, String dropdownName, String value) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownName);
         selectItemInDefaultDropdown(driver, locator, value);
     }
 
-    public void clickToButtonByText(WebDriver driver, String buttonText) {
+    public void SelectDropdownByID(WebDriver driver, String dropdownID, String value) {
+        String locator = getDynamicXpath(BasePageUI.DYNAMIC_DROPDOWN_BY_ID, dropdownID);
+        selectItemInDefaultDropdown(driver, locator, value);
+    }
+
+    public void ClickToButtonByText(WebDriver driver, String buttonText) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
         waitForElementClickable(driver, locator);
         clickToElement(driver, locator);
     }
-
-
 }

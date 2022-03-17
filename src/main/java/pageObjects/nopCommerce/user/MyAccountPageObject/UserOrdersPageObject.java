@@ -55,7 +55,7 @@ public class UserOrdersPageObject extends BasePageUser {
         return false;
     }
 
-    public boolean isCheckInformationBillingAdr(GlobalConstants.AddressInformation addressInfo) {
+    public boolean isCheckInformationBillingAdr(GlobalConstants.AddressInfo addressInfo) {
         if (!isBillingAddressInfo("name", addressInfo.fName))
             return false;
         if (!isBillingAddressInfo("name", addressInfo.lName))
@@ -87,7 +87,7 @@ public class UserOrdersPageObject extends BasePageUser {
         return false;
     }
 
-    public boolean isCheckInformationShippingAdr(GlobalConstants.AddressInformation addressInfo) {
+    public boolean isCheckInformationShippingAdr(GlobalConstants.AddressInfo addressInfo) {
         if (!isShippingAddressInfo("name", addressInfo.fName))
             return false;
         if (!isShippingAddressInfo("name", addressInfo.lName))

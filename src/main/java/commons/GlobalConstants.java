@@ -18,7 +18,7 @@ public class GlobalConstants {
     public static final String DOWNLOAD_FILE_FOLDER = PROJECT_PATH + File.separator + "downloadFiles";
     public static final String BROWSER_LOG_FOLDER = PROJECT_PATH + File.separator + "browserLogs";
 
-    public static class AddressInformation {
+    public static class AddressInfo {
         public String fName;
         public String lName;
         public String email;
@@ -35,6 +35,22 @@ public class GlobalConstants {
     }
 
     ;
+
+    public static class CustomerInfo {
+        public String email;
+        public String password;
+        public String fname;
+        public String lname;
+        public String gender;
+        public String DOB;
+        public String companyName;
+        public boolean isTaxExempt;
+        public String newsletter;
+        public String customerRoles;
+        public String managerVender;
+        public boolean isActive;
+        public String adminComment;
+    }
 
 
 }

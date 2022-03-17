@@ -28,7 +28,7 @@ public class User_03_MyAccount extends BaseTest {
 
     private String fNameEdit, lNameEdit, emailEdit, password, newPassword;
     CustomerInfo customer = new CustomerInfo();
-    public GlobalConstants.AddressInformation addressInfo = new GlobalConstants.AddressInformation();
+    public GlobalConstants.AddressInfo addressInfo = new GlobalConstants.AddressInfo();
     WebDriver driver;
 
     @Parameters("browser")
