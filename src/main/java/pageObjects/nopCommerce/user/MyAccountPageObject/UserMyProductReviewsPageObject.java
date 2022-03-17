@@ -2,16 +2,13 @@ package pageObjects.nopCommerce.user.MyAccountPageObject;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import pageObjects.nopCommerce.user.BasePageUser;
 import org.openqa.selenium.WebElement;
 import pageUIs.nopCommerce.user.MyAccountPageUI.MyProductReviewsPageUI;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-public class UserMyProductReviewsPageObject extends BasePage {
+public class UserMyProductReviewsPageObject extends BasePageUser {
     private WebDriver driver;
 
     public UserMyProductReviewsPageObject(WebDriver driver) {

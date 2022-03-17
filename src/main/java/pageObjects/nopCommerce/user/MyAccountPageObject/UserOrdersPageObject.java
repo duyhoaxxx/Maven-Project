@@ -4,11 +4,11 @@ import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import pageObjects.nopCommerce.user.BasePageUser;
 import pageObjects.nopCommerce.user.MenuPageObject.UserShoppingCartPageObject;
 import pageUIs.nopCommerce.user.MyAccountPageUI.OrdersPageUI;
 
-public class UserOrdersPageObject extends BasePage {
+public class UserOrdersPageObject extends BasePageUser {
     private WebDriver driver;
 
     public UserOrdersPageObject(WebDriver driver) {

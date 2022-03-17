@@ -2,9 +2,9 @@ package pageObjects.nopCommerce.user.MyAccountPageObject;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import pageObjects.nopCommerce.user.BasePageUser;
 
-public class UserDownloadableProductsPageObject extends BasePage {
+public class UserDownloadableProductsPageObject extends BasePageUser {
 	private WebDriver driver;
 
 	public UserDownloadableProductsPageObject(WebDriver driver) {

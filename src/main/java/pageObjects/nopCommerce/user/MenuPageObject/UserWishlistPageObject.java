@@ -1,11 +1,11 @@
 package pageObjects.nopCommerce.user.MenuPageObject;
 
-import commons.BasePage;
+import pageObjects.nopCommerce.user.BasePageUser;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageUIs.nopCommerce.user.MenuPageUI.WishlistPageUI;
 
-public class UserWishlistPageObject extends BasePage {
+public class UserWishlistPageObject extends BasePageUser {
     private WebDriver driver;
 
     public UserWishlistPageObject(WebDriver driver) {

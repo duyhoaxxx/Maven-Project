@@ -1,11 +1,11 @@
 package pageObjects.nopCommerce.user.MenuPageObject;
 
-import commons.BasePage;
+import pageObjects.nopCommerce.user.BasePageUser;
 import commons.GlobalConstants;
 import org.openqa.selenium.WebDriver;
 import pageUIs.nopCommerce.user.MenuPageUI.CheckoutPageUI;
 
-public class UserCheckoutPageObject extends BasePage {
+public class UserCheckoutPageObject extends BasePageUser {
     private WebDriver driver;
 
     public UserCheckoutPageObject(WebDriver driver) {

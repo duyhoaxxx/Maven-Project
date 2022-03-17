@@ -1,10 +1,10 @@
 package pageObjects.nopCommerce.user.MenuPageObject;
 
-import commons.BasePage;
+import pageObjects.nopCommerce.user.BasePageUser;
 import org.openqa.selenium.WebDriver;
 import pageUIs.nopCommerce.user.MenuPageUI.SearchPageUI;
 
-public class UserSearchPageObject extends BasePage {
+public class UserSearchPageObject extends BasePageUser {
     private WebDriver driver;
 
     public UserSearchPageObject(WebDriver driver) {

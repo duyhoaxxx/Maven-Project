@@ -2,11 +2,11 @@ package pageObjects.nopCommerce.admin;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import pageObjects.nopCommerce.user.BasePageUser;
 import commons.PageGeneratorManager;
 import pageUIs.nopCommerce.admin.AdminLoginPageUI;
 
-public class AdminLoginPageObject extends BasePage {
+public class AdminLoginPageObject extends BasePageAdmin {
     private WebDriver driver;
 
     public AdminLoginPageObject(WebDriver driver) {
