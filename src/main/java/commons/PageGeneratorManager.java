@@ -2,8 +2,9 @@ package commons;
 
 import org.openqa.selenium.WebDriver;
 
-import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
-import pageObjects.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.admin.ADDashboardPageObject;
+import pageObjects.nopCommerce.admin.ADLoginPageObject;
+import pageObjects.nopCommerce.admin.ADProductsPageObject;
 import pageObjects.nopCommerce.user.*;
 import pageObjects.nopCommerce.user.MyAccountPageObject.*;
 import pageObjects.nopCommerce.user.MenuPageObject.*;
@@ -57,14 +58,6 @@ public class PageGeneratorManager {
         return new UserMyProductReviewsPageObject(driver);
     }
 
-    public static AdminLoginPageObject getAdminLoginPage(WebDriver driver) {
-        return new AdminLoginPageObject(driver);
-    }
-
-    public static AdminDashboardPageObject getAdminDashboardPage(WebDriver driver) {
-        return new AdminDashboardPageObject(driver);
-    }
-
     public static UserMenuComputersPageObiect getUserMenuComputersPage(WebDriver driver) {
         return new UserMenuComputersPageObiect(driver);
     }
@@ -96,4 +89,19 @@ public class PageGeneratorManager {
     public static UserCheckoutPageObject getCheckoutPage(WebDriver driver) {
         return new UserCheckoutPageObject(driver);
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    public static ADLoginPageObject getAdminLoginPage(WebDriver driver) {
+        return new ADLoginPageObject(driver);
+    }
+
+    public static ADDashboardPageObject getAdminDashboardPage(WebDriver driver) {
+        return new ADDashboardPageObject(driver);
+    }
+
+    public static ADProductsPageObject getAdminProductsPage(WebDriver driver) {
+        return new ADProductsPageObject(driver);
+    }
+
+
 }

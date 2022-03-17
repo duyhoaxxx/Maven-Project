@@ -8,13 +8,16 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
-import pageObjects.nopCommerce.admin.AdminLoginPageObject;
+import pageObjects.nopCommerce.admin.ADDashboardPageObject;
+import pageObjects.nopCommerce.admin.ADLoginPageObject;
+import pageObjects.nopCommerce.admin.ADProductsPageObject;
 
 public class Admin_01 extends BaseTest {
-    private AdminLoginPageObject loginPage;
-    private AdminDashboardPageObject homePage;
+    private ADLoginPageObject loginPage;
+    private ADDashboardPageObject homePage;
+    private ADProductsPageObject productsPage;
 
+    String productName;
     String adminUser, adminPassword;
     WebDriver driver;
 
@@ -28,7 +31,21 @@ public class Admin_01 extends BaseTest {
     }
 
     @Test
-    public void TC_01() {
+    public void TC_01_Search_with_Product_Name() {
+        log.info("TC:01 Search witch Product Name");
+        log.info("Step1: Click Catalog");
+        homePage.clickLeftMenuByName(driver, "Catalog");
+
+        log.info("Step2: Click Products");
+        homePage.clickLeftMenuByName(driver, "Products");
+        productsPage = PageGeneratorManager.getAdminProductsPage(driver);
+
+        log.info("Step3: input Product Name" + productName);
+        productsPage.inputProductNameToSearch(productName);
+
+        log.info("Step4: Click Search");
+        productsPage.clickToButtonByText(driver, "Search");
+        productsPage.sleepInSecond(10);
 
     }
 
@@ -113,6 +130,10 @@ public class Admin_01 extends BaseTest {
         loginPage.zoomMax(driver);
         adminUser = GlobalConstants.ADMIN_EMAIL;
         adminPassword = GlobalConstants.ADMIN_PASSWORD;
+        log.info("Open Dashboard Admin: " + GlobalConstants.ADMIN_PAGE_URL);
+        log.info("Login Success with ID: " + adminUser + " /Pass: " + adminPassword);
         homePage = loginPage.LoginAsUser(adminUser, adminPassword);
+
+        productName = "Lenovo IdeaCentre 600 All-in-One PC";
     }
 }
