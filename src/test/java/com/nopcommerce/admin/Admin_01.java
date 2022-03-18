@@ -25,6 +25,7 @@ public class Admin_01 extends BaseTest {
     String productName;
     String adminUser, adminPassword;
     GlobalConstants.CustomerInfo customerInfo = new GlobalConstants.CustomerInfo();
+    GlobalConstants.AddressInfo addressInfo = new GlobalConstants.AddressInfo();
     WebDriver driver;
 
     @Parameters("browser")
@@ -40,61 +41,61 @@ public class Admin_01 extends BaseTest {
     public void TC_01_Search_with_Product_Name() {
         log.info("TC:01 Search witch Product Name");
         log.info("Step1: Click Catalog");
-        homePage.clickLeftMenuByName(driver, "Catalog");
+        homePage.ClickLeftMenuByName(driver, "Catalog");
 
         log.info("Step2: Click Products");
-        homePage.clickLeftMenuByName(driver, "Products");
+        homePage.ClickLeftMenuByName(driver, "Products");
         productsPage = PageGeneratorManager.getAdminProductsPage(driver);
 
         log.info("Step3: input Product Name" + productName);
-        productsPage.inputProductNameToSearch(productName);
+        productsPage.openTabSearchEachPage(driver);
+        productsPage.EnterToTextboxByID(driver, "SearchProductName", productName);
 
         log.info("Step4: Click Search");
         productsPage.ClickToButtonByText(driver, "Search");
 
-        Assert.assertFalse(productsPage.isNoResultDataSearch());
-        Assert.assertEquals(productsPage.getAllResultSearch(), "1");
+        Assert.assertFalse(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
+        Assert.assertEquals(productsPage.getAllResultSearch(driver), "1");
         Assert.assertTrue(productsPage.verifyAllResult(productName));
     }
-/*
 
     @Test
     public void TC_02_Search_with_Product_Name_Category_uncheck() {
         log.info("TC:02 Search with Product Name + Category: Computer + Search subcate: uncheck");
         log.info("Step1: input Product Name" + productName);
-        productsPage.inputProductNameToSearch(productName);
+        productsPage.EnterToTextboxByID(driver, "SearchProductName", productName);
 
         log.info("Step2: select Category: " + "Computers");
-        productsPage.selectCategoryDropdownByText("Computers");
+        productsPage.SelectDropdownByID(driver, "SearchCategoryId", "Computers");
 
         log.info("Step3: Search subcategories: uncheck");
-        productsPage.checkboxSearchSubcategories(false);
+        productsPage.ClickToCheckboxButtonByID(driver, "SearchIncludeSubCategories", false);
 
         log.info("Step4: Click Search");
-        productsPage.clickToButtonByText(driver, "Search");
+        productsPage.ClickToButtonByText(driver, "Search");
 
-        Assert.assertTrue(productsPage.isNoResultDataSearch());
-        Assert.assertEquals(productsPage.getMessageNoResultDataSearch(), "No data available in table");
+        Assert.assertTrue(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
+        Assert.assertEquals(productsPage.getMessageNoDataInTableByID(driver, "products-grid_wrapper"), "No data available in table");
     }
 
     @Test
     public void TC_03_Search_with_Product_Name_Category_check() {
         log.info("TC:03 Search with Product Name + Category: Computer + Search subcate: check");
         log.info("Step1: input Product Name" + productName);
-        productsPage.inputProductNameToSearch(productName);
+        productsPage.EnterToTextboxByID(driver, "SearchProductName", productName);
 
         log.info("Step2: select Category: " + "Computers");
-        productsPage.selectCategoryDropdownByText("Computers");
+        productsPage.SelectDropdownByID(driver, "SearchCategoryId", "Computers");
 
-        log.info("Step3: Search subcategories: uncheck");
-        productsPage.checkboxSearchSubcategories(true);
+        log.info("Step3: Search subcategories: check");
+        productsPage.ClickToCheckboxButtonByID(driver, "SearchIncludeSubCategories", true);
 
         log.info("Step4: Click Search");
-        productsPage.clickToButtonByText(driver, "Search");
+        productsPage.ClickToButtonByText(driver, "Search");
 
         productsPage.sleepInSecond(2);
-        Assert.assertFalse(productsPage.isNoResultDataSearch());
-        Assert.assertEquals(productsPage.getAllResultSearch(), "1");
+        Assert.assertFalse(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
+        Assert.assertEquals(productsPage.getAllResultSearch(driver), "1");
         Assert.assertTrue(productsPage.verifyAllResult(productName));
     }
 
@@ -102,19 +103,19 @@ public class Admin_01 extends BaseTest {
     public void TC_04_Search_with_Product_Name_Child_Category() {
         log.info("TC:04 Search with Product Name + Category: Computers >> Desktops + Search subcate: uncheck");
         log.info("Step1: input Product Name" + productName);
-        productsPage.inputProductNameToSearch(productName);
+        productsPage.EnterToTextboxByID(driver, "SearchProductName", productName);
 
         log.info("Step2: select Category: " + "Computers >> Desktops");
-        productsPage.selectCategoryDropdownByText("Computers >> Desktops");
+        productsPage.SelectDropdownByID(driver, "SearchCategoryId", "Computers >> Desktops");
 
         log.info("Step3: Search subcategories: uncheck");
-        productsPage.checkboxSearchSubcategories(false);
+        productsPage.ClickToCheckboxButtonByID(driver, "SearchIncludeSubCategories", false);
 
         log.info("Step4: Click Search");
-        productsPage.clickToButtonByText(driver, "Search");
+        productsPage.ClickToButtonByText(driver, "Search");
 
-        Assert.assertFalse(productsPage.isNoResultDataSearch());
-        Assert.assertEquals(productsPage.getAllResultSearch(), "1");
+        Assert.assertFalse(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
+        Assert.assertEquals(productsPage.getAllResultSearch(driver), "1");
         Assert.assertTrue(productsPage.verifyAllResult(productName));
     }
 
@@ -122,40 +123,39 @@ public class Admin_01 extends BaseTest {
     public void TC_05_Search_with_Product_Name_Manufacturer() {
         log.info("TC:05 Search with Product Name + Manufacturer");
         log.info("Step1: input Product Name" + productName);
-        productsPage.inputProductNameToSearch(productName);
+        productsPage.EnterToTextboxByID(driver, "SearchProductName", productName);
 
         log.info("Step2: select Category: " + "All");
-        productsPage.selectCategoryDropdownByText("All");
+        productsPage.SelectDropdownByID(driver, "SearchCategoryId", "All");
 
         log.info("Step3: Search subcategories: uncheck");
-        productsPage.checkboxSearchSubcategories(false);
+        productsPage.ClickToCheckboxButtonByID(driver, "SearchIncludeSubCategories", false);
 
         log.info("Step4: select Manufacturer: " + "Apple");
-        productsPage.selectManufacturerDropdownByText("Apple");
+        productsPage.SelectDropdownByID(driver, "SearchManufacturerId", "Apple");
 
         log.info("Step5: Click Search");
-        productsPage.clickToButtonByText(driver, "Search");
+        productsPage.ClickToButtonByText(driver, "Search");
 
-        Assert.assertTrue(productsPage.isNoResultDataSearch());
-        Assert.assertEquals(productsPage.getMessageNoResultDataSearch(), "No data available in table");
+        Assert.assertTrue(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
+        Assert.assertEquals(productsPage.getMessageNoDataInTableByID(driver, "products-grid_wrapper"), "No data available in table");
     }
 
     @Test
     public void TC_06_Go_directly_to_Product_SKU() {
         log.info("TC:06 Go directly to Product SKU");
         log.info(("Step1: click Products in Left Menu"));
-        productsPage.clickLeftMenuByName(driver, "Products");
+        productsPage.ClickLeftMenuByName(driver, "Products");
 
         log.info("Step2: input Go Directly To Product SKU: LE_IC_600");
-        productsPage.inputGoDirectlyToProductSKU("LE_IC_600");
+        productsPage.EnterToTextboxByID(driver, "GoDirectlyToSku", "LE_IC_600");
 
         log.info("Step3: click Go button");
-        productsPage.clickToButtonByText(driver, "Go");
+        productsPage.ClickToButtonByText(driver, "Go");
 
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("product details"));
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains(productName));
     }
-*/
 
     @Test
     public void TC_07_Create_New_Customer() {
@@ -171,57 +171,393 @@ public class Admin_01 extends BaseTest {
 
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Add a new customer"));
 
-        customersPage.inputNewCustomerInfoForm(driver, customerInfo);
+        customersPage.inputCustomerInfoForm(customerInfo);
 
         log.info("Step4: click to Save and Continue Edit");
         customersPage.ClickToButtonByText(driver, "Save and Continue Edit");
 
-        Assert.assertTrue(customersPage.getMessageNewCustomerAddSuccess().contains("The new customer has been added successfully."));
-        Assert.assertTrue(customersPage.verifyNewCustomerInfo(customerInfo));
+        Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The new customer has been added successfully."));
+        Assert.assertTrue(customersPage.verifyCustomerInfo(customerInfo));
 
-        log.info("Step5: click back to customer list");
-        customersPage.clickToBackCustomerList();
+        log.info("Step5: click back to customer list link");
+        customersPage.ClickToLinkByText(driver, "back to customer list");
+        customersPage.openTabSearchEachPage(driver);
 
+        log.info("Step6: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step7: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step8: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertTrue(customersPage.isResultSearchByCustemerRole(customerInfo.customerRoles));
+        Assert.assertTrue(customersPage.isNameDisplayedInResultCustemerSearch(customerInfo.fname + " " + customerInfo.lname));
     }
 
     @Test
-    public void TC_08() {
+    public void TC_08_Search_Customer_with_Email() {
+        log.info("TC:08 Search Customer with Email");
+        log.info("Step1: click Customers left menu sub");
+        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage.openTabSearchEachPage(driver);
 
+        log.info("Step2: input Email textbox: " + customerInfo.email);
+        customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
+
+        log.info("Step3: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step4: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step5: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
+        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
     }
 
     @Test
-    public void TC_09() {
+    public void TC_09_Search_Customer_with_fname_lname() {
+        log.info("TC:09 Search Customer with fname and lname");
+        log.info("Step1: click Customers left menu sub");
+        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage.openTabSearchEachPage(driver);
 
+        log.info("Step2: input first name textbox: " + customerInfo.fname);
+        customersPage.EnterToTextboxByID(driver, "SearchFirstName", customerInfo.fname);
+
+        log.info("Step3: input last name textbox: " + customerInfo.lname);
+        customersPage.EnterToTextboxByID(driver, "SearchLastName", customerInfo.lname);
+
+        log.info("Step4: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step5: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step6: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
+        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
     }
 
     @Test
-    public void TC_10() {
+    public void TC_10_Search_Customer_with_Company() {
+        log.info("TC:10 Search Customer with Company");
+        log.info("Step1: click Customers left menu sub");
+        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage.openTabSearchEachPage(driver);
 
+        log.info("Step2: input Company name textbox: " + customerInfo.companyName);
+        customersPage.EnterToTextboxByID(driver, "SearchCompany", customerInfo.companyName);
+
+        log.info("Step3: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step4: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step5: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
+        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
     }
 
     @Test
-    public void TC_11() {
+    public void TC_11_Search_Customer_with_Full() {
+        log.info("TC:11 Search Customer with full data");
+        log.info("Step1: click Customers left menu sub");
+        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage.openTabSearchEachPage(driver);
 
+        log.info("Step2: input Email textbox: " + customerInfo.email);
+        customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
+
+        log.info("Step3: input first name textbox: " + customerInfo.fname);
+        customersPage.EnterToTextboxByID(driver, "SearchFirstName", customerInfo.fname);
+
+        log.info("Step4: input last name textbox: " + customerInfo.lname);
+        customersPage.EnterToTextboxByID(driver, "SearchLastName", customerInfo.lname);
+
+        log.info("Step5: input Company name textbox: " + customerInfo.companyName);
+        customersPage.EnterToTextboxByID(driver, "SearchCompany", customerInfo.companyName);
+
+        log.info("Step6: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step7: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step8: Click Date of Birth " + customerInfo.DOB);
+        customersPage.SelectDropdownByID(driver, "SearchMonthOfBirth", "12");
+        customersPage.SelectDropdownByID(driver, "SearchDayOfBirth", "12");
+
+        log.info("Step9: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
+        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
     }
 
     @Test
-    public void TC_12() {
+    public void TC_12_Edit_Customer() {
+        customerInfo.email = fakeEmail();
+        customerInfo.password = "123123";
+        customerInfo.fname = "ARINA";
+        customerInfo.lname = "HASHIMOTO";
+        customerInfo.gender = "Female";
+        customerInfo.DOB = "11/11/2002";
+        customerInfo.companyName = "JVAuto";
+        customerInfo.isTaxExempt = false;
+        customerInfo.newsletter = "Your store name";
+        customerInfo.customerRoles = "Guests";
+        customerInfo.managerVender = "Vendor 1";
+        customerInfo.isActive = true;
+        customerInfo.adminComment = "Edit Customer (Guest)";
 
+        log.info("TC:12 Edit Customer");
+        log.info("TC:11 Search result 1customer with full data input");
+        log.info("Step1: Click Edit button");
+        customersPage.clickToEditButtonInFirstResultSearchCustomer();
+
+        log.info("Step2: Input Edit info");
+        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
+        customersPage.inputCustomerInfoForm(customerInfo);
+
+        log.info("Step3: Click Save button");
+        customersPage.ClickToButtonByText(driver, "Save");
+
+        Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The customer has been updated successfully."));
+
+        log.info("Step4: input Email textbox: " + customerInfo.email);
+        customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
+
+        log.info("Step5: input first name textbox: " + customerInfo.fname);
+        customersPage.EnterToTextboxByID(driver, "SearchFirstName", customerInfo.fname);
+
+        log.info("Step6: input last name textbox: " + customerInfo.lname);
+        customersPage.EnterToTextboxByID(driver, "SearchLastName", customerInfo.lname);
+
+        log.info("Step7: input Company name textbox: " + customerInfo.companyName);
+        customersPage.EnterToTextboxByID(driver, "SearchCompany", customerInfo.companyName);
+
+        log.info("Step8: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step9: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step10: Click Date of Birth " + customerInfo.DOB);
+        customersPage.SelectDropdownByID(driver, "SearchMonthOfBirth", "11");
+        customersPage.SelectDropdownByID(driver, "SearchDayOfBirth", "11");
+
+        log.info("Step11: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
+        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
     }
 
     @Test
-    public void TC_13() {
+    public void TC_13_Add_New_Address() {
+        log.info("TC:13 Add new Address");
+        log.info("Step1: click Customers left menu sub");
+        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage.openTabSearchEachPage(driver);
 
+        log.info("Step2: input Email textbox: " + customerInfo.email);
+        customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
+
+        log.info("Step3: input first name textbox: " + customerInfo.fname);
+        customersPage.EnterToTextboxByID(driver, "SearchFirstName", customerInfo.fname);
+
+        log.info("Step4: input last name textbox: " + customerInfo.lname);
+        customersPage.EnterToTextboxByID(driver, "SearchLastName", customerInfo.lname);
+
+        log.info("Step5: input Company name textbox: " + customerInfo.companyName);
+        customersPage.EnterToTextboxByID(driver, "SearchCompany", customerInfo.companyName);
+
+        log.info("Step6: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step7: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step8: Click Date of Birth " + customerInfo.DOB);
+        customersPage.SelectDropdownByID(driver, "SearchMonthOfBirth", "11");
+        customersPage.SelectDropdownByID(driver, "SearchDayOfBirth", "11");
+
+        log.info("Step9: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
+        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
+
+        log.info("Step10: Click Edit button");
+        customersPage.clickToEditButtonInFirstResultSearchCustomer();
+
+        log.info("Step11: Click to Address tab");
+        customersPage.clickToTabByText(driver, "Addresses");
+
+        log.info("Step12: Click to Add new Address");
+        customersPage.ClickToButtonByText(driver, "Add new address");
+
+        log.info("Step13: Input Address info");
+        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Add a new address"));
+        customersPage.inputAddressInfoForm(addressInfo);
+
+        Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The new address has been added successfully."));
+        Assert.assertTrue(customersPage.verifyAddressInfo(addressInfo));
+
+        log.info("Step14: Click Back to Customer Details");
+        customersPage.ClickToLinkByText(driver, "back to customer details");
+
+        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
+
+        log.info("Step15: Click to Address tab");
+        customersPage.clickToTabByText(driver, "Addresses");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customer-address"));
+        Assert.assertTrue(customersPage.verifyAddressInfoInCustomerByEmail(addressInfo));
     }
 
     @Test
-    public void TC_14() {
+    public void TC_14_Edit_Address() {
 
+        String oldAddressEmail = addressInfo.email;
+
+        addressInfo.fName = "Akari";
+        addressInfo.lName = "Mitani";
+        addressInfo.email = "Akari.Mitani2001@gmail.com";
+        addressInfo.companyName = "JVAuto";
+        addressInfo.country = "Viet Nam";
+        addressInfo.state = "Other";
+        addressInfo.city = "Ha Noi";
+        addressInfo.address1 = "69 Tran Duy Hung";
+        addressInfo.address2 = "96 Nguyen Khanh Toan";
+        addressInfo.postalCode = "100000";
+        addressInfo.phoneNumber = "0386966969";
+        addressInfo.faxNumber = "0389699669";
+
+        log.info("TC:14: Edit Address");
+        log.info("Step1: click Customers left menu sub");
+        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage.openTabSearchEachPage(driver);
+
+        log.info("Step2: input Email textbox: " + customerInfo.email);
+        customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
+
+        log.info("Step3: input first name textbox: " + customerInfo.fname);
+        customersPage.EnterToTextboxByID(driver, "SearchFirstName", customerInfo.fname);
+
+        log.info("Step4: input last name textbox: " + customerInfo.lname);
+        customersPage.EnterToTextboxByID(driver, "SearchLastName", customerInfo.lname);
+
+        log.info("Step5: input Company name textbox: " + customerInfo.companyName);
+        customersPage.EnterToTextboxByID(driver, "SearchCompany", customerInfo.companyName);
+
+        log.info("Step6: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step7: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step8: Click Date of Birth " + customerInfo.DOB);
+        customersPage.SelectDropdownByID(driver, "SearchMonthOfBirth", "11");
+        customersPage.SelectDropdownByID(driver, "SearchDayOfBirth", "11");
+
+        log.info("Step9: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
+        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
+
+        log.info("Step10: Click Edit button");
+        customersPage.clickToEditButtonInFirstResultSearchCustomer();
+
+        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
+
+        log.info("Step11: Click to Address tab");
+        customersPage.clickToTabByText(driver, "Addresses");
+
+        log.info("Step12: Click button Edit Address in Email: " + oldAddressEmail);
+        customersPage.clickToEditButtonByEmail(oldAddressEmail);
+
+        log.info("Step13: Input Address info");
+        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit address"));
+        customersPage.inputAddressInfoForm(addressInfo);
+
+        Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The address has been updated successfully."));
+        Assert.assertTrue(customersPage.verifyAddressInfo(addressInfo));
+
+        log.info("Step14: Click Back to Customer Details");
+        customersPage.ClickToLinkByText(driver, "back to customer details");
+
+        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
+
+        log.info("Step15: Click to Address tab");
+        customersPage.clickToTabByText(driver, "Addresses");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customer-address"));
+        Assert.assertTrue(customersPage.verifyAddressInfoInCustomerByEmail(addressInfo));
     }
 
     @Test
-    public void TC_15() {
+    public void TC_15_Delete_Address() {
+        log.info("TC:15 Delete Address");
+        log.info("Step1: click Customers left menu sub");
+        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage.openTabSearchEachPage(driver);
 
+        log.info("Step2: input Email textbox: " + customerInfo.email);
+        customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
+
+        log.info("Step3: input first name textbox: " + customerInfo.fname);
+        customersPage.EnterToTextboxByID(driver, "SearchFirstName", customerInfo.fname);
+
+        log.info("Step4: input last name textbox: " + customerInfo.lname);
+        customersPage.EnterToTextboxByID(driver, "SearchLastName", customerInfo.lname);
+
+        log.info("Step5: input Company name textbox: " + customerInfo.companyName);
+        customersPage.EnterToTextboxByID(driver, "SearchCompany", customerInfo.companyName);
+
+        log.info("Step6: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step7: chose Customer Role = " + customerInfo.customerRoles);
+        customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+
+        log.info("Step8: Click Date of Birth " + customerInfo.DOB);
+        customersPage.SelectDropdownByID(driver, "SearchMonthOfBirth", "11");
+        customersPage.SelectDropdownByID(driver, "SearchDayOfBirth", "11");
+
+        log.info("Step9: Click Search");
+        customersPage.ClickToButtonByText(driver, "Search");
+
+        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
+        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
+
+        log.info("Step10: Click Edit button");
+        customersPage.clickToEditButtonInFirstResultSearchCustomer();
+
+        log.info("Step11: Click to Address tab");
+        customersPage.clickToTabByText(driver, "Addresses");
+
+        log.info("Step12: Click button Edit in Email: " + addressInfo.email);
+        customersPage.clickToDeleteButtonByEmail(addressInfo.email);
+
+        log.info("Step13: Click OK in Alert");
+        customersPage.acceptAlert(driver);
+
+        customersPage.clickToTabByText(driver, "Addresses");
+
+        Assert.assertTrue(customersPage.isNoDataInTableByID(driver, "customer-address"));
+        Assert.assertEquals(customersPage.getMessageNoDataInTableByID(driver, "customer-address"), "No data available in table");
     }
 
     @Parameters("browser")
@@ -254,6 +590,19 @@ public class Admin_01 extends BaseTest {
         customerInfo.managerVender = "Vendor 1";
         customerInfo.isActive = true;
         customerInfo.adminComment = "Add new Customer (Guest)";
+
+        addressInfo.fName = "Miku";
+        addressInfo.lName = "Ohashi";
+        addressInfo.email = "Miku.Ohashi696@gmail.com";
+        addressInfo.companyName = "JVAuto";
+        addressInfo.country = "Viet Nam";
+        addressInfo.state = "Other";
+        addressInfo.city = "Ho Chi Minh";
+        addressInfo.address1 = "66 Tran Duy Hung";
+        addressInfo.address2 = "99 Nguyen Khanh Toan";
+        addressInfo.postalCode = "100000";
+        addressInfo.phoneNumber = "0686966969";
+        addressInfo.faxNumber = "0689699669";
     }
 
     private String fakeEmail() {

@@ -13,23 +13,6 @@ public class ADProductsPageObject extends BasePageAdmin {
         this.driver = driver;
     }
 
-    public void inputProductNameToSearch(String productName) {
-        senkeyToElement(driver, ADProductsPageUI.PRODUCT_NAME_SEARCH_TEXTBOX, productName);
-    }
-
-    public boolean isNoResultDataSearch() {
-        return (!isElementUndisplayed(driver, ADProductsPageUI.NO_RESULT_DATA_SEARCH_MESSAGE));
-    }
-
-
-    public String getMessageNoResultDataSearch() {
-        return getElementText(driver, ADProductsPageUI.NO_RESULT_DATA_SEARCH_MESSAGE);
-    }
-
-    public String getAllResultSearch() {
-        return String.valueOf(getElementSize(driver, ADProductsPageUI.ALL_RESULT_DATA_SEARCH));
-    }
-
     public boolean verifyAllResult(String keySearch) {
         List<WebElement> listElements = getListWebElement(driver, ADProductsPageUI.ALL_RESULT_DATA_SEARCH_BY_NAME);
         for (WebElement elements : listElements) {
@@ -38,22 +21,4 @@ public class ADProductsPageObject extends BasePageAdmin {
         }
         return true;
     }
-
-    public void selectCategoryDropdownByText(String value) {
-        selectItemInDefaultDropdown(driver, ADProductsPageUI.CATEGORY_DROPDOWN, value);
-    }
-
-    public void checkboxSearchSubcategories(boolean status) {
-        if (isElementSelected(driver, ADProductsPageUI.SEARCH_SUBCATEGORIES_CHECKBOX) != status)
-            clickToElement(driver, ADProductsPageUI.SEARCH_SUBCATEGORIES_CHECKBOX);
-    }
-
-    public void selectManufacturerDropdownByText(String value) {
-        selectItemInDefaultDropdown(driver, ADProductsPageUI.MANUFACTURER_DROPDOWN, value);
-    }
-
-    public void inputGoDirectlyToProductSKU(String value) {
-        senkeyToElement(driver, ADProductsPageUI.GO_DIRECTLY_TO_SKU_TEXTBOX, value);
-    }
-
 }

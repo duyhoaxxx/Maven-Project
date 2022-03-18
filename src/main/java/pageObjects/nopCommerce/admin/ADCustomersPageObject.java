@@ -18,7 +18,7 @@ public class ADCustomersPageObject extends BasePageAdmin {
         clickToElement(driver, ADCustomersPageUI.ADD_NEW_BUTTON);
     }
 
-    public void inputNewCustomerInfoForm(WebDriver driver, GlobalConstants.CustomerInfo customerInfo) {
+    public void inputCustomerInfoForm(GlobalConstants.CustomerInfo customerInfo) {
         RemoveAllCustomerRoles();
         EnterToTextboxByID(driver, "Email", customerInfo.email);
         EnterToTextboxByID(driver, "Password", customerInfo.password);
@@ -35,10 +35,10 @@ public class ADCustomersPageObject extends BasePageAdmin {
         ClickToCheckboxButtonByID(driver, "Active", customerInfo.isActive);
         EnterToTextareaByID(driver, "AdminComment", customerInfo.adminComment);
         SelectItemInCustomDropDown(driver, ADCustomersPageUI.NEWS_LETTER_DROPDOWN_BUTTON, ADCustomersPageUI.NEWS_LETTER_DROPDOWN_ITEM, customerInfo.newsletter);
-        SelectItemInCustomDropDown(driver, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_BUTTON, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_ITEM, customerInfo.customerRoles);
+        SelectItemInCustomerRoleByText(customerInfo.customerRoles);
     }
 
-    private void RemoveAllCustomerRoles() {
+    public void RemoveAllCustomerRoles() {
         if (!isElementUndisplayed(driver, ADCustomersPageUI.ALL_CUSTOMER_ROLES_ITEM_SELECTED)) {
             List<WebElement> listElement = getListWebElement(driver, ADCustomersPageUI.ALL_CUSTOMER_ROLES_ITEM_SELECTED);
             for (WebElement element : listElement) {
@@ -47,11 +47,12 @@ public class ADCustomersPageObject extends BasePageAdmin {
         }
     }
 
-    public String getMessageNewCustomerAddSuccess() {
-        return getElementText(driver, ADCustomersPageUI.MESSAGE_NEW_CUSTOMER_ADD_SUCCESS);
+    public void SelectItemInCustomerRoleByText(String value) {
+        SelectItemInCustomDropDown(driver, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_BUTTON, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_ITEM, value);
+
     }
 
-    public boolean verifyNewCustomerInfo(GlobalConstants.CustomerInfo customerInfo) {
+    public boolean verifyCustomerInfo(GlobalConstants.CustomerInfo customerInfo) {
         if (!getValueTextFromTextboxByID("Email").equals(customerInfo.email))
             return false;
         if (!getValueTextFromTextboxByID("FirstName").equals(customerInfo.fname))
@@ -93,7 +94,101 @@ public class ADCustomersPageObject extends BasePageAdmin {
         return !isElementUndisplayed(driver, ADCustomersPageUI.DYNAMIC_SELECTED_BY_NAME, value);
     }
 
-    public void clickToBackCustomerList() {
-        clickToElement(driver, ADCustomersPageUI.BACK_CUSTOMER_LIST);
+    public boolean isNameDisplayedInResultCustemerSearch(String name) {
+        System.out.println(name);
+        List<WebElement> listWE = getListWebElement(driver, ADCustomersPageUI.ALL_NAME_IN_RESULT_SEARCH);
+        for (WebElement element : listWE) {
+            System.out.println(element.getText());
+            if (element.getText().equals(name))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isResultSearchByCustemerRole(String customerRoles) {
+        return !isElementUndisplayed(driver, ADCustomersPageUI.CUSTOMER_ROLE_IN_RESULT_SEARCH_BY_TEXT, customerRoles);
+    }
+
+    public void clickToEditButtonInFirstResultSearchCustomer() {
+        clickToElement(driver, ADCustomersPageUI.FIRST_EDIT_BUTTON_IN_RESULT);
+    }
+
+    public void inputAddressInfoForm(GlobalConstants.AddressInfo addressInfo) {
+        EnterToTextboxByID(driver, "Address_FirstName", addressInfo.fName);
+        EnterToTextboxByID(driver, "Address_LastName", addressInfo.lName);
+        EnterToTextboxByID(driver, "Address_Email", addressInfo.email);
+        EnterToTextboxByID(driver, "Address_Company", addressInfo.companyName);
+        SelectDropdownByID(driver, "Address_CountryId", addressInfo.country);
+        SelectDropdownByID(driver, "Address_StateProvinceId", addressInfo.state);
+        EnterToTextboxByID(driver, "Address_City", addressInfo.city);
+        EnterToTextboxByID(driver, "Address_Address1", addressInfo.address1);
+        EnterToTextboxByID(driver, "Address_Address2", addressInfo.address2);
+        EnterToTextboxByID(driver, "Address_ZipPostalCode", addressInfo.postalCode);
+        EnterToTextboxByID(driver, "Address_PhoneNumber", addressInfo.phoneNumber);
+        EnterToTextboxByID(driver, "Address_FaxNumber", addressInfo.faxNumber);
+
+        ClickToButtonByText(driver, "Save");
+    }
+
+    public boolean verifyAddressInfo(GlobalConstants.AddressInfo addressInfo) {
+        if (!getValueTextFromTextboxByID("Address_FirstName").equals(addressInfo.fName))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_LastName").equals(addressInfo.lName))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_Email").equals(addressInfo.email))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_Company").equals(addressInfo.companyName))
+            return false;
+        if (!getSelectedDropdownByID("Address_CountryId").equals(addressInfo.country))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_City").equals(addressInfo.city))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_Address1").equals(addressInfo.address1))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_Address2").equals(addressInfo.address2))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_ZipPostalCode").equals(addressInfo.postalCode))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_PhoneNumber").equals(addressInfo.phoneNumber))
+            return false;
+        if (!getValueTextFromTextboxByID("Address_FaxNumber").equals(addressInfo.faxNumber))
+            return false;
+        return true;
+    }
+
+    private String getSelectedDropdownByID(String id) {
+        return getElementText(driver, ADCustomersPageUI.DYNAMIC_SELECTED_BY_ID, id);
+    }
+
+    public boolean verifyAddressInfoInCustomerByEmail(GlobalConstants.AddressInfo addressInfo) {
+        boolean isFname = false, isLname = false, isPhone = false;
+        List<WebElement> listElement = getListWebElement(driver, ADCustomersPageUI.ALL_VALUE_IN_ROW_BY_EMAIL, addressInfo.email);
+        for (WebElement firstName : listElement) {
+            if (firstName.getText().equals(addressInfo.fName)) {
+                isFname = true;
+                break;
+            }
+        }
+        for (WebElement lastName : listElement) {
+            if (lastName.getText().equals(addressInfo.lName)) {
+                isLname = true;
+                break;
+            }
+        }
+        for (WebElement phone : listElement) {
+            if (phone.getText().equals(addressInfo.phoneNumber)) {
+                isPhone = true;
+                break;
+            }
+        }
+        return (isFname && isLname && isPhone);
+    }
+
+    public void clickToEditButtonByEmail(String email) {
+        clickToElement(driver, ADCustomersPageUI.EDIT_BUTTON_BY_EMAIL, email);
+    }
+
+    public void clickToDeleteButtonByEmail(String email) {
+        clickToElement(driver, ADCustomersPageUI.DELETE_BUTTON_BY_EMAIL, email);
     }
 }
