@@ -27,5 +27,4 @@ public class BasePageUserUI {
     public static final String MESSAGE_BAR_NOTIFICARTION = "//div[@id='bar-notification']//p[@class='content']";
     public static final String CLOSE_BAR_NOTIFICARTION_BUTTON = "//div[@id='bar-notification']//span";
     public static final String HEADER_LOGO = "//div[@class='header-logo']//a";
-
 }

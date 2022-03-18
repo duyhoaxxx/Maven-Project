@@ -49,12 +49,10 @@ public class UserRegisterPageObject extends BasePageUser {
 
     public void inputToLastNameTextbox(String lastName) {
         senkeyToElement(driver, RegisterPageUI.LAST_NAME_TEXTBOX, lastName);
-
     }
 
     public void inputToEmailTextbox(String email) {
         senkeyToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, email);
-
     }
 
     public void inputToPasswordTextbox(String password) {

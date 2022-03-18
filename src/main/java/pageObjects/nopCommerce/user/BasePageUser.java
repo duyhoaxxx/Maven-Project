@@ -29,25 +29,25 @@ public class BasePageUser extends BasePage {
 
     public UserHomePageObject ClickToLogoutLinkAtUserPage(WebDriver driver) {
         waitForElementVisible(driver, BasePageUserUI.LOGOUT_LINK_AT_USER);
-        clickToElement(driver, BasePageUserUI.LOGOUT_LINK_AT_USER);
+        clickToElementByJS(driver, BasePageUserUI.LOGOUT_LINK_AT_USER);
         return PageGeneratorManager.getUserHomePage(driver);
     }
 
     public ADLoginPageObject ClickToLogoutLinkAtAdminPage(WebDriver driver) {
         waitForElementVisible(driver, BasePageUserUI.LOGOUT_LINK_AT_ADMIN);
-        clickToElement(driver, BasePageUserUI.LOGOUT_LINK_AT_ADMIN);
+        clickToElementByJS(driver, BasePageUserUI.LOGOUT_LINK_AT_ADMIN);
         return PageGeneratorManager.getAdminLoginPage(driver);
     }
 
     public UserWishlistPageObject ClickToWishlistLinkAtUserPage(WebDriver driver) {
         waitForElementVisible(driver, BasePageUserUI.WISHLIST_LINK_AT_USER);
-        clickToElement(driver, BasePageUserUI.WISHLIST_LINK_AT_USER);
+        clickToElementByJS(driver, BasePageUserUI.WISHLIST_LINK_AT_USER);
         return PageGeneratorManager.getWishlistPage(driver);
     }
 
     public UserShoppingCartPageObject ClickToShoppingCartLinkAtUserPage(WebDriver driver) {
         waitForElementVisible(driver, BasePageUserUI.SHOPPING_CART_LINK_AT_USER);
-        clickToElement(driver, BasePageUserUI.SHOPPING_CART_LINK_AT_USER);
+        clickToElementByJS(driver, BasePageUserUI.SHOPPING_CART_LINK_AT_USER);
         return PageGeneratorManager.getShoppingCartPage(driver);
     }
 

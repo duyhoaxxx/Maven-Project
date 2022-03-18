@@ -3,34 +3,28 @@ package pageObjects.nopCommerce.user;
 import org.openqa.selenium.WebDriver;
 
 import commons.PageGeneratorManager;
-import pageObjects.nopCommerce.user.MyAccountPageObject.UserCustomerInfoPageObject;
 import pageUIs.nopCommerce.user.HomePageUI;
 
 public class UserHomePageObject extends BasePageUser {
 
-	private WebDriver driver;
+    private WebDriver driver;
 
-	public UserHomePageObject(WebDriver driver) {
-		this.driver = driver;
-	}
+    public UserHomePageObject(WebDriver driver) {
+        this.driver = driver;
+    }
 
-	public UserRegisterPageObject clickToResgisterLink() {
-		clickToElement(driver, HomePageUI.REGISTER_CLICK);
-		return PageGeneratorManager.getUserRegisterPage(driver);
-	}
+    public UserRegisterPageObject clickToResgisterLink() {
+        clickToElement(driver, HomePageUI.REGISTER_CLICK);
+        return PageGeneratorManager.getUserRegisterPage(driver);
+    }
 
-	public UserLoginPageObject clickToLoginLink() {
-		clickToElement(driver, HomePageUI.LOGIN_CLICK);
-		return PageGeneratorManager.getUserLoginPage(driver);
-	}
+    public UserLoginPageObject clickToLoginLink() {
+        clickToElement(driver, HomePageUI.LOGIN_CLICK);
+        return PageGeneratorManager.getUserLoginPage(driver);
+    }
 
-	public String getTopicBlockTitle() {
-		return getElementText(driver, HomePageUI.TOPIC_BLOCK_TITLE);
-	}
-
-	public UserCustomerInfoPageObject clickToMyAccountLink() {
-		clickToElement(driver, HomePageUI.MY_ACCOUNT_CLICK);
-		return PageGeneratorManager.getUserMyAccountPage(driver);
-	}
+    public String getTopicBlockTitle() {
+        return getElementText(driver, HomePageUI.TOPIC_BLOCK_TITLE);
+    }
 
 }

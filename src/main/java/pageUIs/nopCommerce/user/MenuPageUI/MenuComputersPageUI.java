@@ -20,5 +20,4 @@ public class MenuComputersPageUI {
 
     public static final String PRODUCT_PRICE = "//div[@class='product-price']//span";
     public static final String UPDATE_BUTTON = "//button[@id='add-to-cart-button-1']";
-
 }

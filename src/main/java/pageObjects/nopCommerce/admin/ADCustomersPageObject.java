@@ -15,7 +15,8 @@ public class ADCustomersPageObject extends BasePageAdmin {
     }
 
     public void clickToAddNewButton() {
-        clickToElement(driver, ADCustomersPageUI.ADD_NEW_BUTTON);
+        waitForElementVisible(driver, ADCustomersPageUI.ADD_NEW_CUSTOMER_BUTTON);
+        clickToElement(driver, ADCustomersPageUI.ADD_NEW_CUSTOMER_BUTTON);
     }
 
     public void inputCustomerInfoForm(GlobalConstants.CustomerInfo customerInfo) {
@@ -31,9 +32,10 @@ public class ADCustomersPageObject extends BasePageAdmin {
         EnterToTextboxByID(driver, "DateOfBirth", customerInfo.DOB);
         EnterToTextboxByID(driver, "Company", customerInfo.companyName);
         ClickToCheckboxButtonByID(driver, "IsTaxExempt", customerInfo.isTaxExempt);
-        SelectDropdownByID(driver, "VendorId", customerInfo.managerVender);
         ClickToCheckboxButtonByID(driver, "Active", customerInfo.isActive);
         EnterToTextareaByID(driver, "AdminComment", customerInfo.adminComment);
+        System.out.println("Done text box");
+        SelectDropdownByID(driver, "VendorId", customerInfo.managerVender);
         SelectItemInCustomDropDown(driver, ADCustomersPageUI.NEWS_LETTER_DROPDOWN_BUTTON, ADCustomersPageUI.NEWS_LETTER_DROPDOWN_ITEM, customerInfo.newsletter);
         SelectItemInCustomerRoleByText(customerInfo.customerRoles);
     }
@@ -49,7 +51,6 @@ public class ADCustomersPageObject extends BasePageAdmin {
 
     public void SelectItemInCustomerRoleByText(String value) {
         SelectItemInCustomDropDown(driver, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_BUTTON, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_ITEM, value);
-
     }
 
     public boolean verifyCustomerInfo(GlobalConstants.CustomerInfo customerInfo) {
@@ -128,6 +129,7 @@ public class ADCustomersPageObject extends BasePageAdmin {
         EnterToTextboxByID(driver, "Address_FaxNumber", addressInfo.faxNumber);
 
         ClickToButtonByText(driver, "Save");
+        Loaded(driver);
     }
 
     public boolean verifyAddressInfo(GlobalConstants.AddressInfo addressInfo) {

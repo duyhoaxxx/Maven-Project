@@ -1,7 +1,6 @@
 package pageObjects.nopCommerce.user.MyAccountPageObject;
 
 import org.openqa.selenium.WebDriver;
-
 import pageObjects.nopCommerce.user.BasePageUser;
 import pageUIs.nopCommerce.user.MyAccountPageUI.ChangePasswordPageUI;
 

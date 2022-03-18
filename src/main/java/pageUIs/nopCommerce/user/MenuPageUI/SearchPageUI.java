@@ -1,7 +1,6 @@
 package pageUIs.nopCommerce.user.MenuPageUI;
 
 public class SearchPageUI {
-
     public static final String SEARCH_KEYWORD_TEXTBOX = "//input[@id='q']";
     public static final String ADVANCED_SEARCH_CHECKBOX = "//input[@id='advs']";
     public static final String SEARCH_BUTTON = "//button[@class='button-1 search-button']";

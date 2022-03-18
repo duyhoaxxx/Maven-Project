@@ -48,7 +48,6 @@ public class UserOrdersPageObject extends BasePageUser {
         return orderTotal.equals(getOrderTotal());
     }
 
-
     private boolean isBillingAddressInfo(String key, String value) {
         if (getElementText(driver, OrdersPageUI.BILLING_ADDRESS_AT_CONFIRM_ORDER_BY_TEXT, key).contains(value))
             return true;

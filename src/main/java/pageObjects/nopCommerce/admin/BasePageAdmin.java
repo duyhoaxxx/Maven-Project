@@ -6,8 +6,12 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.nopCommerce.admin.BasePageAdminUI;
 
 public class BasePageAdmin extends BasePage {
+    public void Loaded(WebDriver driver) {
+        waitForElementInvisible(driver, BasePageAdminUI.LOADING_PAGE_ICON);
+    }
+
     public void ClickLeftMenuByName(WebDriver driver, String name) {
-        clickToElement(driver, BasePageAdminUI.DYNAMIC_LEFT_MENU_BY_NAME, name);
+        clickToElementByJS(driver, BasePageAdminUI.DYNAMIC_LEFT_MENU_BY_NAME, name);
     }
 
     public void ClickToLinkByText(WebDriver driver, String text) {
@@ -45,7 +49,7 @@ public class BasePageAdmin extends BasePage {
 
     public void openTabSearchEachPage(WebDriver driver) {
         if (!isElementUndisplayed(driver, BasePageAdminUI.SEARCH_TAB_OPEN))
-            clickToElement(driver, BasePageAdminUI.SEARCH_TAB_OPEN);
+            clickToElementByJS(driver, BasePageAdminUI.SEARCH_TAB_OPEN);
     }
 
     public void clickToTabByText(WebDriver driver, String value) {

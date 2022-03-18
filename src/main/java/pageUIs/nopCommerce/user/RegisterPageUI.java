@@ -17,5 +17,4 @@ public class RegisterPageUI {
     public static final String PASSWORD_ERR_MESSAGE = "//span[@id='Password-error']";
     public static final String CONFIRM_PASSWORD_ERR_MESSAGE = "//span[@id='ConfirmPassword-error']";
     public static final String RESGISTER_SUCCESS_MESSAGE = "//div[@class='result']";
-
 }

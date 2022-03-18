@@ -1,7 +1,6 @@
 package pageUIs.nopCommerce.user.MenuPageUI;
 
 public class ShoppingCartPageUI {
-
     public static final String ALL_PRODUCT_IN_SHOPPING_CART = "//td[@class='product']//a";
     public static final String PRODUCT_IN_SHOPPING_CART_BY_NAME = "//td[@class='product']//a[text()='%s']";
     public static final String EDIT_LINK_IN_PRODUCT_BUILD_COMPUTER = "//td[@class='product']//a[text()='Build your own computer']/parent::td//div[@class='edit-item']//a";
@@ -17,5 +16,4 @@ public class ShoppingCartPageUI {
 
     public static final String AGREE_TERMS_OF_SERVICES_CHECKBOX = "//div[@class='terms-of-service']//input";
     public static final String CHECKOUT_BUTTON = "//button[@id='checkout']";
-
 }

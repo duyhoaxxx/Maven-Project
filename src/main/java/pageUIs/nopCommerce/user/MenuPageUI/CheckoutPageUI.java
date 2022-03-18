@@ -19,7 +19,6 @@ public class CheckoutPageUI {
     public static final String MESSAGE_ORDER_SUCCESS = "//div[@class='section order-completed']//div[@class='title']";
     public static final String ORDER_NUMBER = "//div[@class='order-number']";
 
-
     public static final String SHIPPING_ADDRESS_AT_CONFIRM_ORDER_BY_TEXT = "//div[@class='shipping-info']//li[@class='%s']";
     public static final String BILLING_ADDRESS_AT_CONFIRM_ORDER_BY_TEXT = "//div[@class='billing-info']//li[@class='%s']";
     public static final String PAYMENT_METHOD_AT_CONFIRM_ORDER = "//div[@class='payment-method-info']//li[@class='payment-method']";

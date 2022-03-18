@@ -41,6 +41,7 @@ public class Admin_01 extends BaseTest {
     public void TC_01_Search_with_Product_Name() {
         log.info("TC:01 Search witch Product Name");
         log.info("Step1: Click Catalog");
+        homePage.Loaded(driver);
         homePage.ClickLeftMenuByName(driver, "Catalog");
 
         log.info("Step2: Click Products");
@@ -53,6 +54,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step4: Click Search");
         productsPage.ClickToButtonByText(driver, "Search");
+        productsPage.Loaded(driver);
 
         Assert.assertFalse(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
         Assert.assertEquals(productsPage.getAllResultSearch(driver), "1");
@@ -73,6 +75,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step4: Click Search");
         productsPage.ClickToButtonByText(driver, "Search");
+        productsPage.Loaded(driver);
 
         Assert.assertTrue(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
         Assert.assertEquals(productsPage.getMessageNoDataInTableByID(driver, "products-grid_wrapper"), "No data available in table");
@@ -92,8 +95,8 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step4: Click Search");
         productsPage.ClickToButtonByText(driver, "Search");
+        productsPage.Loaded(driver);
 
-        productsPage.sleepInSecond(2);
         Assert.assertFalse(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
         Assert.assertEquals(productsPage.getAllResultSearch(driver), "1");
         Assert.assertTrue(productsPage.verifyAllResult(productName));
@@ -113,6 +116,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step4: Click Search");
         productsPage.ClickToButtonByText(driver, "Search");
+        productsPage.Loaded(driver);
 
         Assert.assertFalse(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
         Assert.assertEquals(productsPage.getAllResultSearch(driver), "1");
@@ -136,6 +140,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step5: Click Search");
         productsPage.ClickToButtonByText(driver, "Search");
+        productsPage.Loaded(driver);
 
         Assert.assertTrue(productsPage.isNoDataInTableByID(driver, "products-grid_wrapper"));
         Assert.assertEquals(productsPage.getMessageNoDataInTableByID(driver, "products-grid_wrapper"), "No data available in table");
@@ -152,8 +157,9 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step3: click Go button");
         productsPage.ClickToButtonByText(driver, "Go");
+        productsPage.Loaded(driver);
 
-        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("product details"));
+        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit product details"));
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains(productName));
     }
 
@@ -164,17 +170,22 @@ public class Admin_01 extends BaseTest {
         productsPage.clickCustomersLeftMenuDropdown(driver);
 
         log.info("Step2: click Customers left menu sub");
+        productsPage.Loaded(driver);
         customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+
+        Assert.assertTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Customers"));
 
         log.info("Step3: click Add New button");
         customersPage.clickToAddNewButton();
 
-        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Add a new customer"));
+        customersPage.sleepInSecond(2);
+        Assert.assertTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Add a new customer"));
 
         customersPage.inputCustomerInfoForm(customerInfo);
 
         log.info("Step4: click to Save and Continue Edit");
         customersPage.ClickToButtonByText(driver, "Save and Continue Edit");
+        customersPage.Loaded(driver);
 
         Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The new customer has been added successfully."));
         Assert.assertTrue(customersPage.verifyCustomerInfo(customerInfo));
@@ -191,6 +202,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step8: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertTrue(customersPage.isResultSearchByCustemerRole(customerInfo.customerRoles));
         Assert.assertTrue(customersPage.isNameDisplayedInResultCustemerSearch(customerInfo.fname + " " + customerInfo.lname));
@@ -200,7 +212,7 @@ public class Admin_01 extends BaseTest {
     public void TC_08_Search_Customer_with_Email() {
         log.info("TC:08 Search Customer with Email");
         log.info("Step1: click Customers left menu sub");
-        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage = customersPage.clickCustomersLeftMenuPage(driver);
         customersPage.openTabSearchEachPage(driver);
 
         log.info("Step2: input Email textbox: " + customerInfo.email);
@@ -214,6 +226,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step5: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -223,7 +236,7 @@ public class Admin_01 extends BaseTest {
     public void TC_09_Search_Customer_with_fname_lname() {
         log.info("TC:09 Search Customer with fname and lname");
         log.info("Step1: click Customers left menu sub");
-        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage = customersPage.clickCustomersLeftMenuPage(driver);
         customersPage.openTabSearchEachPage(driver);
 
         log.info("Step2: input first name textbox: " + customerInfo.fname);
@@ -240,6 +253,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step6: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -249,7 +263,7 @@ public class Admin_01 extends BaseTest {
     public void TC_10_Search_Customer_with_Company() {
         log.info("TC:10 Search Customer with Company");
         log.info("Step1: click Customers left menu sub");
-        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage = customersPage.clickCustomersLeftMenuPage(driver);
         customersPage.openTabSearchEachPage(driver);
 
         log.info("Step2: input Company name textbox: " + customerInfo.companyName);
@@ -263,6 +277,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step5: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -272,7 +287,7 @@ public class Admin_01 extends BaseTest {
     public void TC_11_Search_Customer_with_Full() {
         log.info("TC:11 Search Customer with full data");
         log.info("Step1: click Customers left menu sub");
-        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage = customersPage.clickCustomersLeftMenuPage(driver);
         customersPage.openTabSearchEachPage(driver);
 
         log.info("Step2: input Email textbox: " + customerInfo.email);
@@ -299,6 +314,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step9: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -358,6 +374,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step11: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -367,7 +384,7 @@ public class Admin_01 extends BaseTest {
     public void TC_13_Add_New_Address() {
         log.info("TC:13 Add new Address");
         log.info("Step1: click Customers left menu sub");
-        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage = customersPage.clickCustomersLeftMenuPage(driver);
         customersPage.openTabSearchEachPage(driver);
 
         log.info("Step2: input Email textbox: " + customerInfo.email);
@@ -394,6 +411,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step9: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -446,7 +464,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("TC:14: Edit Address");
         log.info("Step1: click Customers left menu sub");
-        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage = customersPage.clickCustomersLeftMenuPage(driver);
         customersPage.openTabSearchEachPage(driver);
 
         log.info("Step2: input Email textbox: " + customerInfo.email);
@@ -473,6 +491,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step9: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -511,7 +530,7 @@ public class Admin_01 extends BaseTest {
     public void TC_15_Delete_Address() {
         log.info("TC:15 Delete Address");
         log.info("Step1: click Customers left menu sub");
-        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage = customersPage.clickCustomersLeftMenuPage(driver);
         customersPage.openTabSearchEachPage(driver);
 
         log.info("Step2: input Email textbox: " + customerInfo.email);
@@ -538,6 +557,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step9: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
+        customersPage.Loaded(driver);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -548,7 +568,7 @@ public class Admin_01 extends BaseTest {
         log.info("Step11: Click to Address tab");
         customersPage.clickToTabByText(driver, "Addresses");
 
-        log.info("Step12: Click button Edit in Email: " + addressInfo.email);
+        log.info("Step12: Click button Delete in Email: " + addressInfo.email);
         customersPage.clickToDeleteButtonByEmail(addressInfo.email);
 
         log.info("Step13: Click OK in Alert");

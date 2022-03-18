@@ -6,7 +6,6 @@ public class OrdersPageUI {
     public static final String DETAILS_BUTTON = "(//div[@class='section order-item'])[%s]//div[@class='buttons']//button";
     public static final String ORDER_NUMBER_IN_ORDER_INFO = "//div[@class='order-number']";
 
-
     public static final String ORDER_DATE_IN_ORDER_INFO = "//div[@class='order-overview']//li[@class='order-date']";
     public static final String ORDER_TOTAL_IN_ORDER_INFO = "//div[@class='order-overview']//li[@class='order-total']/strong";
 

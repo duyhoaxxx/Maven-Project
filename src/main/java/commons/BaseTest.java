@@ -40,52 +40,45 @@ public class BaseTest {
         BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
         if (browserList == BrowserList.FIREFOX) {
             WebDriverManager.firefoxdriver().setup();
+/*
+             //Add Extension
 
-            // Add Extension
-            //
-            // FirefoxProfile profile = new FirefoxProfile();
-            // File translate = new File(GlobalConstants.PROJECT_PATH + File.separator + "browserExtensions" + File.separator + "ticktick_todo_task_list_reminder.xpi");
-            // profile.addExtension(translate);
-            // FirefoxOptions options = new FirefoxOptions();
-            // options.setProfile(profile);
-            // driver = new FirefoxDriver(options);
-
-            // Add Browser Log in Console to File
-            //
+             FirefoxProfile profile = new FirefoxProfile();
+             File translate = new File(GlobalConstants.PROJECT_PATH + File.separator + "browserExtensions" + File.separator + "ticktick_todo_task_list_reminder.xpi");
+             profile.addExtension(translate);
+             FirefoxOptions options = new FirefoxOptions();
+             options.setProfile(profile);
+             driver = new FirefoxDriver(options);
+*/
+            //Add Browser Log in Console to File
             System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
             System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,
                     GlobalConstants.PROJECT_PATH + File.separator + "browserLogs" + File.separator + "Firefox.log");
 
             driver = new FirefoxDriver();
-
         } else if (browserList == BrowserList.H_FIREFOX) {
             WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--headless");
             options.addArguments("window-size=1920x1080");
 
-            System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
-            System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,
-                    GlobalConstants.PROJECT_PATH + File.separator + "browserLogs" + File.separator + "Firefox.log");
-
             driver = new FirefoxDriver(options);
         } else if (browserList == BrowserList.CHROME) {
             WebDriverManager.chromedriver().setup();
-
+/*
             // Add Extension
             //
-            // File file = new File(GlobalConstants.PROJECT_PATH + File.separator + "browserExtensions" + File.separator + "toDoListExtension.crx");
-            // ChromeOptions options = new ChromeOptions();
-            // options.addExtensions(file);
-            // driver = new ChromeDriver(options);
+            File file = new File(GlobalConstants.PROJECT_PATH + File.separator + "browserExtensions" + File.separator + "toDoListExtension.crx");
+            ChromeOptions options = new ChromeOptions();
+            options.addExtensions(file);
+            driver = new ChromeDriver(options);
 
             // Add Browser Log in Console to File
             //
             System.setProperty("webdriver.chrome.args", "--disable-logging");
             System.setProperty("webdriver.chrome.silentOutput", "true");
-
+*/
             driver = new ChromeDriver();
-
         } else if (browserList == BrowserList.H_CHROME) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
@@ -119,22 +112,17 @@ public class BaseTest {
         BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
         if (browserList == BrowserList.FIREFOX) {
             WebDriverManager.firefoxdriver().setup();
+            //Add Browser Log in Console to File
             System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
             System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,
                     GlobalConstants.PROJECT_PATH + File.separator + "browserLogs" + File.separator + "Firefox.log");
 
             driver = new FirefoxDriver();
-
         } else if (browserList == BrowserList.H_FIREFOX) {
             WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--headless");
             options.addArguments("window-size=1920x1080");
-
-            System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
-            System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,
-                    GlobalConstants.PROJECT_PATH + File.separator + "browserLogs" + File.separator + "Firefox.log");
-
             driver = new FirefoxDriver(options);
         } else if (browserList == BrowserList.CHROME) {
             WebDriverManager.chromedriver().setup();

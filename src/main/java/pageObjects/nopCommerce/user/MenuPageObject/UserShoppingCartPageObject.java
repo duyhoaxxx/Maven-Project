@@ -5,7 +5,6 @@ import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageUIs.nopCommerce.user.MenuPageUI.ShoppingCartPageUI;
 
-
 public class UserShoppingCartPageObject extends BasePageUser {
     private WebDriver driver;
 
@@ -102,7 +101,6 @@ public class UserShoppingCartPageObject extends BasePageUser {
             return 0;
         else
             return getElementSize(driver, ShoppingCartPageUI.ALL_PRODUCT_IN_SHOPPING_CART);
-
     }
 
     public void inputToQuantityByProductName(String productName, String number) {

@@ -462,6 +462,12 @@ public class BasePage {
         jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, xpathlocator));
     }
 
+    public void clickToElementByJS(WebDriver driver, String xpathLocator, String... dynamicValues) {
+        xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, xpathLocator));
+    }
+
     public void scrollToElementOnTop(WebDriver driver, String locator) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, locator));
