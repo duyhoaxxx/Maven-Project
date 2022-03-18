@@ -55,7 +55,12 @@ public class User_07_Oder extends BaseTest {
         computerMenuPage.clickToAddToCartButton();
         Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
-        Assert.assertTrue(computerMenuPage.isProductNameInMiniShoppingCart(driver, productName));
+
+        log.info("Step4: Go to Shopping cart page");
+        shoppingCartPage = computerMenuPage.ClickToShoppingCartLinkAtUserPage(driver);
+
+        Assert.assertTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
+        Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
     }
 
     @Test
@@ -63,9 +68,6 @@ public class User_07_Oder extends BaseTest {
         log.info("TC:02 Edit Product in Shopping Cart");
         log.info("Step1: Go to Shopping cart page");
         shoppingCartPage = computerMenuPage.ClickToShoppingCartLinkAtUserPage(driver);
-
-        Assert.assertTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
-        Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
 
         log.info("Step2: Edit >> computer page");
         computerMenuPage = shoppingCartPage.clickEditButtonInProductBuildComputer();

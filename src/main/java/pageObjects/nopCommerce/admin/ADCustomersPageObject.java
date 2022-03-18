@@ -118,20 +118,26 @@ public class ADCustomersPageObject extends BasePageAdmin {
     }
 
     public void inputAddressInfoForm(GlobalConstants.AddressInfo addressInfo) {
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Address_FirstName", addressInfo.fName);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Address_LastName", addressInfo.lName);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Address_Email", addressInfo.email);
         EnterToTextboxByID(driver, "Address_Company", addressInfo.companyName);
         SelectDropdownByID(driver, "Address_CountryId", addressInfo.country);
         SelectDropdownByID(driver, "Address_StateProvinceId", addressInfo.state);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Address_City", addressInfo.city);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Address_Address1", addressInfo.address1);
         EnterToTextboxByID(driver, "Address_Address2", addressInfo.address2);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Address_ZipPostalCode", addressInfo.postalCode);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Address_PhoneNumber", addressInfo.phoneNumber);
         EnterToTextboxByID(driver, "Address_FaxNumber", addressInfo.faxNumber);
 
-        System.out.println("lname: " + addressInfo.lName + " Email: " + addressInfo.email);
         ClickToButtonByText(driver, "Save");
         Loaded(driver);
     }

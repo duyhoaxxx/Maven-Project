@@ -149,39 +149,36 @@ public class Admin_01 extends BaseTest {
     @Test
     public void TC_06_Go_directly_to_Product_SKU() {
         log.info("TC:06 Go directly to Product SKU");
-        log.info(("Step1: click Products in Left Menu"));
+        log.info(("Step1: Click Products in Left Menu"));
         productsPage.ClickLeftMenuByName(driver, "Products");
 
-        log.info("Step2: input Go Directly To Product SKU: LE_IC_600");
-        productsPage.EnterToTextboxByID(driver, "GoDirectlyToSku", "LE_IC_600");
+        log.info("Step2: Search Go Directly To Product SKU: LE_IC_600");
+        productsPage.searchGoDirectlyToProductSKUByText("LE_IC_600");
 
-        log.info("Step3: click Go button");
-        productsPage.ClickToButtonByText(driver, "Go");
-        productsPage.sleepInSecond(2);
-
+        productsPage.waitLoadedPageByHeaderName(driver, "Edit product details");
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit product details"));
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains(productName));
 
-        log.info("Step4: Go to Homepage: Dashboard");
-        productsPage.ClickLeftMenuByName(driver, "Dashboard");
-        homePage = PageGeneratorManager.getAdminDashboardPage(driver);
+        productsPage.ClickToLinkByText(driver, "back to product list");
     }
 
     @Test
     public void TC_07_Create_New_Customer() {
         log.info("TC:07 Create New Customer");
         log.info("Step1: click Customers left menu");
-        homePage.clickCustomersLeftMenuDropdown(driver);
+        productsPage.clickCustomersLeftMenuDropdown(driver);
 
         log.info("Step2: click Customers left menu sub");
-        customersPage = homePage.clickCustomersLeftMenuPage(driver);
+        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
 
+        customersPage.waitLoadedPageByHeaderName(driver, "Customers");
         Assert.assertTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Customers"));
 
         log.info("Step3: click Add New button");
         customersPage.clickToAddNewButton();
         customersPage.Loaded(driver);
 
+        customersPage.waitLoadedPageByHeaderName(driver, "Add a new customer");
         Assert.assertTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Add a new customer"));
 
         log.info("Step4: Remove all Customer Role ");
@@ -200,6 +197,7 @@ public class Admin_01 extends BaseTest {
         customersPage.ClickToLinkByText(driver, "back to customer list");
         customersPage.openTabSearchEachPage(driver);
 
+        customersPage.waitLoadedPageByHeaderName(driver, "Customers");
         log.info("Step8: Remove all Customer Role ");
         customersPage.RemoveAllCustomerRoles();
 
@@ -221,11 +219,11 @@ public class Admin_01 extends BaseTest {
         customersPage = customersPage.clickCustomersLeftMenuPage(driver);
         customersPage.openTabSearchEachPage(driver);
 
-        log.info("Step2: input Email textbox: " + customerInfo.email);
-        customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
-
-        log.info("Step3: Remove all Customer Role ");
+        log.info("Step2: Remove all Customer Role ");
         customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step3: input Email textbox: " + customerInfo.email);
+        customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
 
         log.info("Step4: chose Customer Role = " + customerInfo.customerRoles);
         customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
@@ -348,6 +346,7 @@ public class Admin_01 extends BaseTest {
         customersPage.clickToEditButtonInFirstResultSearchCustomer();
 
         log.info("Step2: Input Edit info");
+        customersPage.waitLoadedPageByHeaderName(driver, "Edit customer details");
         customersPage.RemoveAllCustomerRoles();
         customersPage.inputCustomerInfoForm(customerInfo);
 
@@ -426,12 +425,14 @@ public class Admin_01 extends BaseTest {
         customersPage.clickToEditButtonInFirstResultSearchCustomer();
 
         log.info("Step11: Click to Address tab");
+        customersPage.waitLoadedPageByHeaderName(driver, "Edit customer details");
         customersPage.clickToTabByText(driver, "Addresses");
 
         log.info("Step12: Click to Add new Address");
         customersPage.ClickToButtonByText(driver, "Add new address");
 
         log.info("Step13: Input Address info");
+        customersPage.waitLoadedPageByHeaderName(driver, "Add a new address");
         customersPage.inputAddressInfoForm(addressInfo);
 
         Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The new address has been added successfully."));
@@ -441,6 +442,7 @@ public class Admin_01 extends BaseTest {
         customersPage.ClickToLinkByText(driver, "back to customer details");
 
         log.info("Step15: Click to Address tab");
+        customersPage.waitLoadedPageByHeaderName(driver, "Edit customer details");
         customersPage.clickToTabByText(driver, "Addresses");
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customer-address"));
@@ -503,12 +505,14 @@ public class Admin_01 extends BaseTest {
         customersPage.clickToEditButtonInFirstResultSearchCustomer();
 
         log.info("Step11: Click to Address tab");
+        customersPage.waitLoadedPageByHeaderName(driver, "Edit customer details");
         customersPage.clickToTabByText(driver, "Addresses");
 
         log.info("Step12: Click button Edit Address in Email: " + oldAddressEmail);
         customersPage.clickToEditButtonByEmail(oldAddressEmail);
 
         log.info("Step13: Input Address info");
+        customersPage.waitLoadedPageByHeaderName(driver, "Edit address");
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit address"));
         customersPage.inputAddressInfoForm(addressInfo);
 
@@ -518,6 +522,7 @@ public class Admin_01 extends BaseTest {
         log.info("Step14: Click Back to Customer Details");
         customersPage.ClickToLinkByText(driver, "back to customer details");
 
+        customersPage.waitLoadedPageByHeaderName(driver, "Edit customer details");
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
 
         log.info("Step15: Click to Address tab");
@@ -567,6 +572,7 @@ public class Admin_01 extends BaseTest {
         customersPage.clickToEditButtonInFirstResultSearchCustomer();
 
         log.info("Step11: Click to Address tab");
+        customersPage.waitLoadedPageByHeaderName(driver, "Edit customer details");
         customersPage.clickToTabByText(driver, "Addresses");
 
         log.info("Step12: Click button Delete in Email: " + addressInfo.email);

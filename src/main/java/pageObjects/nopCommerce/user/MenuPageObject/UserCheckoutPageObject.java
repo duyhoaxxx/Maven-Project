@@ -191,15 +191,15 @@ public class UserCheckoutPageObject extends BasePageUser {
     }
 
     public void clickToShipMethodByGround() {
-        clickToElement(driver, CheckoutPageUI.SHIPPING_BY_GROUND);
+        clickToElementByJS(driver, CheckoutPageUI.SHIPPING_BY_GROUND);
     }
 
     public void clickToShipMethodByNextDayAir() {
-        clickToElement(driver, CheckoutPageUI.SHIPPING_BY_NEXT_DAY_AIR);
+        clickToElementByJS(driver, CheckoutPageUI.SHIPPING_BY_NEXT_DAY_AIR);
     }
 
     public void clickToShipMethodBy2ndDayAir() {
-        clickToElement(driver, CheckoutPageUI.SHIPPING_BY_2ND_DAY_AIR);
+        clickToElementByJS(driver, CheckoutPageUI.SHIPPING_BY_2ND_DAY_AIR);
     }
 
     public boolean isCheckShippingMethod(String shipMethod) {

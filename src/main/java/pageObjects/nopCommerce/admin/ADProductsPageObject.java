@@ -21,4 +21,9 @@ public class ADProductsPageObject extends BasePageAdmin {
         }
         return true;
     }
+
+    public void searchGoDirectlyToProductSKUByText(String value) {
+        senkeyToElement(driver, ADProductsPageUI.GO_DIRECTLY_SKU_TEXTBOX, value);
+        clickToElementByJS(driver, ADProductsPageUI.GO_DIRECTLY_SKU_BUTTON);
+    }
 }

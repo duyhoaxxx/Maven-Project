@@ -613,7 +613,6 @@ public class BasePage {
         getWebElement(driver, GlobalConstants.UPLOAD_FILE_TYPE).sendKeys(fullFileName);
     }
 
-
     public void EnterToTextboxByID(WebDriver driver, String textboxID, String value) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
         waitForElementVisible(driver, locator);

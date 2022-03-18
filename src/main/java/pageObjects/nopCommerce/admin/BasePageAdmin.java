@@ -28,6 +28,10 @@ public class BasePageAdmin extends BasePage {
         return PageGeneratorManager.getCustomersPage(driver);
     }
 
+    public void waitLoadedPageByHeaderName(WebDriver driver, String headerName) {
+        waitForElementVisible(driver, BasePageAdminUI.LEFT_HEADER_PAGE_BY_NAME, headerName);
+    }
+
     public String getFloatLeftHeaderPage(WebDriver driver) {
         return getElementText(driver, BasePageAdminUI.LEFT_HEADER_PAGE);
     }
@@ -45,7 +49,13 @@ public class BasePageAdmin extends BasePage {
     }
 
     public String getMessageSuccess(WebDriver driver) {
-        return getElementText(driver, BasePageAdminUI.MESSAGE_SUCCESS);
+        String result = getElementText(driver, BasePageAdminUI.MESSAGE_SUCCESS);
+        closeMessageNotify(driver);
+        return result;
+    }
+
+    private void closeMessageNotify(WebDriver driver) {
+        clickToElementByJS(driver, BasePageAdminUI.CLOSE_MESSAGE_NOTIFY_BUTTON);
     }
 
     public void openTabSearchEachPage(WebDriver driver) {

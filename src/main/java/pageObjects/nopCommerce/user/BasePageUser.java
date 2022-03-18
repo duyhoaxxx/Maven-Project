@@ -33,12 +33,6 @@ public class BasePageUser extends BasePage {
         return PageGeneratorManager.getUserHomePage(driver);
     }
 
-    public ADLoginPageObject ClickToLogoutLinkAtAdminPage(WebDriver driver) {
-        waitForElementVisible(driver, BasePageUserUI.LOGOUT_LINK_AT_ADMIN);
-        clickToElementByJS(driver, BasePageUserUI.LOGOUT_LINK_AT_ADMIN);
-        return PageGeneratorManager.getAdminLoginPage(driver);
-    }
-
     public UserWishlistPageObject ClickToWishlistLinkAtUserPage(WebDriver driver) {
         waitForElementVisible(driver, BasePageUserUI.WISHLIST_LINK_AT_USER);
         clickToElementByJS(driver, BasePageUserUI.WISHLIST_LINK_AT_USER);
@@ -63,7 +57,7 @@ public class BasePageUser extends BasePage {
 
     public void openMyAccountPageByName(WebDriver driver, String pageName) {
         String locator = getDynamicXpath(BasePageUserUI.DYNAMIC_MY_ACCOUNT_PAGE_LINK, pageName);
-        clickToElement(driver, locator);
+        clickToElementByJS(driver, locator);
     }
 
     public void openTopMenuByName(WebDriver driver, String menuName) {
@@ -171,11 +165,6 @@ public class BasePageUser extends BasePage {
         if (isElementUndisplayed(driver, BasePageUserUI.PRODUCT_DISPLAY_BY_NAME, pName))
             return false;
         return true;
-    }
-
-    public boolean isProductNameInMiniShoppingCart(WebDriver driver, String pName) {
-        hoverMouseToElement(driver, BasePageUserUI.SHOPPING_CART_LINK_AT_USER);
-        return isElementDisplay(driver, BasePageUserUI.ALL_NAME_IN_MINI_SHOPPING_CART, pName);
     }
 
     public String getBarNotificationSuccess(WebDriver driver) {

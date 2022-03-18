@@ -9,7 +9,9 @@ public class BasePageAdminUI {
     public static final String NO_DATA_IN_TABLE_MESSAGE_BY_ID = "//div[@id='%s']//td[@class='dataTables_empty']";
     public static final String ALL_RESULT_DATA_SEARCH = "//tbody/tr";
     public static final String LEFT_HEADER_PAGE = "//h1[@class='float-left']";
+    public static final String LEFT_HEADER_PAGE_BY_NAME = "//h1[@class='float-left'][contains(text(),'%s')]";
     public static final String MESSAGE_SUCCESS = "//div[@class='alert alert-success alert-dismissable']";
+    public static final String CLOSE_MESSAGE_NOTIFY_BUTTON = "//button[contains(text(),'×')]";
 
     public static final String SEARCH_TAB_OPEN = "//div[text()='Search']/parent::div//i[@class='far fa-angle-down']";
     public static final String OPEN_TAB_BY_NAME = "//div[contains(text(),'%s')]//parent::div//i[@class='fa toggle-icon fa-plus']";
