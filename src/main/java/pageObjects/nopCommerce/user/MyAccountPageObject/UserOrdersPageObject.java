@@ -166,7 +166,7 @@ public class UserOrdersPageObject extends BasePageUser {
     }
 
     public UserShoppingCartPageObject clickToReOrderButton() {
-        clickToElement(driver, OrdersPageUI.REORDER_BUTTON);
+        clickToElementByJS(driver, OrdersPageUI.REORDER_BUTTON);
         return PageGeneratorManager.getShoppingCartPage(driver);
     }
 }

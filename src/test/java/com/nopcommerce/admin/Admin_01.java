@@ -157,50 +157,56 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step3: click Go button");
         productsPage.ClickToButtonByText(driver, "Go");
-        productsPage.Loaded(driver);
+        productsPage.sleepInSecond(2);
 
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit product details"));
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains(productName));
+
+        log.info("Step4: Go to Homepage: Dashboard");
+        productsPage.ClickLeftMenuByName(driver, "Dashboard");
+        homePage = PageGeneratorManager.getAdminDashboardPage(driver);
     }
 
     @Test
     public void TC_07_Create_New_Customer() {
         log.info("TC:07 Create New Customer");
         log.info("Step1: click Customers left menu");
-        productsPage.clickCustomersLeftMenuDropdown(driver);
+        homePage.clickCustomersLeftMenuDropdown(driver);
 
         log.info("Step2: click Customers left menu sub");
-        productsPage.Loaded(driver);
-        customersPage = productsPage.clickCustomersLeftMenuPage(driver);
+        customersPage = homePage.clickCustomersLeftMenuPage(driver);
 
         Assert.assertTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Customers"));
 
         log.info("Step3: click Add New button");
         customersPage.clickToAddNewButton();
+        customersPage.Loaded(driver);
 
-        customersPage.sleepInSecond(2);
         Assert.assertTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Add a new customer"));
 
+        log.info("Step4: Remove all Customer Role ");
+        customersPage.RemoveAllCustomerRoles();
+
+        log.info("Step5: Input Customer Info Form ");
         customersPage.inputCustomerInfoForm(customerInfo);
 
-        log.info("Step4: click to Save and Continue Edit");
+        log.info("Step6: click to Save and Continue Edit");
         customersPage.ClickToButtonByText(driver, "Save and Continue Edit");
-        customersPage.Loaded(driver);
 
         Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The new customer has been added successfully."));
         Assert.assertTrue(customersPage.verifyCustomerInfo(customerInfo));
 
-        log.info("Step5: click back to customer list link");
+        log.info("Step7: click back to customer list link");
         customersPage.ClickToLinkByText(driver, "back to customer list");
         customersPage.openTabSearchEachPage(driver);
 
-        log.info("Step6: Remove all Customer Role ");
+        log.info("Step8: Remove all Customer Role ");
         customersPage.RemoveAllCustomerRoles();
 
-        log.info("Step7: chose Customer Role = " + customerInfo.customerRoles);
+        log.info("Step9: chose Customer Role = " + customerInfo.customerRoles);
         customersPage.SelectItemInCustomerRoleByText(customerInfo.customerRoles);
 
-        log.info("Step8: Click Search");
+        log.info("Step10: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
         customersPage.Loaded(driver);
 
@@ -314,7 +320,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step9: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
-        customersPage.Loaded(driver);
+        customersPage.sleepInSecond(2);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -324,11 +330,11 @@ public class Admin_01 extends BaseTest {
     public void TC_12_Edit_Customer() {
         customerInfo.email = fakeEmail();
         customerInfo.password = "123123";
-        customerInfo.fname = "ARINA";
-        customerInfo.lname = "HASHIMOTO";
+        customerInfo.fname = "ARINA " + String.valueOf((new Random().nextInt(99)));
+        customerInfo.lname = "HASHIMOTO " + String.valueOf((new Random().nextInt(99)));
         customerInfo.gender = "Female";
         customerInfo.DOB = "11/11/2002";
-        customerInfo.companyName = "JVAuto";
+        customerInfo.companyName = "JVAuto " + String.valueOf((new Random().nextInt(99)));
         customerInfo.isTaxExempt = false;
         customerInfo.newsletter = "Your store name";
         customerInfo.customerRoles = "Guests";
@@ -342,7 +348,7 @@ public class Admin_01 extends BaseTest {
         customersPage.clickToEditButtonInFirstResultSearchCustomer();
 
         log.info("Step2: Input Edit info");
-        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
+        customersPage.RemoveAllCustomerRoles();
         customersPage.inputCustomerInfoForm(customerInfo);
 
         log.info("Step3: Click Save button");
@@ -374,7 +380,7 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step11: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
-        customersPage.Loaded(driver);
+        customersPage.sleepInSecond(2);
 
         Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
         Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
@@ -426,7 +432,6 @@ public class Admin_01 extends BaseTest {
         customersPage.ClickToButtonByText(driver, "Add new address");
 
         log.info("Step13: Input Address info");
-        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Add a new address"));
         customersPage.inputAddressInfoForm(addressInfo);
 
         Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The new address has been added successfully."));
@@ -434,8 +439,6 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step14: Click Back to Customer Details");
         customersPage.ClickToLinkByText(driver, "back to customer details");
-
-        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
 
         log.info("Step15: Click to Address tab");
         customersPage.clickToTabByText(driver, "Addresses");
@@ -449,10 +452,10 @@ public class Admin_01 extends BaseTest {
 
         String oldAddressEmail = addressInfo.email;
 
-        addressInfo.fName = "Akari";
-        addressInfo.lName = "Mitani";
-        addressInfo.email = "Akari.Mitani2001@gmail.com";
-        addressInfo.companyName = "JVAuto";
+        addressInfo.fName = "Akari " + String.valueOf((new Random().nextInt(99)));
+        addressInfo.lName = "Mitani " + String.valueOf((new Random().nextInt(99)));
+        addressInfo.email = fakeEmail();
+        addressInfo.companyName = "JVAuto " + String.valueOf((new Random().nextInt(99)));
         addressInfo.country = "Viet Nam";
         addressInfo.state = "Other";
         addressInfo.city = "Ha Noi";
@@ -498,8 +501,6 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step10: Click Edit button");
         customersPage.clickToEditButtonInFirstResultSearchCustomer();
-
-        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
 
         log.info("Step11: Click to Address tab");
         customersPage.clickToTabByText(driver, "Addresses");
@@ -599,11 +600,11 @@ public class Admin_01 extends BaseTest {
 
         customerInfo.email = fakeEmail();
         customerInfo.password = "123123";
-        customerInfo.fname = "Yua";
-        customerInfo.lname = "Mikami";
+        customerInfo.fname = "Yua " + String.valueOf((new Random().nextInt(99)));
+        customerInfo.lname = "Mikami " + String.valueOf((new Random().nextInt(99)));
         customerInfo.gender = "Female";
         customerInfo.DOB = "12/12/2000";
-        customerInfo.companyName = "KYAuto";
+        customerInfo.companyName = "KYAuto " + String.valueOf((new Random().nextInt(99)));
         customerInfo.isTaxExempt = false;
         customerInfo.newsletter = "Your store name";
         customerInfo.customerRoles = "Guests";
@@ -611,10 +612,10 @@ public class Admin_01 extends BaseTest {
         customerInfo.isActive = true;
         customerInfo.adminComment = "Add new Customer (Guest)";
 
-        addressInfo.fName = "Miku";
-        addressInfo.lName = "Ohashi";
-        addressInfo.email = "Miku.Ohashi696@gmail.com";
-        addressInfo.companyName = "JVAuto";
+        addressInfo.fName = "Miku " + String.valueOf((new Random().nextInt(99)));
+        addressInfo.lName = "Ohashi " + String.valueOf((new Random().nextInt(99)));
+        addressInfo.email = fakeEmail();
+        addressInfo.companyName = "JVAuto " + String.valueOf((new Random().nextInt(99)));
         addressInfo.country = "Viet Nam";
         addressInfo.state = "Other";
         addressInfo.city = "Ho Chi Minh";

@@ -175,7 +175,7 @@ public class BasePageUser extends BasePage {
 
     public boolean isProductNameInMiniShoppingCart(WebDriver driver, String pName) {
         hoverMouseToElement(driver, BasePageUserUI.SHOPPING_CART_LINK_AT_USER);
-        return isElementEnable(driver, BasePageUserUI.ALL_NAME_IN_MINI_SHOPPING_CART, pName);
+        return isElementDisplay(driver, BasePageUserUI.ALL_NAME_IN_MINI_SHOPPING_CART, pName);
     }
 
     public String getBarNotificationSuccess(WebDriver driver) {

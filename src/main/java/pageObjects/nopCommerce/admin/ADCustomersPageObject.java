@@ -1,6 +1,7 @@
 package pageObjects.nopCommerce.admin;
 
 import commons.GlobalConstants;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageUIs.nopCommerce.admin.ADCustomersPageUI;
@@ -16,11 +17,10 @@ public class ADCustomersPageObject extends BasePageAdmin {
 
     public void clickToAddNewButton() {
         waitForElementVisible(driver, ADCustomersPageUI.ADD_NEW_CUSTOMER_BUTTON);
-        clickToElement(driver, ADCustomersPageUI.ADD_NEW_CUSTOMER_BUTTON);
+        clickToElementByJS(driver, ADCustomersPageUI.ADD_NEW_CUSTOMER_BUTTON);
     }
 
     public void inputCustomerInfoForm(GlobalConstants.CustomerInfo customerInfo) {
-        RemoveAllCustomerRoles();
         EnterToTextboxByID(driver, "Email", customerInfo.email);
         EnterToTextboxByID(driver, "Password", customerInfo.password);
         EnterToTextboxByID(driver, "FirstName", customerInfo.fname);
@@ -33,18 +33,19 @@ public class ADCustomersPageObject extends BasePageAdmin {
         EnterToTextboxByID(driver, "Company", customerInfo.companyName);
         ClickToCheckboxButtonByID(driver, "IsTaxExempt", customerInfo.isTaxExempt);
         ClickToCheckboxButtonByID(driver, "Active", customerInfo.isActive);
-        EnterToTextareaByID(driver, "AdminComment", customerInfo.adminComment);
-        System.out.println("Done text box");
         SelectDropdownByID(driver, "VendorId", customerInfo.managerVender);
+        SelectItemInCustomDropDown(driver, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_BUTTON, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_ITEM, customerInfo.customerRoles);
         SelectItemInCustomDropDown(driver, ADCustomersPageUI.NEWS_LETTER_DROPDOWN_BUTTON, ADCustomersPageUI.NEWS_LETTER_DROPDOWN_ITEM, customerInfo.newsletter);
-        SelectItemInCustomerRoleByText(customerInfo.customerRoles);
+        EnterToTextareaByID(driver, "AdminComment", customerInfo.adminComment);
     }
 
     public void RemoveAllCustomerRoles() {
         if (!isElementUndisplayed(driver, ADCustomersPageUI.ALL_CUSTOMER_ROLES_ITEM_SELECTED)) {
             List<WebElement> listElement = getListWebElement(driver, ADCustomersPageUI.ALL_CUSTOMER_ROLES_ITEM_SELECTED);
             for (WebElement element : listElement) {
-                element.click();
+                JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+                jsExecutor.executeScript("arguments[0].click();", element);
+                sleepInSecond(1);
             }
         }
     }
@@ -111,7 +112,9 @@ public class ADCustomersPageObject extends BasePageAdmin {
     }
 
     public void clickToEditButtonInFirstResultSearchCustomer() {
-        clickToElement(driver, ADCustomersPageUI.FIRST_EDIT_BUTTON_IN_RESULT);
+        waitForElementVisible(driver, ADCustomersPageUI.FIRST_EDIT_BUTTON_IN_RESULT);
+        clickToElementByJS(driver, ADCustomersPageUI.FIRST_EDIT_BUTTON_IN_RESULT);
+        sleepInSecond(2);
     }
 
     public void inputAddressInfoForm(GlobalConstants.AddressInfo addressInfo) {
@@ -128,6 +131,7 @@ public class ADCustomersPageObject extends BasePageAdmin {
         EnterToTextboxByID(driver, "Address_PhoneNumber", addressInfo.phoneNumber);
         EnterToTextboxByID(driver, "Address_FaxNumber", addressInfo.faxNumber);
 
+        System.out.println("lname: " + addressInfo.lName + " Email: " + addressInfo.email);
         ClickToButtonByText(driver, "Save");
         Loaded(driver);
     }
@@ -187,10 +191,10 @@ public class ADCustomersPageObject extends BasePageAdmin {
     }
 
     public void clickToEditButtonByEmail(String email) {
-        clickToElement(driver, ADCustomersPageUI.EDIT_BUTTON_BY_EMAIL, email);
+        clickToElementByJS(driver, ADCustomersPageUI.EDIT_BUTTON_BY_EMAIL, email);
     }
 
     public void clickToDeleteButtonByEmail(String email) {
-        clickToElement(driver, ADCustomersPageUI.DELETE_BUTTON_BY_EMAIL, email);
+        clickToElementByJS(driver, ADCustomersPageUI.DELETE_BUTTON_BY_EMAIL, email);
     }
 }

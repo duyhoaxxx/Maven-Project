@@ -19,7 +19,8 @@ public class BasePageAdmin extends BasePage {
     }
 
     public void clickCustomersLeftMenuDropdown(WebDriver driver) {
-        clickToElement(driver, BasePageAdminUI.CUSTOMERS_LEFT_MENU_DROPDOWN);
+        clickToElementByJS(driver, BasePageAdminUI.CUSTOMERS_LEFT_MENU_DROPDOWN);
+        sleepInSecond(2);
     }
 
     public ADCustomersPageObject clickCustomersLeftMenuPage(WebDriver driver) {
@@ -54,6 +55,6 @@ public class BasePageAdmin extends BasePage {
 
     public void clickToTabByText(WebDriver driver, String value) {
         if (!isElementUndisplayed(driver, BasePageAdminUI.OPEN_TAB_BY_NAME, value))
-            clickToElement(driver, BasePageAdminUI.OPEN_TAB_BY_NAME, value);
+            clickToElementByJS(driver, BasePageAdminUI.OPEN_TAB_BY_NAME, value);
     }
 }

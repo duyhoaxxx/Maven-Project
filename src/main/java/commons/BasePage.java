@@ -457,13 +457,15 @@ public class BasePage {
         jsExecutor.executeScript("arguments[0].setAttribute('style', arguments[1])", element, originalStyle);
     }
 
-    public void clickToElementByJS(WebDriver driver, String xpathlocator) {
+    public void clickToElementByJS(WebDriver driver, String xpathLocator) {
+        waitForElementVisible(driver, xpathLocator);
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, xpathlocator));
+        jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, xpathLocator));
     }
 
     public void clickToElementByJS(WebDriver driver, String xpathLocator, String... dynamicValues) {
         xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+        waitForElementVisible(driver, xpathLocator);
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].click();", getWebElement(driver, xpathLocator));
     }
@@ -616,6 +618,7 @@ public class BasePage {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
         waitForElementVisible(driver, locator);
         senkeyToElement(driver, locator, value);
+        sleepInSecond(1);
     }
 
     public void EnterToTextareaByID(WebDriver driver, String textboxID, String value) {
@@ -650,6 +653,6 @@ public class BasePage {
     public void ClickToButtonByText(WebDriver driver, String buttonText) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
         waitForElementClickable(driver, locator);
-        clickToElement(driver, locator);
+        clickToElementByJS(driver, locator);
     }
 }

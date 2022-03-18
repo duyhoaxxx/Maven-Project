@@ -16,7 +16,7 @@ public class ADCustomersPageUI {
 
     public static final String ALL_NAME_IN_RESULT_SEARCH = "//tbody//tr//td[3]";
     public static final String CUSTOMER_ROLE_IN_RESULT_SEARCH_BY_TEXT = "//tbody//tr//td[text()='%s']";
-    public static final String FIRST_EDIT_BUTTON_IN_RESULT = "//tbody/tr[1]//a[text()='Edit']";
+    public static final String FIRST_EDIT_BUTTON_IN_RESULT = "//tr[1]//a[normalize-space()='Edit']";
 
     public static final String ALL_VALUE_IN_ROW_BY_EMAIL = "//td[normalize-space()='%s']/parent::tr/td";
     public static final String EDIT_BUTTON_BY_EMAIL = "//td[normalize-space()='%s']/parent::tr/td//a[text()='Edit']";
