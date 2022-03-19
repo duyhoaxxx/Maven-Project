@@ -46,7 +46,7 @@ public class User_03_MyAccount extends BaseTest {
         log.info("Step1: Open My Account link");
         homePage.openHeaderPageByName(driver, "My account");
         customerInfoPage = PageGeneratorManager.getUserCustomerInfoPage(driver);
-        Assert.assertTrue(customerInfoPage.isMyAccountPageTitleDisplayedByName(driver, "Customer info"));
+        verifyTrue(customerInfoPage.isMyAccountPageTitleDisplayedByName(driver, "Customer info"));
 
         log.info("Step2: Select Gender: Female");
         customerInfoPage.clickToGenderFemale();
@@ -85,11 +85,11 @@ public class User_03_MyAccount extends BaseTest {
         log.info("Step1: Open Address page");
         customerInfoPage.openMyAccountPageByName(driver, "Addresses");
         addressPage = PageGeneratorManager.getUserAddressPage(driver);
-        Assert.assertTrue(addressPage.isMyAccountPageTitleDisplayedByName(driver, "Addresses"));
+        verifyTrue(addressPage.isMyAccountPageTitleDisplayedByName(driver, "Addresses"));
 
         log.info("Step2: Add new button");
         addressPage.clickToAddNewButton();
-        Assert.assertTrue(addressPage.isMyAccountPageTitleDisplayedByName(driver, "Add new address"));
+        verifyTrue(addressPage.isMyAccountPageTitleDisplayedByName(driver, "Add new address"));
 
         log.info("Step3: input First Name: " + addressInfo.fName);
         addressPage.inputToFirstNameTextbox(addressInfo.fName);
@@ -147,12 +147,12 @@ public class User_03_MyAccount extends BaseTest {
         log.info("Step1: Open Change password page");
         addressPage.openMyAccountPageByName(driver, "Change password");
         changePasswordPage = PageGeneratorManager.getUserChangePasswordPage(driver);
-        Assert.assertTrue(changePasswordPage.isMyAccountPageTitleDisplayedByName(driver, "Change password"));
+        verifyTrue(changePasswordPage.isMyAccountPageTitleDisplayedByName(driver, "Change password"));
 
         log.info("Step2: Change old password: " + password + " to new password: " + newPassword);
         changePasswordPage.changePasswordForm(password, newPassword);
 
-        Assert.assertEquals(changePasswordPage.getBarNotificationSuccess(driver), "Password was changed");
+        verifyEquals(changePasswordPage.getBarNotificationSuccess(driver), "Password was changed");
         changePasswordPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step3: Logout ");
@@ -164,7 +164,7 @@ public class User_03_MyAccount extends BaseTest {
         loginPage.inputToPasswordTextbox(password);
         loginPage.clickToLoginButton();
 
-        Assert.assertEquals(loginPage.getErrorMessageLoginUnsuccessful(),
+        verifyEquals(loginPage.getErrorMessageLoginUnsuccessful(),
                 "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 
 
@@ -182,11 +182,11 @@ public class User_03_MyAccount extends BaseTest {
         log.info("Step1: Open Menu Computers page");
         homePage.openTopMenuByName(driver, "computers");
         computerMenuPage = PageGeneratorManager.getUserMenuComputersPage(driver);
-        Assert.assertTrue(changePasswordPage.isPageTitleDisplayedByName(driver, "Computers"));
+        verifyTrue(changePasswordPage.isPageTitleDisplayedByName(driver, "Computers"));
 
         log.info("Step2: Open Menu Computers>Desktops page");
         computerMenuPage.clickToSubCategoryByName("Desktops");
-        Assert.assertTrue(computerMenuPage.isPageTitleDisplayedByName(driver, "Desktops"));
+        verifyTrue(computerMenuPage.isPageTitleDisplayedByName(driver, "Desktops"));
 
         log.info("Step3: Click to product: Digital Storm VANQUISH 3 Custom Performance PC");
         computerMenuPage.clickToProductByName("Digital Storm VANQUISH 3 Custom Performance PC");
@@ -197,12 +197,12 @@ public class User_03_MyAccount extends BaseTest {
         log.info("Step5: Add Review");
         productReviewsPage.addReviewForm(rvTitle, rvText, rating);
 
-        Assert.assertEquals(productReviewsPage.getResultAddProductReviews(), "Product review is successfully added.");
+        verifyEquals(productReviewsPage.getResultAddProductReviews(), "Product review is successfully added.");
 
         log.info("Step6: Open My Account Link");
         productReviewsPage.openHeaderPageByName(driver, "My account");
         customerInfoPage = PageGeneratorManager.getUserCustomerInfoPage(driver);
-        Assert.assertTrue(customerInfoPage.isMyAccountPageTitleDisplayedByName(driver, "Customer info"));
+        verifyTrue(customerInfoPage.isMyAccountPageTitleDisplayedByName(driver, "Customer info"));
 
         log.info("Step7: Open My Product Review");
         customerInfoPage.openMyAccountPageByName(driver, "My product reviews");

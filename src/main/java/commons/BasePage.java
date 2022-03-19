@@ -211,7 +211,7 @@ public class BasePage {
     }
 
     public void SelectItemInCustomDropDown(WebDriver driver, String buttonXpath, String xpathLoadItem, String expected) {
-        clickToElement(driver, buttonXpath);
+        clickToElementByJS(driver, buttonXpath);
         sleepInSecond(1);
 
         WebDriverWait explicitWait = new WebDriverWait(driver, longTimeoutInSecound);
@@ -635,8 +635,7 @@ public class BasePage {
 
     public void ClickToRadioButtonByID(WebDriver driver, String radioButtonID) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_RADIO_BUTTON_BY_ID, radioButtonID);
-        waitForElementClickable(driver, locator);
-        clickToElement(driver, locator);
+        clickToElementByJS(driver, locator);
     }
 
     public void SelectDropdownByName(WebDriver driver, String dropdownName, String value) {
@@ -651,7 +650,6 @@ public class BasePage {
 
     public void ClickToButtonByText(WebDriver driver, String buttonText) {
         String locator = getDynamicXpath(BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
-        waitForElementClickable(driver, locator);
         clickToElementByJS(driver, locator);
     }
 }

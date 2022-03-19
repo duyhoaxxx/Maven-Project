@@ -96,7 +96,7 @@ public class User_02_Login extends BaseTest {
         loginPage = homePage.clickToLoginLink();
 
         log.info("Login TC:06 Success");
-        log.info("Register with email: " + email + "   Pass: " + password);
+        log.info("Login with email: " + email + "   Pass: " + password);
         loginPage.LoginAsUser(email, password);
         LoginPageCookie = homePage.getAllCookies(driver);
 

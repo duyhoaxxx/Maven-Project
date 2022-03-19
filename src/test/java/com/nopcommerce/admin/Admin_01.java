@@ -160,6 +160,7 @@ public class Admin_01 extends BaseTest {
         Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains(productName));
 
         productsPage.ClickToLinkByText(driver, "back to product list");
+        productsPage.waitLoadedPageByHeaderName(driver, "Products");
     }
 
     @Test
@@ -172,14 +173,14 @@ public class Admin_01 extends BaseTest {
         customersPage = productsPage.clickCustomersLeftMenuPage(driver);
 
         customersPage.waitLoadedPageByHeaderName(driver, "Customers");
-        Assert.assertTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Customers"));
+        verifyTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Customers"));
 
         log.info("Step3: click Add New button");
         customersPage.clickToAddNewButton();
         customersPage.Loaded(driver);
 
         customersPage.waitLoadedPageByHeaderName(driver, "Add a new customer");
-        Assert.assertTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Add a new customer"));
+        verifyTrue(customersPage.getFloatLeftHeaderPage(driver).contains("Add a new customer"));
 
         log.info("Step4: Remove all Customer Role ");
         customersPage.RemoveAllCustomerRoles();
@@ -190,8 +191,8 @@ public class Admin_01 extends BaseTest {
         log.info("Step6: click to Save and Continue Edit");
         customersPage.ClickToButtonByText(driver, "Save and Continue Edit");
 
-        Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The new customer has been added successfully."));
-        Assert.assertTrue(customersPage.verifyCustomerInfo(customerInfo));
+        verifyTrue(customersPage.getMessageSuccess(driver).contains("The new customer has been added successfully."));
+        verifyTrue(customersPage.verifyCustomerInfo(customerInfo));
 
         log.info("Step7: click back to customer list link");
         customersPage.ClickToLinkByText(driver, "back to customer list");
@@ -353,7 +354,7 @@ public class Admin_01 extends BaseTest {
         log.info("Step3: Click Save button");
         customersPage.ClickToButtonByText(driver, "Save");
 
-        Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The customer has been updated successfully."));
+        verifyTrue(customersPage.getMessageSuccess(driver).contains("The customer has been updated successfully."));
 
         log.info("Step4: input Email textbox: " + customerInfo.email);
         customersPage.EnterToTextboxByID(driver, "SearchEmail", customerInfo.email);
@@ -418,9 +419,6 @@ public class Admin_01 extends BaseTest {
         customersPage.ClickToButtonByText(driver, "Search");
         customersPage.Loaded(driver);
 
-        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
-        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
-
         log.info("Step10: Click Edit button");
         customersPage.clickToEditButtonInFirstResultSearchCustomer();
 
@@ -435,8 +433,8 @@ public class Admin_01 extends BaseTest {
         customersPage.waitLoadedPageByHeaderName(driver, "Add a new address");
         customersPage.inputAddressInfoForm(addressInfo);
 
-        Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The new address has been added successfully."));
-        Assert.assertTrue(customersPage.verifyAddressInfo(addressInfo));
+        verifyTrue(customersPage.getMessageSuccess(driver).contains("The new address has been added successfully."));
+        verifyTrue(customersPage.verifyAddressInfo(addressInfo));
 
         log.info("Step14: Click Back to Customer Details");
         customersPage.ClickToLinkByText(driver, "back to customer details");
@@ -498,9 +496,6 @@ public class Admin_01 extends BaseTest {
         customersPage.ClickToButtonByText(driver, "Search");
         customersPage.Loaded(driver);
 
-        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
-        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
-
         log.info("Step10: Click Edit button");
         customersPage.clickToEditButtonInFirstResultSearchCustomer();
 
@@ -513,17 +508,17 @@ public class Admin_01 extends BaseTest {
 
         log.info("Step13: Input Address info");
         customersPage.waitLoadedPageByHeaderName(driver, "Edit address");
-        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit address"));
+        verifyTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit address"));
         customersPage.inputAddressInfoForm(addressInfo);
 
-        Assert.assertTrue(customersPage.getMessageSuccess(driver).contains("The address has been updated successfully."));
-        Assert.assertTrue(customersPage.verifyAddressInfo(addressInfo));
+        verifyTrue(customersPage.getMessageSuccess(driver).contains("The address has been updated successfully."));
+        verifyTrue(customersPage.verifyAddressInfo(addressInfo));
 
         log.info("Step14: Click Back to Customer Details");
         customersPage.ClickToLinkByText(driver, "back to customer details");
 
         customersPage.waitLoadedPageByHeaderName(driver, "Edit customer details");
-        Assert.assertTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
+        verifyTrue(productsPage.getFloatLeftHeaderPage(driver).contains("Edit customer details"));
 
         log.info("Step15: Click to Address tab");
         customersPage.clickToTabByText(driver, "Addresses");
@@ -564,9 +559,6 @@ public class Admin_01 extends BaseTest {
         log.info("Step9: Click Search");
         customersPage.ClickToButtonByText(driver, "Search");
         customersPage.Loaded(driver);
-
-        Assert.assertFalse(customersPage.isNoDataInTableByID(driver, "customers-grid_wrapper"));
-        Assert.assertEquals(customersPage.getAllResultSearch(driver), "1");
 
         log.info("Step10: Click Edit button");
         customersPage.clickToEditButtonInFirstResultSearchCustomer();

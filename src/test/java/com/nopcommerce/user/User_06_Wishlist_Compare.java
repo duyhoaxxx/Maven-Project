@@ -42,12 +42,12 @@ public class User_06_Wishlist_Compare extends BaseTest {
         log.info("Step2: Click to Add to wishlist button");
         computerMenuPage.clickToAddToWishlistButton();
 
-        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your wishlist");
+        verifyEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your wishlist");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step3: Open Wishlist");
         wishlistPage = computerMenuPage.ClickToWishlistLinkAtUserPage(driver);
-        Assert.assertTrue(wishlistPage.isProductNameDisplay(productName));
+        verifyTrue(wishlistPage.isProductNameDisplay(productName));
 
         log.info("Step4: Click Wishlist URL Share");
         wishlistPage.clickToURLForSharing();
@@ -67,15 +67,15 @@ public class User_06_Wishlist_Compare extends BaseTest {
         shoppingCartPage = wishlistPage.clickAddToCartButton();
 
         log.info("       Verify Product display in Shopping Cart");
-        Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
+        verifyTrue(shoppingCartPage.isProductNameDisplay(productName));
 
         log.info("       Remove Product in Shopping Cart");
         shoppingCartPage.clickToRemoveButtonByNameProduct(productName);
         shoppingCartPage.clickToUpdateShoppingCartButton();
 
         log.info("       Verify Shopping Cart is empty");
-        Assert.assertEquals(shoppingCartPage.getResultMessage(), "Your Shopping Cart is empty!");
-        Assert.assertEquals(shoppingCartPage.getNumberProductInShoppingCart(), 0);
+        verifyEquals(shoppingCartPage.getResultMessage(), "Your Shopping Cart is empty!");
+        verifyEquals(shoppingCartPage.getNumberProductInShoppingCart(), 0);
 
         log.info("Step3: Click wishlist page");
         wishlistPage = shoppingCartPage.ClickToWishlistLinkAtUserPage(driver);
@@ -122,23 +122,23 @@ public class User_06_Wishlist_Compare extends BaseTest {
 
         log.info("Step3: Click to Add to Compare list button: " + productName);
         computerMenuPage.clickToAddToCompareListButtonByName(productName);
-        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your product comparison");
+        verifyEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your product comparison");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step4: Click to Add to Compare list button: " + productNameCompare);
         computerMenuPage.sleepInSecond(1);
         computerMenuPage.clickToAddToCompareListButtonByName(productNameCompare);
-        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your product comparison");
+        verifyEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your product comparison");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step5: Click to compare page");
         computerMenuPage.openFooterPageByName(driver, "Compare products list");
         compareProductPage = PageGeneratorManager.getCompareProductsPage(driver);
 
-        Assert.assertTrue(compareProductPage.isPageTitleDisplayedByName(driver, "Compare products"));
+        verifyTrue(compareProductPage.isPageTitleDisplayedByName(driver, "Compare products"));
         log.info(productName + " ~~~ " + productNameCompare);
-        Assert.assertTrue(compareProductPage.isProductNameDisplay(productName));
-        Assert.assertTrue(compareProductPage.isProductNameDisplay(productNameCompare));
+        verifyTrue(compareProductPage.isProductNameDisplay(productName));
+        verifyTrue(compareProductPage.isProductNameDisplay(productNameCompare));
 
         log.info("Step6: Click Clear List Button");
         compareProductPage.clickToClearListButton();

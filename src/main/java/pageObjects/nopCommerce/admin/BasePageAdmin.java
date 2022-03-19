@@ -15,7 +15,8 @@ public class BasePageAdmin extends BasePage {
     }
 
     public void ClickToLinkByText(WebDriver driver, String text) {
-        clickToElement(driver, BasePageAdminUI.DYNAMIC_LINK_BY_TEXT, text);
+        clickToElementByJS(driver, BasePageAdminUI.DYNAMIC_LINK_BY_TEXT, text);
+        sleepInSecond(2);
     }
 
     public void clickCustomersLeftMenuDropdown(WebDriver driver) {
@@ -24,7 +25,7 @@ public class BasePageAdmin extends BasePage {
     }
 
     public ADCustomersPageObject clickCustomersLeftMenuPage(WebDriver driver) {
-        clickToElement(driver, BasePageAdminUI.CUSTOMERS_LEFT_MENU_PAGE);
+        clickToElementByJS(driver, BasePageAdminUI.CUSTOMERS_LEFT_MENU_PAGE);
         return PageGeneratorManager.getCustomersPage(driver);
     }
 
@@ -50,6 +51,7 @@ public class BasePageAdmin extends BasePage {
 
     public String getMessageSuccess(WebDriver driver) {
         String result = getElementText(driver, BasePageAdminUI.MESSAGE_SUCCESS);
+        sleepInSecond(1);
         closeMessageNotify(driver);
         return result;
     }

@@ -33,7 +33,7 @@ public class User_04_Search extends BaseTest {
         log.info("Step1: click Search in footer");
         homePage.openFooterPageByName(driver, "Search");
         searchPage = PageGeneratorManager.getUserSearchPage(driver);
-        Assert.assertTrue(searchPage.isPageTitleDisplayedByName(driver, "Search"));
+        verifyTrue(searchPage.isPageTitleDisplayedByName(driver, "Search"));
 
         log.info("Step2: click Search button");
         searchPage.clickToSearchButton();
@@ -97,7 +97,7 @@ public class User_04_Search extends BaseTest {
         log.info("Step3: Category: Computer");
         log.info("Step4: Automatically Search SubCategories: true");
         log.info("Step5: Manufacturer: All");
-        log.info("Step5: Search In Product Descriptions: false");
+        log.info("Step6: Search In Product Descriptions: false");
         searchPage.searchKeywordAdvancedForm("Apple MacBook Pro", "Computers", true, "All", false);
 
         Assert.assertEquals(searchPage.getNumberResult(), 1);
@@ -112,7 +112,7 @@ public class User_04_Search extends BaseTest {
         log.info("Step3: Category: Computer");
         log.info("Step4: Automatically Search SubCategories: true");
         log.info("Step5: Manufacturer: HP");
-        log.info("Step5: Search In Product Descriptions: false");
+        log.info("Step6: Search In Product Descriptions: false");
         searchPage.searchKeywordAdvancedForm("Apple MacBook Pro", "Computers", true, "HP", false);
 
         Assert.assertEquals(searchPage.getResultMessage(), "No products were found that matched your criteria.");
@@ -126,7 +126,7 @@ public class User_04_Search extends BaseTest {
         log.info("Step3: Category: Computer");
         log.info("Step4: Automatically Search SubCategories: true");
         log.info("Step5: Manufacturer: Apple");
-        log.info("Step5: Search In Product Descriptions: false");
+        log.info("Step6: Search In Product Descriptions: false");
 
         searchPage.searchKeywordAdvancedForm("Apple MacBook Pro", "Computers", true, "Apple", false);
 

@@ -97,10 +97,8 @@ public class ADCustomersPageObject extends BasePageAdmin {
     }
 
     public boolean isNameDisplayedInResultCustemerSearch(String name) {
-        System.out.println(name);
         List<WebElement> listWE = getListWebElement(driver, ADCustomersPageUI.ALL_NAME_IN_RESULT_SEARCH);
         for (WebElement element : listWE) {
-            System.out.println(element.getText());
             if (element.getText().equals(name))
                 return true;
         }
@@ -139,7 +137,7 @@ public class ADCustomersPageObject extends BasePageAdmin {
         EnterToTextboxByID(driver, "Address_FaxNumber", addressInfo.faxNumber);
 
         ClickToButtonByText(driver, "Save");
-        Loaded(driver);
+        sleepInSecond(2);
     }
 
     public boolean verifyAddressInfo(GlobalConstants.AddressInfo addressInfo) {

@@ -1,5 +1,6 @@
 package com.nopcommerce.user;
 
+import com.google.common.base.Verify;
 import commons.BaseTest;
 import commons.GlobalConstants;
 import commons.PageGeneratorManager;
@@ -53,7 +54,7 @@ public class User_07_Oder extends BaseTest {
 
         log.info("Step3: Click Add to Cart button");
         computerMenuPage.clickToAddToCartButton();
-        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
+        verifyEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step4: Go to Shopping cart page");
@@ -80,12 +81,12 @@ public class User_07_Oder extends BaseTest {
         numberBuy = "2";
         computerMenuPage.clickOptionBuildYourOwnComputer(opProcessor, opRAM, opHDD, opOS, opSoftware, numberBuy);
 
-        Assert.assertEquals(computerMenuPage.getPriceProduct(), "$1,320.00");
+        verifyEquals(computerMenuPage.getPriceProduct(), "$1,320.00");
 
         log.info("Step3: Click Update button");
         computerMenuPage.clickToUpdateButton();
 
-        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
+        verifyEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step4: Go to Shopping cart page");
@@ -127,13 +128,13 @@ public class User_07_Oder extends BaseTest {
 
         log.info("Step4: Click Add to Cart button");
         computerMenuPage.clickToAddToCartButton();
-        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
+        verifyEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step5: Go to Shopping Cart page");
         shoppingCartPage = computerMenuPage.ClickToShoppingCartLinkAtUserPage(driver);
-        Assert.assertTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
-        Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
+        verifyTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
+        verifyTrue(shoppingCartPage.isProductNameDisplay(productName));
 
         log.info("Step6: Edit Qty of Product to 5");
         shoppingCartPage.inputToQuantityByProductName(productName, "5");
@@ -141,7 +142,7 @@ public class User_07_Oder extends BaseTest {
         log.info("Step7: Click Update Shopping Cart Button");
         shoppingCartPage.clickToUpdateShoppingCartButton();
 
-        Assert.assertTrue(shoppingCartPage.isTotalPriceProduct(productName, "5"));
+        verifyTrue(shoppingCartPage.isTotalPriceProduct(productName, "5"));
 
         log.info("Step8: Click Remove Product");
         shoppingCartPage.clickToRemoveButtonByNameProduct(productName);
@@ -170,13 +171,13 @@ public class User_07_Oder extends BaseTest {
 
         log.info("Step4: Click Add to Cart button");
         computerMenuPage.clickToAddToCartButton();
-        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
+        verifyEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step5: Go to Shopping Cart page");
         shoppingCartPage = computerMenuPage.ClickToShoppingCartLinkAtUserPage(driver);
-        Assert.assertTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
-        Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
+        verifyTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
+        verifyTrue(shoppingCartPage.isProductNameDisplay(productName));
 
         unitPrice = shoppingCartPage.getUnitPriceByProductName(productName);
         numberQty = shoppingCartPage.getNumberQuantityByProductName(productName);
@@ -188,7 +189,7 @@ public class User_07_Oder extends BaseTest {
 
         log.info("Step7: Click Checkout button");
         checkoutPage = shoppingCartPage.clickToCheckoutButton();
-        Assert.assertTrue(checkoutPage.isPageTitleDisplayedByName(driver, "Checkout"));
+        verifyTrue(checkoutPage.isPageTitleDisplayedByName(driver, "Checkout"));
 
         log.info("Step8: Click checkbox Ship to the same address");
         checkoutPage.clickToShipSameAddressCheckbox(true);
@@ -211,20 +212,20 @@ public class User_07_Oder extends BaseTest {
         log.info("Step14: Click Continue button at Payment Info");
         checkoutPage.clickToContinueButtonPaymentInfo();
 
-        Assert.assertTrue(checkoutPage.isCheckInformationBillingAdr(addressInfo));
-        Assert.assertTrue(checkoutPage.isCheckInformationShippingAdr(addressInfo));
-        Assert.assertTrue(checkoutPage.isCheckPaymentMethod("Check / Money Order"));
-        Assert.assertTrue(checkoutPage.isCheckShippingMethod("Ground"));
-        Assert.assertTrue(checkoutPage.isCheckProductNameDisplay(productName));
-        Assert.assertTrue(checkoutPage.isConfirmUnitPriceByName(productName, unitPrice));
-        Assert.assertTrue(checkoutPage.isConfirmQtyByName(productName, numberQty));
-        Assert.assertTrue(checkoutPage.isConfirmTotalPriceByName(productName, totalPrice));
+        verifyTrue(checkoutPage.isCheckInformationBillingAdr(addressInfo));
+        verifyTrue(checkoutPage.isCheckInformationShippingAdr(addressInfo));
+        verifyTrue(checkoutPage.isCheckPaymentMethod("Check / Money Order"));
+        verifyTrue(checkoutPage.isCheckShippingMethod("Ground"));
+        verifyTrue(checkoutPage.isCheckProductNameDisplay(productName));
+        verifyTrue(checkoutPage.isConfirmUnitPriceByName(productName, unitPrice));
+        verifyTrue(checkoutPage.isConfirmQtyByName(productName, numberQty));
+        verifyTrue(checkoutPage.isConfirmTotalPriceByName(productName, totalPrice));
 
         log.info("Step15: Click Confirm button ");
         checkoutPage.clickToConfirmButton();
 
         log.info("Step16: Check message success");
-        Assert.assertEquals(checkoutPage.getMessageOrderSuccess(), "Your order has been successfully processed!");
+        verifyEquals(checkoutPage.getMessageOrderSuccess(), "Your order has been successfully processed!");
 
         orderNumber = checkoutPage.getOrderNumber();
         checkoutPage.clickToDetailsLink();
@@ -243,7 +244,7 @@ public class User_07_Oder extends BaseTest {
         customerInfoPage.openMyAccountPageByName(driver, "Orders");
         ordersPage = PageGeneratorManager.getUserOrdersPage(driver);
 
-        Assert.assertTrue(ordersPage.isOrderNumberDisplay(orderNumber));
+        verifyTrue(ordersPage.isOrderNumberDisplay(orderNumber));
 
         log.info("Step20: Click Details button in Order Number " + orderNumber);
         ordersPage.clickToDetailsButtonByOrderNumber(orderNumber);
@@ -282,13 +283,13 @@ public class User_07_Oder extends BaseTest {
 
         log.info("Step4: Click Add to Cart button");
         computerMenuPage.clickToAddToCartButton();
-        Assert.assertEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
+        verifyEquals(computerMenuPage.getBarNotificationSuccess(driver), "The product has been added to your shopping cart");
         computerMenuPage.clickCLoseButtonBarNotification(driver);
 
         log.info("Step5: Go to Shopping Cart page");
         shoppingCartPage = computerMenuPage.ClickToShoppingCartLinkAtUserPage(driver);
-        Assert.assertTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
-        Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
+        verifyTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
+        verifyTrue(shoppingCartPage.isProductNameDisplay(productName));
 
         unitPrice = shoppingCartPage.getUnitPriceByProductName(productName);
         numberQty = shoppingCartPage.getNumberQuantityByProductName(productName);
@@ -300,7 +301,7 @@ public class User_07_Oder extends BaseTest {
 
         log.info("Step7: Click Checkout button");
         checkoutPage = shoppingCartPage.clickToCheckoutButton();
-        Assert.assertTrue(checkoutPage.isPageTitleDisplayedByName(driver, "Checkout"));
+        verifyTrue(checkoutPage.isPageTitleDisplayedByName(driver, "Checkout"));
 
         log.info("Step8: Click checkbox Ship to the same address");
         checkoutPage.clickToShipSameAddressCheckbox(true);
@@ -331,20 +332,20 @@ public class User_07_Oder extends BaseTest {
         log.info("Step15: Click Continue button at Payment Info");
         checkoutPage.clickToContinueButtonPaymentInfo();
 
-        Assert.assertTrue(checkoutPage.isCheckInformationBillingAdr(addressInfo));
-        Assert.assertTrue(checkoutPage.isCheckInformationShippingAdr(addressInfo));
-        Assert.assertTrue(checkoutPage.isCheckPaymentMethod("Credit Card"));
-        Assert.assertTrue(checkoutPage.isCheckShippingMethod("Ground"));
-        Assert.assertTrue(checkoutPage.isCheckProductNameDisplay(productName));
-        Assert.assertTrue(checkoutPage.isConfirmUnitPriceByName(productName, unitPrice));
-        Assert.assertTrue(checkoutPage.isConfirmQtyByName(productName, numberQty));
-        Assert.assertTrue(checkoutPage.isConfirmTotalPriceByName(productName, totalPrice));
+        verifyTrue(checkoutPage.isCheckInformationBillingAdr(addressInfo));
+        verifyTrue(checkoutPage.isCheckInformationShippingAdr(addressInfo));
+        verifyTrue(checkoutPage.isCheckPaymentMethod("Credit Card"));
+        verifyTrue(checkoutPage.isCheckShippingMethod("Ground"));
+        verifyTrue(checkoutPage.isCheckProductNameDisplay(productName));
+        verifyTrue(checkoutPage.isConfirmUnitPriceByName(productName, unitPrice));
+        verifyTrue(checkoutPage.isConfirmQtyByName(productName, numberQty));
+        verifyTrue(checkoutPage.isConfirmTotalPriceByName(productName, totalPrice));
 
         log.info("Step16: Click Confirm button ");
         checkoutPage.clickToConfirmButton();
 
         log.info("Step17: Check message success");
-        Assert.assertEquals(checkoutPage.getMessageOrderSuccess(), "Your order has been successfully processed!");
+        verifyEquals(checkoutPage.getMessageOrderSuccess(), "Your order has been successfully processed!");
 
         orderNumber = checkoutPage.getOrderNumber();
         checkoutPage.clickToDetailsLink();
@@ -363,7 +364,7 @@ public class User_07_Oder extends BaseTest {
         customerInfoPage.openMyAccountPageByName(driver, "Orders");
         ordersPage = PageGeneratorManager.getUserOrdersPage(driver);
 
-        Assert.assertTrue(ordersPage.isOrderNumberDisplay(orderNumber));
+        verifyTrue(ordersPage.isOrderNumberDisplay(orderNumber));
 
         log.info("Step21: Click Details button in Order Number " + orderNumber);
         ordersPage.clickToDetailsButtonByOrderNumber(orderNumber);
@@ -391,8 +392,8 @@ public class User_07_Oder extends BaseTest {
         log.info("In Order Infor Detail of Order Number: " + orderNumber);
         log.info("Step1: Click to Re-Order button");
         shoppingCartPage = ordersPage.clickToReOrderButton();
-        Assert.assertTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
-        Assert.assertTrue(shoppingCartPage.isProductNameDisplay(productName));
+        verifyTrue(shoppingCartPage.isPageTitleDisplayedByName(driver, "Shopping cart"));
+        verifyTrue(shoppingCartPage.isProductNameDisplay(productName));
 
         log.info("Step2: Edit Qty of Product to 10");
         shoppingCartPage.inputToQuantityByProductName(productName, "10");
@@ -400,7 +401,7 @@ public class User_07_Oder extends BaseTest {
         log.info("Step3: Click Update Shopping Cart Button");
         shoppingCartPage.clickToUpdateShoppingCartButton();
 
-        Assert.assertTrue(shoppingCartPage.isTotalPriceProduct(productName, "10"));
+        verifyTrue(shoppingCartPage.isTotalPriceProduct(productName, "10"));
 
         unitPrice = shoppingCartPage.getUnitPriceByProductName(productName);
         numberQty = shoppingCartPage.getNumberQuantityByProductName(productName);
@@ -412,7 +413,7 @@ public class User_07_Oder extends BaseTest {
 
         log.info("Step5: Click Checkout button");
         checkoutPage = shoppingCartPage.clickToCheckoutButton();
-        Assert.assertTrue(checkoutPage.isPageTitleDisplayedByName(driver, "Checkout"));
+        verifyTrue(checkoutPage.isPageTitleDisplayedByName(driver, "Checkout"));
 
         log.info("Step6: uncheck ship to same address");
         checkoutPage.clickToShipSameAddressCheckbox(false);
@@ -450,20 +451,20 @@ public class User_07_Oder extends BaseTest {
         log.info("Step17: Click Continue button at Payment Info");
         checkoutPage.clickToContinueButtonPaymentInfo();
 
-        Assert.assertTrue(checkoutPage.isCheckInformationBillingAdr(addressBilling));
-        Assert.assertTrue(checkoutPage.isCheckInformationShippingAdr(addressShipping));
-        Assert.assertTrue(checkoutPage.isCheckPaymentMethod("Check / Money Order"));
-        Assert.assertTrue(checkoutPage.isCheckShippingMethod("Next Day Air"));
-        Assert.assertTrue(checkoutPage.isCheckProductNameDisplay(productName));
-        Assert.assertTrue(checkoutPage.isConfirmUnitPriceByName(productName, unitPrice));
-        Assert.assertTrue(checkoutPage.isConfirmQtyByName(productName, numberQty));
-        Assert.assertTrue(checkoutPage.isConfirmTotalPriceByName(productName, totalPrice));
+        verifyTrue(checkoutPage.isCheckInformationBillingAdr(addressBilling));
+        verifyTrue(checkoutPage.isCheckInformationShippingAdr(addressShipping));
+        verifyTrue(checkoutPage.isCheckPaymentMethod("Check / Money Order"));
+        verifyTrue(checkoutPage.isCheckShippingMethod("Next Day Air"));
+        verifyTrue(checkoutPage.isCheckProductNameDisplay(productName));
+        verifyTrue(checkoutPage.isConfirmUnitPriceByName(productName, unitPrice));
+        verifyTrue(checkoutPage.isConfirmQtyByName(productName, numberQty));
+        verifyTrue(checkoutPage.isConfirmTotalPriceByName(productName, totalPrice));
 
         log.info("Step15: Click Confirm button ");
         checkoutPage.clickToConfirmButton();
 
         log.info("Step16: Check message success");
-        Assert.assertEquals(checkoutPage.getMessageOrderSuccess(), "Your order has been successfully processed!");
+        verifyEquals(checkoutPage.getMessageOrderSuccess(), "Your order has been successfully processed!");
 
         orderNumber = checkoutPage.getOrderNumber();
         checkoutPage.clickToDetailsLink();
@@ -482,7 +483,7 @@ public class User_07_Oder extends BaseTest {
         customerInfoPage.openMyAccountPageByName(driver, "Orders");
         ordersPage = PageGeneratorManager.getUserOrdersPage(driver);
 
-        Assert.assertTrue(ordersPage.isOrderNumberDisplay(orderNumber));
+        verifyTrue(ordersPage.isOrderNumberDisplay(orderNumber));
 
         log.info("Step20: Click Details button in Order Number " + orderNumber);
         ordersPage.clickToDetailsButtonByOrderNumber(orderNumber);

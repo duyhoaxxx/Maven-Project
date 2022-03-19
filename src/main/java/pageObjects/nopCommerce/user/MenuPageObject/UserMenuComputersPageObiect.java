@@ -38,13 +38,20 @@ public class UserMenuComputersPageObiect extends BasePageUser {
     }
 
     public void clickOptionBuildYourOwnComputer(String opProcessor, String opRAM, String opHDD, String opOS, String opSoftware, String numberBuy) {
+        sleepInSecond(1);
         selectItemInDefaultDropdown(driver, MenuComputersPageUI.BUILD_COMPUTER_PROCESSOR_DROPDOWN, opProcessor);
+        sleepInSecond(1);
         selectItemInDefaultDropdown(driver, MenuComputersPageUI.BUILD_COMPUTER_RAM_DROPDOWN, opRAM);
+        sleepInSecond(1);
         clickToElement(driver, MenuComputersPageUI.BUILD_COMPUTER_HDD_RADIO, opHDD);
+        sleepInSecond(1);
         clickToElement(driver, MenuComputersPageUI.BUILD_COMPUTER_OS_RADIO, opOS);
+        sleepInSecond(1);
         if (!isElementSelected(driver, MenuComputersPageUI.BUILD_COMPUTER_SOFTWARE_CHECKBOX, opSoftware))
             clickToElement(driver, MenuComputersPageUI.BUILD_COMPUTER_SOFTWARE_CHECKBOX, opSoftware);
+        sleepInSecond(1);
         senkeyToElement(driver, MenuComputersPageUI.BUILD_COMPUTER_NUMBER_BUY_TEXTBOX, numberBuy);
+        sleepInSecond(1);
     }
 
     public String getPriceProduct() {
