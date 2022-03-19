@@ -211,7 +211,7 @@ public class BasePage {
     }
 
     public void SelectItemInCustomDropDown(WebDriver driver, String buttonXpath, String xpathLoadItem, String expected) {
-        clickToElementByJS(driver, buttonXpath);
+        clickToElement(driver, buttonXpath);
         sleepInSecond(1);
 
         WebDriverWait explicitWait = new WebDriverWait(driver, longTimeoutInSecound);

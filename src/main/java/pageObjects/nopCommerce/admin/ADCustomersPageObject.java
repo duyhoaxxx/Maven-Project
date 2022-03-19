@@ -21,21 +21,34 @@ public class ADCustomersPageObject extends BasePageAdmin {
     }
 
     public void inputCustomerInfoForm(GlobalConstants.CustomerInfo customerInfo) {
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Email", customerInfo.email);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Password", customerInfo.password);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "FirstName", customerInfo.fname);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "LastName", customerInfo.lname);
+        sleepInSecond(2);
         if (customerInfo.gender.equals("Male"))
             ClickToRadioButtonByID(driver, "Gender_Male");
         else
             ClickToRadioButtonByID(driver, "Gender_Female");
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "DateOfBirth", customerInfo.DOB);
+        sleepInSecond(2);
         EnterToTextboxByID(driver, "Company", customerInfo.companyName);
+        sleepInSecond(2);
         ClickToCheckboxButtonByID(driver, "IsTaxExempt", customerInfo.isTaxExempt);
+        sleepInSecond(2);
         ClickToCheckboxButtonByID(driver, "Active", customerInfo.isActive);
+        sleepInSecond(2);
         SelectDropdownByID(driver, "VendorId", customerInfo.managerVender);
+        sleepInSecond(2);
         SelectItemInCustomDropDown(driver, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_BUTTON, ADCustomersPageUI.CUSTOMER_ROLES_DROPDOWN_ITEM, customerInfo.customerRoles);
+        sleepInSecond(2);
         SelectItemInCustomDropDown(driver, ADCustomersPageUI.NEWS_LETTER_DROPDOWN_BUTTON, ADCustomersPageUI.NEWS_LETTER_DROPDOWN_ITEM, customerInfo.newsletter);
+        sleepInSecond(2);
         EnterToTextareaByID(driver, "AdminComment", customerInfo.adminComment);
     }
 
