@@ -4,6 +4,7 @@
     <listeners>
         <listener class-name="commons.MethodListener"/>
         <listener class-name="reportConfig.ExtentTestListener"/>
+        <listener class-name="reportConfig.AllureTestListener"/>
     </listeners>
 
     <test name="Run on Chrome">
