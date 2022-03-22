@@ -261,23 +261,8 @@ public class BaseTest {
 
     @BeforeTest
     public void deleteAllFilesInReportNGScreenshot() {
-        log.info("delete file in folder Report Image");
         try {
             String pathFolder = GlobalConstants.PROJECT_PATH + File.separator + "ReportNGImage";
-            File file = new File(pathFolder);
-            File[] listOfFiles = file.listFiles();
-            for (int i = 0; i < listOfFiles.length; i++) {
-                if (listOfFiles[i].isFile()) {
-                    new File(listOfFiles[i].toString()).delete();
-                }
-            }
-        } catch (Exception e) {
-            log.info(e.getMessage());
-        }
-
-        log.info("delete file in folder Allure-json");
-        try {
-            String pathFolder = GlobalConstants.PROJECT_PATH + File.separator + "allure-json";
             File file = new File(pathFolder);
             File[] listOfFiles = file.listFiles();
             for (int i = 0; i < listOfFiles.length; i++) {
