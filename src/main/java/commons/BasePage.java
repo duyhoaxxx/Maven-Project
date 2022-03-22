@@ -19,10 +19,6 @@ public class BasePage {
     private int longTimeoutInSecound = GlobalConstants.LONG_TIMEOUT;
     private int shortTimeoutInSecound = GlobalConstants.SHORT_TIMEOUT;
 
-    public static BasePageUser getBasePage() {
-        return new BasePageUser();
-    }
-
     public void openPageUrl(WebDriver driver, String url) {
         driver.get(url);
     }
