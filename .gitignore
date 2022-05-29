@@ -2,6 +2,7 @@
 /test-output/
 /extentReport/
 /allure-json/
+/allure-results/
 /ReportNGImage/
 /scriptLogs/
 /browserLogs/
